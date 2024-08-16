@@ -1,10 +1,10 @@
-import { Home } from './pages/home'
+import { HomePage } from './pages/home'
 
 function App() {
 
   return (
     <>
-      <Home/>
+      <HomePage/>
     </>
   )
 }

@@ -1,6 +1,6 @@
 import { HeaderCustom } from '../components/header'
 
-export function Home() {
+export function HomePage() {
 
   return (
     <>
