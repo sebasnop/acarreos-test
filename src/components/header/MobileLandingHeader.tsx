@@ -1,7 +1,7 @@
 
 import { Dialog, DialogPanel } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { PageInterface } from 'src/interfaces/interfaces';
+import type { PageInterface } from 'src/interfaces/interfaces';
 
 interface Props {
   setMobileMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;

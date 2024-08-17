@@ -14,24 +14,30 @@ import { PageInterface } from 'src/interfaces/interfaces';
 
 interface Props {
   setMobileMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  pages: PageInterface[];
-  home: PageInterface;
-  login: PageInterface;
+  routes: Record<string, PageInterface>;
 }
 
-const products = [
-  { name: 'Negocio', description: 'Ingresa al portal empresarial', href: '#', icon: ChartPieIcon },
-  { name: 'Transportista', description: 'Actualiza el seguimiento de tus servicios', href: '#', icon: CursorArrowRaysIcon }
-]
+export default function DesktopLandingHeader({ setMobileMenuOpen, routes }: Props) {
 
-export default function DesktopLandingHeader({ setMobileMenuOpen, pages, home, login }: Props) {
+  const businessRoutes = [
+    {
+      name: routes.enterprise.name,
+      description: 'Ingresa al portal empresarial',
+      href: routes.enterprise.href, icon: ChartPieIcon
+    },
+    {
+      name: routes.carrier.name,
+      description: 'Actualiza el seguimiento de tus servicios',
+      href: routes.carrier.href, icon: CursorArrowRaysIcon
+    }
+  ]
 
   return (
     <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
       <div className="flex lg:flex-1">
-        <a href={home.href} className="-m-1.5 p-1.5">
-          <span className="sr-only">{home.name}</span>
-          <img alt={'Logo de ' + home.name}
+        <a href={routes.home.href} className="-m-1.5 p-1.5">
+          <span className="sr-only">{routes.home.name}</span>
+          <img alt={'Logo de ' + routes.home.name}
             src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
             className="h-8 w-auto" />
         </a>
@@ -48,19 +54,29 @@ export default function DesktopLandingHeader({ setMobileMenuOpen, pages, home, l
       </div>
       <PopoverGroup className="hidden lg:flex lg:gap-x-12">
 
+        <a href={routes.price.href} className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600">
+          {routes.price.name}
+        </a>
+
+        <a href={routes.locate.href} className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600">
+          {routes.locate.name}
+        </a>
 
         <Popover className="relative">
-          <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 focus-visible:outline-none hover:text-indigo-600">
+          <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 
+          focus-visible:outline-none hover:text-indigo-600">
             Empresarial
             <ChevronDownIcon aria-hidden="true" className="h-5 w-5 flex-none text-gray-400" />
           </PopoverButton>
 
           <PopoverPanel
             transition
-            className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
+            className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-sm overflow-hidden rounded-3xl 
+            bg-white shadow-lg ring-1 ring-gray-900/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 
+            data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
           >
             <div className="p-4">
-              {products.map((item) => (
+              {businessRoutes.map((item) => (
                 <div
                   key={item.name}
                   className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
@@ -80,24 +96,26 @@ export default function DesktopLandingHeader({ setMobileMenuOpen, pages, home, l
             </div>
           </PopoverPanel>
         </Popover>
-        {
-          pages.map((page) =>
-            <a key={page.href} href={page.href} className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600">
-              {page.name}
-            </a>
-          )
-        }
+
+        <a href={routes.about.href} className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600">
+          {routes.about.name}
+        </a>
 
       </PopoverGroup>
+
       <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-6 lg:items-center">
-        <a href={login.href} className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600">
-          {login.name}
+
+        <a href={routes.login.href} className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600">
+          {routes.login.name}
         </a>
+
         <a
-          href="#"
-          className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          href={routes.signup.href}
+          className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm 
+          hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 
+          focus-visible:outline-indigo-600"
         >
-          Registrarse
+          {routes.signup.name}
         </a>
       </div>
     </nav>
