@@ -5,11 +5,15 @@ import DesktopLandingHeader from './DesktopLandingHeader'
 import MobileLandingHeader from './MobileLandingHeader'
 
 const pages: PageInterface[] = [
-  { name: 'Cotizar servicio', href: '/price-quote' },
-  { name: 'Negocio', href: '/enterprise' },
-  { name: 'Transportista', href: '/carrier' },
+  { name: 'Cotizar', href: '/price-quote' },
+  { name: 'Localizar', href: '/about' },
   { name: 'Acerca de', href: '/about' },
 ]
+
+/* 
+  { name: 'Negocio', href: '/enterprise' },
+  { name: 'Transportista', href: '/carrier' },
+ */
 
 const home: PageInterface = { name: 'Acarreos Appa', href: '/' }
 const logIn: PageInterface = { name: 'Iniciar Sesión', href: '/log-in' }
