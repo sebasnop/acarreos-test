@@ -11,4 +11,4 @@ const navRoutes: { [id: string]: PageInterface } = {
   'signup': { name: 'Registrarse', href: '/signup' },
 }
 
-export {navRoutes}
+export { navRoutes }
