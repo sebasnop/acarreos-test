@@ -10,6 +10,7 @@ import {
   ChevronDownIcon,
   CursorArrowRaysIcon,
 } from '@heroicons/react/24/outline'
+import { Link } from 'react-router-dom';
 import { PageInterface } from 'src/interfaces/interfaces';
 
 interface Props {
@@ -35,12 +36,12 @@ export default function DesktopLandingHeader({ setMobileMenuOpen, routes }: Prop
   return (
     <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
       <div className="flex lg:flex-1">
-        <a href={routes.home.href} className="-m-1.5 p-1.5">
+        <Link to={routes.home.href} className="-m-1.5 p-1.5">
           <span className="sr-only">{routes.home.name}</span>
           <img alt={'Logo de ' + routes.home.name}
             src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
             className="h-8 w-auto" />
-        </a>
+        </Link>
       </div>
       <div className="flex lg:hidden">
         <button
@@ -54,13 +55,13 @@ export default function DesktopLandingHeader({ setMobileMenuOpen, routes }: Prop
       </div>
       <PopoverGroup className="hidden lg:flex lg:gap-x-12">
 
-        <a href={routes.price.href} className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600">
+        <Link to={routes.price.href} className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600">
           {routes.price.name}
-        </a>
+        </Link>
 
-        <a href={routes.locate.href} className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600">
+        <Link to={routes.locate.href} className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600">
           {routes.locate.name}
-        </a>
+        </Link>
 
         <Popover className="relative">
           <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 
@@ -85,10 +86,10 @@ export default function DesktopLandingHeader({ setMobileMenuOpen, routes }: Prop
                     <item.icon aria-hidden="true" className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" />
                   </div>
                   <div className="flex-auto">
-                    <a href={item.href} className="block font-semibold text-gray-900">
+                    <Link to={item.href} className="block font-semibold text-gray-900">
                       {item.name}
                       <span className="absolute inset-0" />
-                    </a>
+                    </Link>
                     <p className="mt-1 text-gray-600">{item.description}</p>
                   </div>
                 </div>
@@ -97,26 +98,26 @@ export default function DesktopLandingHeader({ setMobileMenuOpen, routes }: Prop
           </PopoverPanel>
         </Popover>
 
-        <a href={routes.about.href} className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600">
+        <Link to={routes.about.href} className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600">
           {routes.about.name}
-        </a>
+        </Link>
 
       </PopoverGroup>
 
       <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-6 lg:items-center">
 
-        <a href={routes.login.href} className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600">
+        <Link to={routes.login.href} className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600">
           {routes.login.name}
-        </a>
+        </Link>
 
-        <a
-          href={routes.signup.href}
+        <Link
+          to={routes.signup.href}
           className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm 
           hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 
           focus-visible:outline-indigo-600"
         >
           {routes.signup.name}
-        </a>
+        </Link>
       </div>
     </nav>
   )
