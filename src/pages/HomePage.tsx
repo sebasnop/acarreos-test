@@ -1,6 +1,6 @@
 import LandingHeader from '../components/header/LandingHeader'
 
-export function HomePage() {
+export default function HomePage() {
 
   return (
     <>
