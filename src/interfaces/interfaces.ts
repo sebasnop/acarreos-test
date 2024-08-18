@@ -15,5 +15,26 @@ interface PageInterface {
   href: string;
 }
 
+/**
+ * Represents a nation in the Avatar's world.
+ */
+interface nation {
+  /**
+   * A simple name for easily identify the nation
+   * @example "water"
+   */
+  simpleName: string,
+  /**
+   * The complete name of the nation
+   * @example "Tribus Agua"
+   */
+  name: string,
+  /**
+   * The complete name of the nation
+   * @example "https://avatarimages.com/logos/water-tribes-logo.svg"
+   */
+  img: string
+}
 
-export type { PageInterface };
+
+export type { PageInterface, nation };
