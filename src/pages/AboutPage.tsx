@@ -1,6 +1,6 @@
 import LandingHeader from "../components/header/LandingHeader"
 
-export function AboutPage() {
+export default function AboutPage() {
 
   return (
     <>
