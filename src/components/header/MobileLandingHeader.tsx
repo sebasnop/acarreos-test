@@ -45,10 +45,10 @@ export default function MobileLandingHeader({ setMobileMenuOpen, mobileMenuOpen,
               </Link>
 
               <Link
-                to={routes.locate.href}
+                to={routes.track.href}
                 className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
               >
-                {routes.locate.name}
+                {routes.track.name}
               </Link>
 
               <Disclosure as="div" className="-mx-3">

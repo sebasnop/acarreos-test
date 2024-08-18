@@ -9,7 +9,7 @@ export default function LandingHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="bg-white">
+    <header>
 
       <DesktopLandingHeader
         setMobileMenuOpen={setMobileMenuOpen}

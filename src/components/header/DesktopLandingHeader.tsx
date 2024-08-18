@@ -53,14 +53,14 @@ export default function DesktopLandingHeader({ setMobileMenuOpen, routes }: Prop
           <Bars3Icon aria-hidden="true" className="h-6 w-6" />
         </button>
       </div>
-      <PopoverGroup className="hidden lg:flex lg:gap-x-12">
+      <PopoverGroup className="hidden lg:flex lg:gap-x-4 xl:gap-x-12">
 
         <Link to={routes.price.href} className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600">
           {routes.price.name}
         </Link>
 
-        <Link to={routes.locate.href} className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600">
-          {routes.locate.name}
+        <Link to={routes.track.href} className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600">
+          {routes.track.name}
         </Link>
 
         <Popover className="relative">
@@ -104,7 +104,7 @@ export default function DesktopLandingHeader({ setMobileMenuOpen, routes }: Prop
 
       </PopoverGroup>
 
-      <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-6 lg:items-center">
+      <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-3 xl:gap-x-6 lg:items-center">
 
         <Link to={routes.login.href} className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600">
           {routes.login.name}
@@ -112,7 +112,7 @@ export default function DesktopLandingHeader({ setMobileMenuOpen, routes }: Prop
 
         <Link
           to={routes.signup.href}
-          className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm 
+          className="rounded-md bg-indigo-600 lg:px-2 xl:px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm 
           hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 
           focus-visible:outline-indigo-600"
         >
