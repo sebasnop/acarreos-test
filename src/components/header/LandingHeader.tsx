@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-import DesktopLandingHeader from './header/DesktopLandingHeader'
-import MobileLandingHeader from './header/MobileLandingHeader'
+import DesktopLandingHeader from './DesktopLandingHeader'
+import MobileLandingHeader from './MobileLandingHeader'
 
 import { navRoutes } from 'src/constants/navRoutes'
 

@@ -1,4 +1,4 @@
-import LandingHeader from "../components/LandingHeader"
+import LandingHeader from "../components/header/LandingHeader"
 
 export function AboutPage() {
 
