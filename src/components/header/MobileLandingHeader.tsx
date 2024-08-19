@@ -2,12 +2,12 @@
 import { Dialog, DialogPanel, Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 import { ChevronDownIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
-import type { PageInterface } from 'src/interfaces/interfaces';
+import type { NavItemInterface } from 'src/interfaces/interfaces';
 
 interface Props {
   setMobileMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
   mobileMenuOpen: boolean;
-  routes: Record<string, PageInterface>;
+  routes: Record<string, NavItemInterface>;
 }
 
 export default function MobileLandingHeader({ setMobileMenuOpen, mobileMenuOpen, routes }: Props) {

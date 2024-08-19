@@ -11,11 +11,11 @@ import {
   CursorArrowRaysIcon,
 } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom';
-import { PageInterface } from 'src/interfaces/interfaces';
+import { NavItemInterface } from '@/interfaces/interfaces';
 
 interface Props {
   setMobileMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  routes: Record<string, PageInterface>;
+  routes: Record<string, NavItemInterface>;
 }
 
 export default function DesktopLandingHeader({ setMobileMenuOpen, routes }: Props) {

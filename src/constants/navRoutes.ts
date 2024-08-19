@@ -1,6 +1,6 @@
-import type { PageInterface } from "src/interfaces/interfaces"
+import type { NavItemInterface } from "@/interfaces/interfaces"
 
-const navRoutes: { [id: string]: PageInterface } = {
+const navRoutes: { [id: string]: NavItemInterface } = {
   'home': { name: 'Acarreos Appa', href: '/' },
   'price': { name: 'Cotizar', href: '/price-quote' },
   'track': { name: 'Localizar', href: '/#track-shipment-section' },

@@ -1,15 +1,15 @@
 /**
- * Represents a page in the navigation menu.
+ * Represents a nav item in the navigation menu.
  */
-interface PageInterface {
+interface NavItemInterface {
   /**
-   * The name of the page to be displayed in the navigation.
+   * The name of the nav item to be displayed in the navigation.
    * @example "Home"
    */
   name: string;
 
   /**
-   * The URL or path that the page points to.
+   * The URL or path that the nav item points to.
    * @example "/home"
    */
   href: string;
@@ -37,4 +37,4 @@ interface nation {
 }
 
 
-export type { PageInterface, nation };
+export type { NavItemInterface, nation };

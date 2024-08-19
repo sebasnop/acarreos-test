@@ -1,9 +1,9 @@
 import { useState } from 'react'
 
-import DesktopLandingHeader from './DesktopLandingHeader'
-import MobileLandingHeader from './MobileLandingHeader'
+import DesktopLandingHeader from '@/components/header/DesktopLandingHeader'
+import MobileLandingHeader from '@/components/header/MobileLandingHeader'
 
-import { navRoutes } from '../../constants/navRoutes'
+import { navRoutes } from '@/constants/navRoutes'
 
 export default function LandingHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
