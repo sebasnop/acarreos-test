@@ -1,0 +1,88 @@
+import { Link } from 'react-router-dom';
+import LandingHeader from "@/components/header/LandingHeader";
+import { LockClosedIcon, MapPinIcon } from '@heroicons/react/20/solid';
+
+export default function SignUpForm() {
+  return (
+    <>
+      <LandingHeader />
+      <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Crea una cuenta</h2>
+        </div>
+
+        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+          <form className="space-y-6" action="#">
+            <div>
+              <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">Nombre de usuario</label>
+              <div className="mt-2">
+                <input id="username" name="username" type="text" autoComplete="username" required className="block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Correo electrónico</label>
+              <div className="mt-2">
+                <input id="email" name="email" type="email" autoComplete="email" required className="block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">Contraseña</label>
+              <div className="mt-2 relative">
+                <LockClosedIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <input id="password" name="password" type="password" autoComplete="new-password" required className="pl-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="confirm-password" className="block text-sm font-medium leading-6 text-gray-900">Confirma tu contraseña</label>
+              <div className="mt-2 relative">
+                <LockClosedIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <input id="confirm-password" name="confirm-password" type="password" autoComplete="new-password" required className="pl-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="location" className="block text-sm font-medium leading-6 text-gray-900">Ubicación predeterminada (opcional)</label>
+              <div className="mt-2 relative">
+                <MapPinIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <select id="location" name="location" className="pl-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                  <option value="" disabled selected>Selecciona una ubicación</option>
+                  <option value="Tribus Agua">Tribus Agua</option>
+                  <option value="Reino Tierra">Reino Tierra</option>
+                  <option value="Nación del Fuego">Nación del Fuego</option>
+                  <option value="Templos Aire">Templos Aire</option>
+                  <option value="Ciudad República">Ciudad República</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="flex items-center">
+              <input id="terms" aria-describedby="terms" type="checkbox" required className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-indigo-300 ring-offset-0 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-indigo-600 dark:ring-offset-gray-800" />
+              <label htmlFor="terms" className="ml-3 text-sm font-light leading-6 text-gray-500 dark:text-gray-500">
+                Acepto los <Link to="/terms" className="font-semibold text-indigo-600 hover:text-indigo-500">Términos y Condiciones</Link>
+              </label>
+            </div>
+
+            <div>
+              <button type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Crea tu cuenta</button>
+            </div>
+          </form>
+
+          <p className="mt-10 text-center text-sm text-gray-500">
+            ¿Ya tienes una cuenta? 
+            <Link to="/login" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"> Inicia sesión aquí</Link>
+          </p>
+        </div>
+      </div>
+    </>
+  );
+}
+
+
+
+
+
+
+

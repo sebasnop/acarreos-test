@@ -9,6 +9,8 @@ const navRoutes: { [id: string]: NavItemInterface } = {
   'about': { name: 'Acerca de', href: '/about' },
   'login': { name: 'Iniciar Sesión', href: '/login' },
   'signup': { name: 'Registrarse', href: '/signup' },
+  'terms': { name: 'Términos y Condiciones', href: '/terms' },
+  'forgotPassword': { name: '¿Olvidaste tu contraseña?', href: '/forgot-password' },
 }
 
 export { navRoutes }
