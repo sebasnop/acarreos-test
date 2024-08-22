@@ -1,8 +1,52 @@
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import LandingHeader from "@/components/header/LandingHeader";
 import { LockClosedIcon, MapPinIcon } from '@heroicons/react/20/solid';
 
 export default function SignUpForm() {
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    location: ''
+  });
+
+    // Desplaza la ventana hacia la parte superior al montar el componente
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    
+    // Carga los datos guardados en localStorage
+    const savedData = localStorage.getItem('signUpFormData');
+    if (savedData) {
+      setFormData(JSON.parse(savedData));
+    }
+  }, []);
+
+    // Guarda en localStorage los datos del formulario
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => {
+      const updatedData = { ...prevData, [name]: value };
+      localStorage.setItem('signUpFormData', JSON.stringify(updatedData));
+      return updatedData;
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // Limpia los datos del formulario y localStorage
+    setFormData({
+      username: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      location: ''
+    });
+    localStorage.removeItem('signUpFormData');
+  };
+
   return (
     <>
       <LandingHeader />
@@ -12,18 +56,36 @@ export default function SignUpForm() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#">
+          <form className="space-y-6" action="#" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">Nombre de usuario</label>
               <div className="mt-2">
-                <input id="username" name="username" type="text" autoComplete="username" required className="block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                <input
+                  id="username"
+                  name="username"
+                  type="text"
+                  autoComplete="username"
+                  value={formData.username}
+                  onChange={handleChange}
+                  required
+                  className="block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
               </div>
             </div>
 
             <div>
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Correo electrónico</label>
               <div className="mt-2">
-                <input id="email" name="email" type="email" autoComplete="email" required className="block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
               </div>
             </div>
 
@@ -31,7 +93,16 @@ export default function SignUpForm() {
               <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">Contraseña</label>
               <div className="mt-2 relative">
                 <LockClosedIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                <input id="password" name="password" type="password" autoComplete="new-password" required className="pl-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="new-password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                  className="pl-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
               </div>
             </div>
 
@@ -39,7 +110,16 @@ export default function SignUpForm() {
               <label htmlFor="confirm-password" className="block text-sm font-medium leading-6 text-gray-900">Confirma tu contraseña</label>
               <div className="mt-2 relative">
                 <LockClosedIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                <input id="confirm-password" name="confirm-password" type="password" autoComplete="new-password" required className="pl-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                <input
+                  id="confirm-password"
+                  name="confirmPassword"
+                  type="password"
+                  autoComplete="new-password"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  required
+                  className="pl-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
               </div>
             </div>
 
@@ -47,8 +127,14 @@ export default function SignUpForm() {
               <label htmlFor="location" className="block text-sm font-medium leading-6 text-gray-900">Ubicación predeterminada (opcional)</label>
               <div className="mt-2 relative">
                 <MapPinIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                <select id="location" name="location" className="pl-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                  <option value="" disabled selected>Selecciona una ubicación</option>
+                <select
+                  id="location"
+                  name="location"
+                  value={formData.location}
+                  onChange={handleChange}
+                  className="pl-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                >
+                  <option value="" disabled>Selecciona una ubicación</option>
                   <option value="Tribus Agua">Tribus Agua</option>
                   <option value="Reino Tierra">Reino Tierra</option>
                   <option value="Nación del Fuego">Nación del Fuego</option>
@@ -59,7 +145,13 @@ export default function SignUpForm() {
             </div>
 
             <div className="flex items-center">
-              <input id="terms" aria-describedby="terms" type="checkbox" required className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-indigo-300 ring-offset-0 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-indigo-600 dark:ring-offset-gray-800" />
+              <input
+                id="terms"
+                aria-describedby="terms"
+                type="checkbox"
+                required
+                className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-indigo-300 ring-offset-0 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-indigo-600 dark:ring-offset-gray-800"
+              />
               <label htmlFor="terms" className="ml-3 text-sm font-light leading-6 text-gray-500 dark:text-gray-500">
                 Acepto los <Link to="/terms" className="font-semibold text-indigo-600 hover:text-indigo-500">Términos y Condiciones</Link>
               </label>
@@ -79,6 +171,9 @@ export default function SignUpForm() {
     </>
   );
 }
+
+
+
 
 
 
