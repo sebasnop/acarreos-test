@@ -7,6 +7,7 @@ import TermsAndConditionsPage from "../pages/TermsAndConditionsPage";
 import ForgotPasswordPage from "../pages/ForgotPasswordPage";
 import LogInCarrier from "../pages/login/LogInCarrier";
 import LogInEnterprise from "../pages/login/LogInEnterprise";
+import MainUser from "../pages/main/MainUser";
 
 import { navRoutes as routes } from "../constants/navRoutes";
 
@@ -19,4 +20,5 @@ export const router = createBrowserRouter([
   { path: routes.forgotPassword.href, element: <ForgotPasswordPage/>},
   { path: routes.carrier.href, element: <LogInCarrier /> },
   { path: routes.enterprise.href, element: <LogInEnterprise /> },
+  {path: routes.mainUser.href, element: <MainUser/>}
 ]);
