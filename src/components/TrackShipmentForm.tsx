@@ -1,14 +1,19 @@
+import { useState } from "react"
+
 export default function TrackShipmentForm() {
+  const [guideId, setGuideId] = useState('');
+
   return (
     <form action="#" method="POST">
       <div className='mb-4'>
         <label htmlFor="guide-id" className="block text-sm font-semibold leading-6 text-gray-900">
-          Número de guía
+          Código de guía
         </label>
         <div className="mt-2.5">
           <input
             id="guide-id"
             name="guide-id"
+            placeholder="0123456789"
             type="text"
             className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm
             ring-1 ring-inset ring-gray-300 placeholder:text-gray-400
