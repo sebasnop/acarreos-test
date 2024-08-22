@@ -11,7 +11,9 @@ const navRoutes: { [id: string]: NavItemInterface } = {
   'signup': { name: 'Registrarse', href: '/signup' },
   'terms': { name: 'Términos y Condiciones', href: '/terms' },
   'forgotPassword': { name: '¿Olvidaste tu contraseña?', href: '/forgot-password' },
-  'mainUser': { name: 'Main User', href: '/main-user' }
+  'mainUser': { name: 'Main User', href: '/main-user' },
+  'mainCarrier': { name: 'Main Carrier', href: '/main-carrier' },
+  'mainEnterprise': { name: 'Main Enterprise', href: '/main-enterprise' },
 }
 
 export { navRoutes }
