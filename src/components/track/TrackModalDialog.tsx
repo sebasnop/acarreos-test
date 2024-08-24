@@ -1,12 +1,17 @@
+import { useTrackShipment } from '@/hooks/useTrackShipment';
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 
 interface props {
   open: boolean,
-  onClose: () => void
+  onClose: () => void,
+  guideCode: string,
+  triggerSearch: boolean
 }
 
-export default function TrackModalDialog({ open, onClose }: props) {
+export default function TrackModalDialog({ open, onClose, guideCode, triggerSearch }: props) {
+
+  const { loading, error, status } = useTrackShipment({ guideCode: guideCode, trigger: triggerSearch})
 
   return (
     <Dialog open={open} onClose={onClose} className="relative z-10">
@@ -28,13 +33,12 @@ export default function TrackModalDialog({ open, onClose }: props) {
                 </div>
                 <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                   <DialogTitle as="h3" className="text-base font-semibold leading-6 text-gray-900">
-                    Deactivate account
+                    {loading ? 'Buscando...' : error ? 'Error' : 'Estado del Producto'}
                   </DialogTitle>
                   <div className="mt-2">
-                    <p className="text-sm text-gray-500">
-                      Are you sure you want to deactivate your account? All of your data will be permanently removed.
-                      This action cannot be undone.
-                    </p>
+                    {loading && <p className="text-sm text-gray-500">Cargando...</p>}
+                    {error && <p className="text-sm text-red-500">{error}</p>}
+                    {status && <p className="text-sm text-gray-500">Estado: {status}</p>}
                   </div>
                 </div>
               </div>

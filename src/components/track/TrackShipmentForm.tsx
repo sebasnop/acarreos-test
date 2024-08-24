@@ -4,28 +4,22 @@ import TrackModalDialog from "@/components/track/TrackModalDialog";
 export default function TrackShipmentForm() {
   const [guideCodeString, setGuideCodeString] = useState<string>('')
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+  const [triggerSearch, setTriggerSearch] = useState<boolean>(false)
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const form = event.currentTarget as HTMLFormElement
-    const data = new FormData(form)
-    const currentGuideCodeString = data.get('guideCode')
-
-    console.log(currentGuideCodeString)
-
-    setIsModalOpen(true)
-
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
-  /*
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setGuideCodeString(event.target.value)
   }
-  */
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    setIsModalOpen(true)
+    setTriggerSearch(true)
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setTriggerSearch(false)
+  };
 
   return (
     <>
@@ -39,8 +33,8 @@ export default function TrackShipmentForm() {
               id="guideCode"
               name="guideCode"
               placeholder="240827123456"
-              /*onChange={handleChange}*/
-              /*value={guideCodeString}*/
+              onChange={handleChange}
+              value={guideCodeString}
               required
               type="number"
               className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm
@@ -58,7 +52,7 @@ export default function TrackShipmentForm() {
           Consultar
         </button>
       </form>
-      <TrackModalDialog open={isModalOpen} onClose={handleCloseModal} />
+      <TrackModalDialog open={isModalOpen} onClose={handleCloseModal} guideCode={guideCodeString} triggerSearch={triggerSearch} />
     </>
   )
 }
