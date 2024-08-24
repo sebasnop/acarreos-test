@@ -1,7 +1,14 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import LandingHeader from "@/components/header/LandingHeader";
 
 export default function TermsAndConditionsPage() {
+  
+   // Desplaza la ventana hacia la parte superior al montar el componente
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <LandingHeader />
