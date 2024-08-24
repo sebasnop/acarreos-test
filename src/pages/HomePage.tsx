@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useEffect } from 'react';
 import LandingHeader from '@/components/header/LandingHeader'
-import TrackShipmentForm from '@/components/TrackShipmentForm';
+import TrackShipmentForm from '@/components/track/TrackShipmentForm';
 import { nations } from '@/constants/nations';
 
 export default function HomePage() {
