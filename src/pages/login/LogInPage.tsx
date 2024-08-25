@@ -1,7 +1,32 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import LogInForm from "@/components/LogInForm";
 import LandingHeader from "@/components/header/LandingHeader";
 
 export default function LogInPage() {
+  // Estado para almacenar el usuario y la contraseña ingresados
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  // Redirige después de un inicio de sesión exitoso
+  const navigate = useNavigate();
+
+  // Datos quemados para validación
+  const hardcodedUsername = 'user';
+  const hardcodedPassword = 'password123';
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    // Valida las credenciales
+    if (username === hardcodedUsername && password === hardcodedPassword) {
+      // Redirige a la página /main-user
+      navigate('/main-user');
+    } else {
+      alert('Usuario o contraseña incorrectos');
+    }
+  };
+
   return (
     <>
       <LandingHeader />
@@ -11,11 +36,19 @@ export default function LogInPage() {
             Inicia sesión en tu cuenta de usuario
           </h2>
         </div>
-        <LogInForm />
+        <LogInForm 
+          username={username}
+          password={password}
+          setUsername={setUsername}
+          setPassword={setPassword}
+          handleSubmit={handleSubmit}
+        />
       </div>
     </>
   );
 }
+
+
 
 
 
