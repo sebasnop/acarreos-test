@@ -1,9 +1,9 @@
-import LandingHeader from "@/components/header/LandingHeader"
+import InsideHeader from "@/components/header/InsideHeader"
 
 export default function MainUser() {
     return (
         <>
-        <LandingHeader />
+        <InsideHeader role="user"/>
             <div>
                 <h1>Bienvenido a la página principal del usuario</h1>
             </div>
