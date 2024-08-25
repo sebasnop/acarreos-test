@@ -60,14 +60,10 @@ export function useTrackShipment({
   useEffect(() => {
     if (trigger) {
       fetchStatus();
-    }
-  }, [guideCode, trigger]);
-
-  useEffect(() => {
-    if (!trigger) {
+    } else {
       setStatus(null);
     }
-  }, [guideCode]);
+  }, [trigger]);
 
   return { loading, error, status };
 }
