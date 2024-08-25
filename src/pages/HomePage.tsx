@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { useEffect } from 'react';
 import LandingHeader from '@/components/header/LandingHeader'
 import TrackShipmentForm from '@/components/track/TrackShipmentForm';
-import { nations } from '@/constants/nations';
+import { NationsTable as Nations } from '@/database/NationsTable';
 
 export default function HomePage() {
 
@@ -67,16 +67,16 @@ export default function HomePage() {
 
           <div className="mx-auto mt-10 flex flex-wrap justify-center gap-x-4 gap-y-6 max-w-lg sm:max-w-xl lg:max-w-none">
             {
-              nations.map(nation => (
-                <div className="flex flex-col gap-2 items-center w-[calc(50%-8px)] sm:w-[calc(33.33%-10px)] lg:w-[calc(20%-16px)]" key={nation.simpleName}>
+              Nations.map(nation => (
+                <div className="flex flex-col gap-2 items-center w-[calc(50%-8px)] sm:w-[calc(33.33%-10px)] lg:w-[calc(20%-16px)]" key={nation.name}>
                   <img
-                    alt={'Emblema de ' + nation.name}
+                    alt={'Emblema de ' + nation.nameSpanish}
                     src={nation.img}
                     width={158}
                     height={48}
                     className="max-h-24 w-full object-contain brightness-95"
                   />
-                  <p className="text-center font-semibold text-gray-900">{nation.name}</p>
+                  <p className="text-center font-semibold text-gray-900">{nation.nameSpanish}</p>
                 </div>
               ))
             }

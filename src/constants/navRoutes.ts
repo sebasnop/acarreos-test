@@ -1,4 +1,4 @@
-import type { NavItemInterface } from "@/interfaces/interfaces"
+import type { NavItemInterface } from "@/interfaces/AppInterfaces"
 
 const navRoutes: { [id: string]: NavItemInterface } = {
   'home': { name: 'Acarreos Appa', href: '/' },

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 // Base de datos simulada
-import { shipmentsTable as shipments } from "@/database/shipmentsTable";
+import { ShipmentsTable as shipments } from "@/database/ShipmentsTable";
 
 /**
  * Argumentos para el hook `useTrackShipment`.
