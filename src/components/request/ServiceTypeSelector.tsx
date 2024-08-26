@@ -23,12 +23,12 @@ export default function ServiceTypeSelector({
 
   return (
     <fieldset>
-      <legend className="text-sm font-semibold leading-6 text-gray-900">
+      <legend className="text-lg font-semibold leading-7 text-gray-900">
         Tipo de servicio
       </legend>
 
-      <p className="mt-1 text-sm leading-6 text-gray-600">
-        Selecciona el tipo de servicio de transporte que necesitas
+      <p className="mt-1 text-sm leading-6 text-gray-900">
+        Selecciona lo que quieres que transportemos por tí
       </p>
 
       <div className="mt-6 space-y-6">
@@ -38,6 +38,7 @@ export default function ServiceTypeSelector({
             name="service-type"
             type="radio"
             value="documento"
+            required
             checked={selectedServiceType === 'documento'}
             onChange={handleServiceTypeChange}
             className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"

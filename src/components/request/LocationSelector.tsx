@@ -99,13 +99,13 @@ export default function LocationSelector({ label, onLocationChange }: LocationSe
   );
 
   return (
-    <div>
-      <label className="block text-sm font-medium leading-6 text-gray-900">
+    <>
+      <label className="block text-sm leading-6 text-gray-900">
         {label}
       </label>
 
       {/* Selector de Nación */}
-      <div className="mt-2 sm:col-span-3">
+      <div className="mt-2">
         <select
           value={selectedNation}
           onChange={handleNationChange}
@@ -125,7 +125,7 @@ export default function LocationSelector({ label, onLocationChange }: LocationSe
 
       {/* Selector de Región */}
       {selectedNation && (
-        <div className="mt-4 sm:col-span-3">
+        <div className="mt-4">
           <select
             value={selectedRegion}
             onChange={handleRegionChange}
@@ -146,7 +146,7 @@ export default function LocationSelector({ label, onLocationChange }: LocationSe
 
       {/* Selector de Ciudad */}
       {selectedRegion && (
-        <div className="mt-4 sm:col-span-3">
+        <div className="mt-4">
           <select
             value={selectedCity}
             onChange={handleCityChange}
@@ -164,6 +164,6 @@ export default function LocationSelector({ label, onLocationChange }: LocationSe
           </select>
         </div>
       )}
-    </div>
+    </>
   );
 }
