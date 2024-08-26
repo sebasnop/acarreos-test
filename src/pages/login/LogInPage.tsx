@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LogInForm from "@/components/LogInForm";
 import LandingHeader from "@/components/header/LandingHeader";
+import { Link } from 'react-router-dom';
 
 export default function LogInPage() {
   // Estado para almacenar el usuario y la contraseña ingresados
@@ -43,6 +44,13 @@ export default function LogInPage() {
           setPassword={setPassword}
           handleSubmit={handleSubmit}
         />
+        <p className="mt-6 text-center text-sm text-gray-500">
+          ¿No tienes una cuenta? 
+          <span className="mr-1"></span> 
+          <Link to="/signup" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+            Regístrate
+          </Link>
+        </p>
       </div>
     </>
   );

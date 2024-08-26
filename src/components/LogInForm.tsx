@@ -57,13 +57,6 @@ export default function LogInForm({ username, setUsername, password, setPassword
               </button>
             </div>
           </form>
-
-          <p className="mt-6 text-center text-sm text-gray-500">
-            ¿No tienes una cuenta? 
-            <Link to="/signup" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-              Regístrate
-            </Link>
-          </p>
         </div>
       </div>
     </>
