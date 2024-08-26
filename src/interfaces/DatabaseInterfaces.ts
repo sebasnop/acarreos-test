@@ -6,7 +6,11 @@ interface ShipmentInterface {
   idDestinationCity: number,
   status: string,
   type: string,
-  idLastCity: number 
+  idLastCity: number,
+  cost: number,
+  requestDate: string,
+  lastUpdateDate: string,
+  description: string, 
 }
 
 /**
@@ -45,9 +49,46 @@ interface CityInterface {
   region: RegionsEnum
 }
 
+// Interface de usuarios
+interface UserInterface {
+  idUser: number,
+  username: string,
+  email: string,
+  default_location: string | null,
+}
+
+// Interface de transportistas
+interface CarrierInterface {
+  idCarrier: number,
+  username: string,
+  rol: string,
+}
+
+// Interface de administradores
+interface AdminInterface {
+  idAdmin: number,
+  username: string,
+  rol: string,
+}
+
+// Interface de bisontes
+interface BisonsInterface {
+  idBison: number,
+  name: string,
+  description: string,
+  status: string,
+  endRestDate: string | null,
+  kilometersTraveled: number,
+}
+
+
 export type { 
   ShipmentInterface,
   NationInterface,
   RegionInterface,
-  CityInterface
+  CityInterface,
+  UserInterface,
+  CarrierInterface,
+  AdminInterface,
+  BisonsInterface
 }
