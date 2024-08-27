@@ -4,6 +4,8 @@ interface DeclaredValueInputProps {
   onDeclaredValueChange: (declaredValue: string) => void;
 }
 
+const minDeclaredValue: string = "0";
+
 export default function DeclaredValueInput({
   onDeclaredValueChange
 }: DeclaredValueInputProps) {
@@ -31,6 +33,7 @@ export default function DeclaredValueInput({
             id="declared-value"
             name="declared-value"
             type="number"
+            min={minDeclaredValue}
             value={declaredValue}
             onChange={handleDeclaredValueChange}
             placeholder="Ejemplo: 150"
