@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import LocationSelector from '@/components/request/LocationSelector';
 import ServiceTypeSelector from '@/components/request/ServiceTypeSelector';
@@ -149,7 +149,7 @@ export default function PriceQuoteForm() {
 
       {priceQuote !== null && (
         <div className="mt-6">
-          <h2 className="text-lg font-semibold leading-7 text-gray-900">
+          <h2 className="text-xl font-semibold leading-7 text-gray-900">
             Precio de la cotización: {priceQuote} Piezas de oro
           </h2>
         </div>

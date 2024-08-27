@@ -33,6 +33,16 @@ const maxObjectLength: number = 500;
  */
 const maxObjectWidth: number = 500;
 
+// Tope máximo de km recorridos por bisonte
+
+// Días de descanso bisontes
+
+const tarifaPorDistancia: number = 1;
+const tarifaPorPeso: number = 1;
+const tarifaPorValorDeclarado: number = 1;
+const cargoDimensionMedia: number = 1;
+const cargoDimensionGrande: number = 1;
+
 
 export {
   minDocumentWeight,
@@ -41,5 +51,10 @@ export {
   maxObjectWeight,
   maxObjectHeight,
   maxObjectLength,
-  maxObjectWidth
+  maxObjectWidth,
+  tarifaPorDistancia,
+  tarifaPorPeso,
+  tarifaPorValorDeclarado,
+  cargoDimensionMedia,
+  cargoDimensionGrande
 }
