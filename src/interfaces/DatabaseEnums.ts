@@ -18,7 +18,22 @@ enum RegionsEnum {
   UnitedRepublic = "UnitedRepublic"
 }
 
+enum ShipmentStatusEnum {
+  Registered = "Registrado",
+  Programmed = "Programado",
+  InTransit = "En camino",
+  Delivered = "Entregado"
+}
+
+enum MovingSizeEnum {
+  SMALL = "Pequeño",
+  MEDIUM = "Mediano",
+  LARGE = "Grande",
+}
+
 export {
   NationsEnum,
-  RegionsEnum
+  RegionsEnum,
+  ShipmentStatusEnum,
+  MovingSizeEnum
 }
