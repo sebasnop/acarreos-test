@@ -18,7 +18,7 @@ interface LocationSelectorProps {
    * 
    * @param location - Un objeto que contiene las selecciones de nación, región y ciudad.
    */
-  onLocationChange: (location: { nation: string; region: string; city: string }) => void;
+  onLocationChange: (location: { nation: string; region: string; cityId: string }) => void;
 }
 
 /**
@@ -42,15 +42,15 @@ export default function LocationSelector({ label, onLocationChange }: LocationSe
   // Estados para almacenar las selecciones del usuario
   const [selectedNation, setSelectedNation] = useState<string>('');
   const [selectedRegion, setSelectedRegion] = useState<string>('');
-  const [selectedCity, setSelectedCity] = useState<string>('');
+  const [selectedCityId, setSelectedCityId] = useState<string>('');
 
   /**
    * Efecto que se ejecuta cuando cambia la selección de nación, región o ciudad.
    * Llama al callback `onLocationChange` para notificar al componente padre sobre la selección actual.
    */
   useEffect(() => {
-    onLocationChange({ nation: selectedNation, region: selectedRegion, city: selectedCity });
-  }, [selectedNation, selectedRegion, selectedCity]);
+    onLocationChange({ nation: selectedNation, region: selectedRegion, cityId: selectedCityId });
+  }, [selectedNation, selectedRegion, selectedCityId]);
 
   /**
    * Maneja el cambio de selección en el dropdown de nación.
@@ -61,7 +61,7 @@ export default function LocationSelector({ label, onLocationChange }: LocationSe
   const handleNationChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedNation(event.target.value);
     setSelectedRegion(''); // Resetea la región y ciudad cuando cambia la nación
-    setSelectedCity('');
+    setSelectedCityId('');
   };
 
   /**
@@ -72,7 +72,7 @@ export default function LocationSelector({ label, onLocationChange }: LocationSe
    */
   const handleRegionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedRegion(event.target.value);
-    setSelectedCity(''); // Resetea la ciudad cuando cambia la región
+    setSelectedCityId(''); // Resetea la ciudad cuando cambia la región
   };
 
   /**
@@ -81,7 +81,7 @@ export default function LocationSelector({ label, onLocationChange }: LocationSe
    * @param event - El evento de cambio del elemento select.
    */
   const handleCityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedCity(event.target.value);
+    setSelectedCityId(event.target.value);
   };
 
   /**
@@ -148,7 +148,7 @@ export default function LocationSelector({ label, onLocationChange }: LocationSe
       {selectedRegion && (
         <div className="mt-4">
           <select
-            value={selectedCity}
+            value={selectedCityId}
             onChange={handleCityChange}
             required
             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
@@ -157,7 +157,7 @@ export default function LocationSelector({ label, onLocationChange }: LocationSe
               Selecciona una ciudad
             </option>
             {filteredCities.map((city: CityInterface) => (
-              <option key={city.id} value={city.name}>
+              <option key={city.id} value={city.id.toString()}>
                 {city.name}
               </option>
             ))}
