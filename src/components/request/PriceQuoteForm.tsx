@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import LocationSelector from '@/components/request/LocationSelector';
 import ServiceTypeSelector from '@/components/request/ServiceTypeSelector';
 import DeclaredValueInput from '@/components/request/DeclaredValueInput';
+import DocumentWeightInput from '@/components/request/document/DocumentWeightInput';
+import ObjectWeightInput from '@/components/request/object/ObjectWeightInput';
 
 /*
 Elementos que debe tener el formulario:
@@ -26,6 +28,11 @@ export default function PriceQuoteForm() {
   const [declaredValue, setDeclaredValue] = useState<string>('')
 
   const [documentWeight, setDocumentWeight] = useState<string>('');
+
+  const [objectWeight, setObjectWeight] = useState<string>('');
+  const [objectHeight, setObjectHeight] = useState<string>('');
+  const [objectLength, setObjectLength] = useState<string>('');
+  const [objectWidth, setObjectWidth] = useState<string>('');
 
   const [movingOption, setMovingOption] = useState<string>('');
 
@@ -66,29 +73,28 @@ export default function PriceQuoteForm() {
             <DeclaredValueInput onDeclaredValueChange={setDeclaredValue} />
           </div>
 
-          {/* Campo adicional para "documento" */}
+          {/* Campo adicional para servicio tipo "documento" */}
           {selectedServiceType === 'documento' && (
             <div className="sm:col-span-3">
+              <DocumentWeightInput onDocumentWeightChange={setDocumentWeight} />
+            </div>
+          )}
 
-              <label htmlFor="document-weight" className="block text-lg font-semibold leading-6 text-gray-900">
-                Peso
-                <p className="mt-1 text-sm font-normal leading-6 text-gray-900">
-                  Peso en gramos (g) del artículo. Máximo 2000.
-                </p>
-              </label>
-              <input
-                type="number"
-                id="document-weight"
-                name="document-weight"
-                value={documentWeight}
-                onChange={(e) => setDocumentWeight(e.target.value)}
-                required
-                className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-              />
+          {/* Campo adicional para servicio tipo "objeto" */}
+          {selectedServiceType === 'objeto' && (
+            <div className="sm:col-span-3">
+              <ObjectWeightInput onObjectWeightChange={setObjectWeight} />
             </div>
           )}
 
         </div>
+
+
+        {selectedServiceType === 'objeto' && (
+          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+
+          </div>
+        )}
 
         <div className="mt-6 flex items-center justify-end gap-x-6">
           <button
