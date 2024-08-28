@@ -1,8 +1,7 @@
-
 import { Dialog, DialogPanel, Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 import { ChevronDownIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
-import type { NavItemInterface } from 'src/interfaces/interfaces';
+import type { NavItemInterface } from 'src/interfaces/AppInterfaces';
 
 interface Props {
   setMobileMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -16,14 +15,13 @@ export default function MobileLandingHeader({ setMobileMenuOpen, mobileMenuOpen,
       <div className="fixed inset-0 z-10" />
       <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
         <div className="flex items-center justify-between">
-          <a href={routes.home.href} className="-m-1.5 p-1.5">
+          <Link to={routes.home.href} className="-m-1.5 p-1.5 flex flex-row items-center">
             <span className="sr-only">{routes.home.name}</span>
-            <img
-              alt={'Logo de ' + routes.home.name}
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              className="h-8 w-auto"
-            />
-          </a>
+            <img alt={'Logo de ' + routes.home.name}
+              src="src/public/logo_appa.svg"
+              className="h-8 w-auto" />
+            <span className="ml-3 text-yellow-950 font-semibold text-lg text">Appa</span>
+          </Link>
           <button
             type="button"
             onClick={() => setMobileMenuOpen(false)}
@@ -58,7 +56,7 @@ export default function MobileLandingHeader({ setMobileMenuOpen, mobileMenuOpen,
                   <ChevronDownIcon aria-hidden="true" className="h-5 w-5 flex-none group-data-[open]:rotate-180" />
                 </DisclosureButton>
                 <DisclosurePanel className="mt-2 space-y-2">
-                  
+
                   <DisclosureButton
                     as={Link}
                     to={routes.enterprise.href}
@@ -66,7 +64,7 @@ export default function MobileLandingHeader({ setMobileMenuOpen, mobileMenuOpen,
                   >
                     {routes.enterprise.name}
                   </DisclosureButton>
-                  
+
                   <DisclosureButton
                     as={Link}
                     to={routes.carrier.href}
@@ -87,7 +85,7 @@ export default function MobileLandingHeader({ setMobileMenuOpen, mobileMenuOpen,
 
             </div>
             <div className="py-5">
-              
+
               <Link
                 to={routes.login.href}
                 className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
@@ -97,7 +95,7 @@ export default function MobileLandingHeader({ setMobileMenuOpen, mobileMenuOpen,
 
               <Link
                 to={routes.signup.href}
-                className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-indigo-600 hover:bg-gray-50"
+                className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-yellow-900 hover:bg-gray-50"
               >
                 {routes.signup.name}
               </Link>

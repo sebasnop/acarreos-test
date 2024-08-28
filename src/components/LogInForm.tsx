@@ -18,7 +18,7 @@ export default function LogInForm({ username, setUsername, password, setPassword
                   type="text" 
                   autoComplete="username" 
                   required 
-                  className="block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-yellow-900 sm:text-sm sm:leading-6"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                 />
@@ -31,7 +31,7 @@ export default function LogInForm({ username, setUsername, password, setPassword
                   Contraseña
                 </label>
                 <div className="text-sm">
-                  <Link to="/forgot-password" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                  <Link to="/forgot-password" className="font-semibold text-yellow-950 hover:text-yellow-900">
                     ¿Olvidaste tu contraseña?
                   </Link>
                 </div>
@@ -44,7 +44,7 @@ export default function LogInForm({ username, setUsername, password, setPassword
                   type="password" 
                   autoComplete="current-password" 
                   required 
-                  className="pl-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="pl-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-yellow-900 sm:text-sm sm:leading-6"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -52,7 +52,7 @@ export default function LogInForm({ username, setUsername, password, setPassword
             </div>
 
             <div>
-              <button type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+              <button type="submit" className="flex w-full justify-center rounded-md bg-yellow-950 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-yellow-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-900">
                 Inicia sesión
               </button>
             </div>

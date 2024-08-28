@@ -68,7 +68,7 @@ export default function SignUpForm() {
                   value={formData.username}
                   onChange={handleChange}
                   required
-                  className="block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-yellow-900 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -84,7 +84,7 @@ export default function SignUpForm() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-yellow-900 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -101,7 +101,7 @@ export default function SignUpForm() {
                   value={formData.password}
                   onChange={handleChange}
                   required
-                  className="pl-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="pl-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-yellow-900 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -118,7 +118,7 @@ export default function SignUpForm() {
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   required
-                  className="pl-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="pl-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-yellow-900 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -132,7 +132,7 @@ export default function SignUpForm() {
                   name="location"
                   value={formData.location}
                   onChange={handleChange}
-                  className="pl-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="pl-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-yellow-900 sm:text-sm sm:leading-6"
                 >
                   <option value="" disabled>Selecciona una ubicación</option>
                   <option value="Tribus Agua">Tribus Agua</option>
@@ -150,21 +150,21 @@ export default function SignUpForm() {
                 aria-describedby="terms"
                 type="checkbox"
                 required
-                className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-indigo-300 ring-offset-0 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-indigo-600 dark:ring-offset-gray-800"
+                className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-yellow-100 ring-offset-0 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-yellow-900 dark:ring-offset-gray-800"
               />
               <label htmlFor="terms" className="ml-3 text-sm font-light leading-6 text-gray-500 dark:text-gray-500">
-                Acepto los <Link to="/terms" className="font-semibold text-indigo-600 hover:text-indigo-500">Términos y Condiciones</Link>
+                Acepto los <Link to="/terms" className="font-semibold text-yellow-950 hover:text-yellow-900">Términos y Condiciones</Link>
               </label>
             </div>
 
             <div>
-              <button type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Crea tu cuenta</button>
+              <button type="submit" className="flex w-full justify-center rounded-md bg-yellow-950 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-yellow-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-950">Crea tu cuenta</button>
             </div>
           </form>
 
           <p className="mt-10 text-center text-sm text-gray-500">
             ¿Ya tienes una cuenta? 
-            <Link to="/login" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"> Inicia sesión aquí</Link>
+            <Link to="/login" className="font-semibold leading-6 text-yellow-950 hover:text-yellow-900"> Inicia sesión aquí</Link>
           </p>
         </div>
       </div>

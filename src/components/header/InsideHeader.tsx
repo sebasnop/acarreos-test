@@ -18,12 +18,13 @@ export default function InsideHeader({ role }: { role: string }) {
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="flex flex-1 justify-start items-center sm:items-stretch">
-            <div className="flex flex-shrink-0 items-center">
+            <div className="flex flex-shrink-0 items-center flex-row">
               <img
-                alt="Your Company"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                alt="Logo Acarreos Appa"
+                src="src/public/logo_appa.svg"
                 className="h-8 w-auto"
               />
+              <span className="ml-3 text-yellow-950 font-semibold text-lg text">Appa</span>
             </div>
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
@@ -38,7 +39,7 @@ export default function InsideHeader({ role }: { role: string }) {
                     </span>
                   )}
                 </div>
-                <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                <MenuButton className="relative flex rounded-full bg-yellow-950 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">Open user menu</span>
                   <img

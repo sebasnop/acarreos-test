@@ -1,4 +1,3 @@
-import ExampleForm from "@/components/ExampleForm";
 import LandingHeader from "@/components/header/LandingHeader";
 import PriceQuoteForm from "@/components/request/PriceQuoteForm";
 
@@ -14,9 +13,6 @@ export default function PriceQuotePage() {
             Cotizar Servicio
           </h2>
           <PriceQuoteForm />
-          {/*
-          <ExampleForm />
-          */}
         </div>
       </main>
     </>

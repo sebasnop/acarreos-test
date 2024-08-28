@@ -41,7 +41,7 @@ export default function ServiceTypeSelector({
             required
             checked={selectedServiceType === 'documento'}
             onChange={handleServiceTypeChange}
-            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+            className="h-4 w-4 border-gray-300 text-yellow-900 focus:ring-yellow-900"
           />
           <label htmlFor="document-service" className="block text-sm font-medium leading-6 text-gray-900">
             Documento
@@ -56,7 +56,7 @@ export default function ServiceTypeSelector({
             value="objeto"
             checked={selectedServiceType === 'objeto'}
             onChange={handleServiceTypeChange}
-            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+            className="h-4 w-4 border-gray-300 text-yellow-900 focus:ring-yellow-900"
           />
           <label htmlFor="object-service" className="block text-sm font-medium leading-6 text-gray-900">
             Objeto
@@ -71,7 +71,7 @@ export default function ServiceTypeSelector({
             value="mudanza"
             checked={selectedServiceType === 'mudanza'}
             onChange={handleServiceTypeChange}
-            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+            className="h-4 w-4 border-gray-300 text-yellow-900 focus:ring-yellow-900"
           />
           <label htmlFor="moving-service" className="block text-sm font-medium leading-6 text-gray-900">
             Mudanza

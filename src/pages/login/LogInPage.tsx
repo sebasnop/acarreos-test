@@ -47,7 +47,7 @@ export default function LogInPage() {
         <p className="mt-6 text-center text-sm text-gray-500">
           ¿No tienes una cuenta? 
           <span className="mr-1"></span> 
-          <Link to="/signup" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+          <Link to="/signup" className="font-semibold leading-6 text-yellow-950 hover:text-yellow-900">
             Regístrate
           </Link>
         </p>
