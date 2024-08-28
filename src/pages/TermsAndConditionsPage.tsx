@@ -52,7 +52,7 @@ export default function TermsAndConditionsPage() {
 
         <div className="mt-8">
           <Link to="/signup">
-            <button className="bg-indigo-600 hover:bg-indigo-300 text-white font-semibold py-2 px-4 rounded">
+            <button className="bg-yellow-950 hover:bg-yellow-900 text-white font-semibold py-2 px-4 rounded">
               Volver al registro
             </button>
           </Link>

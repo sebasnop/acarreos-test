@@ -41,7 +41,7 @@ export default function HomePage() {
             >
               Solicita tu servicio
             </Link>
-            <Link to="/price-quote" className="text-sm font-semibold leading-6 text-gray-900">
+            <Link to="/price-quote" className="text-sm font-semibold leading-6 text-yellow-950 hover:text-yellow-900">
               Cotizar <span aria-hidden="true">→</span>
             </Link>
           </div>
