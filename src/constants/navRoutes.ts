@@ -14,6 +14,7 @@ const navRoutes: { [id: string]: NavItemInterface } = {
   'mainUser': { name: 'Main User', href: '/main-user' },
   'mainCarrier': { name: 'Main Carrier', href: '/main-carrier' },
   'mainEnterprise': { name: 'Main Enterprise', href: '/main-enterprise' },
+  'requestService': { name: 'Solicitar Servicio', href: '/request-service' },
 }
 
 export { navRoutes }

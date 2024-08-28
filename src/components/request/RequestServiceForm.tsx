@@ -3,6 +3,8 @@ import { useState } from 'react'
 import LocationSelector from '@/components/request/common/LocationSelector';
 import ServiceTypeSelector from '@/components/request/common/ServiceTypeSelector';
 import DeclaredValueInput from '@/components/request/common/DeclaredValueInput';
+import AddressInput from '@/components/request/common/AddressInput';
+import ServiceDateInput from '@/components/request/common/ServiceDateInput';
 
 import DocumentWeightInput from '@/components/request/document/DocumentWeightInput';
 
@@ -13,14 +15,15 @@ import ObjectWidthInput from '@/components/request/object/ObjectWidthInput';
 
 import MovingSizeSelector from '@/components/request/moving/MovingSizeSelector';
 
-import { usePriceQuote } from '@/hooks/usePriceQuote';
-
-export default function PriceQuoteForm() {
+export default function RequestServiceForm() {
   // Estado para almacenar el tipo de servicio seleccionado
   const [selectedServiceType, setSelectedServiceType] = useState<string>('');
   const [originLocation, setOriginLocation] = useState({ nation: '', region: '', cityId: '' });
   const [destinationLocation, setDestinationLocation] = useState({ nation: '', region: '', cityId: '' });
-  const [declaredValue, setDeclaredValue] = useState<string>('')
+  const [originAddress, setOriginAddress] = useState<string>('');
+  const [destinationAddress, setDestinationAddress] = useState<string>('');
+  const [declaredValue, setDeclaredValue] = useState<string>('');
+  const [serviceDate, setServiceDate] = useState<string>('');
 
   const [documentWeight, setDocumentWeight] = useState<string>('');
 
@@ -31,13 +34,11 @@ export default function PriceQuoteForm() {
 
   const [movingSize, setMovingSize] = useState<string>('');
 
-  const { priceQuote, calculateQuote } = usePriceQuote();
-
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    calculateQuote({
-      serviceType: selectedServiceType,
+    console.log(
+      selectedServiceType,
       originLocation,
       destinationLocation,
       declaredValue,
@@ -47,7 +48,10 @@ export default function PriceQuoteForm() {
       objectLength,
       objectWidth,
       movingSize,
-    });
+      originAddress,
+      destinationAddress,
+      serviceDate
+    )
   };
 
   return (
@@ -72,6 +76,13 @@ export default function PriceQuoteForm() {
                 label="Ciudad de origen"
                 onLocationChange={setOriginLocation}
               />
+
+              {originLocation.cityId &&
+                <div className='mt-8'>
+                  <AddressInput labelTitle='Dirección de origen' onAddressChange={setOriginAddress} id='origin-addres' />
+                </div>
+              }
+
             </div>
 
             {/* Ubicación de destino */}
@@ -81,10 +92,17 @@ export default function PriceQuoteForm() {
                 label="Ciudad de destino"
                 onLocationChange={setDestinationLocation}
               />
+
+              {destinationLocation.cityId &&
+                <div className='mt-8'>
+                  <AddressInput labelTitle='Dirección de destino' onAddressChange={setDestinationAddress} id='destination-addres' />
+                </div>
+              }
+
             </div>
           </section>
 
-          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <div className="mt-12 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <section className="sm:col-span-3">
               <DeclaredValueInput onDeclaredValueChange={setDeclaredValue} />
             </section>
@@ -130,32 +148,27 @@ export default function PriceQuoteForm() {
             </section>
           )}
 
+          <section>
+            <ServiceDateInput onDateChange={setServiceDate} />
+          </section>
+
           <div className="mt-6 flex items-center justify-end gap-x-6">
             <label htmlFor="submit" className="sr-only">
-              Cotizar
+              Solicitar servicio
             </label>
             <button
               type="submit"
               className="rounded-md bg-yellow-950 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-yellow-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-900"
             >
-              Cotizar
+              Solicitar servicio
             </button>
           </div>
 
         </div>
 
-
       </form>
 
-      {priceQuote !== null && (
-        <div className="mt-6">
-          <h2 className="text-xl font-semibold leading-7 text-gray-900">
-            Precio de la cotización: {priceQuote} Piezas de oro
-          </h2>
-        </div>
-      )}
     </>
-
 
   );
 }

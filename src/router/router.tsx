@@ -13,6 +13,7 @@ import MainEnterprise from "@/pages/main/MainEnterprise";
 import PriceQuotePage from "@/pages/PriceQuotePage";
 
 import { navRoutes as routes } from "@/constants/navRoutes";
+import RequestServicePage from "@/pages/main/RequestServicePage";
 
 export const router = createBrowserRouter([
   { path: routes.home.href, element: <HomePage /> },
@@ -27,4 +28,5 @@ export const router = createBrowserRouter([
   { path: routes.mainUser.href, element: <MainUser /> },
   { path: routes.mainCarrier.href, element: <MainCarrier /> },
   { path: routes.mainEnterprise.href, element: <MainEnterprise /> },
+  { path: routes.requestService.href, element: <RequestServicePage /> },
 ]);
