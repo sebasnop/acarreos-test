@@ -1,6 +1,8 @@
 import InsideHeader from "@/components/header/InsideHeader";
 import React from "react";
 import { ShipmentsTable } from "@/database/ShipmentsTable";
+import { Link } from "react-router-dom";
+import { navRoutes as routes } from "@/constants/navRoutes";
 
 export default function MainUser() {
   return (
@@ -10,9 +12,9 @@ export default function MainUser() {
         {/* Contenedor para el título y el botón */}
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-bold text-gray-900">Tus pedidos</h1>
-          <button className="bg-indigo-600 text-white text-sm font-semibold py-2 px-4 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2">
+          <Link to={routes.requestService.href} className="bg-indigo-600 text-white text-sm font-semibold py-2 px-4 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2">
             Solicitar servicio
-          </button>
+          </Link>
         </div>
 
         {/* Vista tipo tabla para pantallas medianas y grandes */}
