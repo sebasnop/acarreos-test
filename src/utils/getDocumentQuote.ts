@@ -1,4 +1,5 @@
 import { DocumentPriceQuote } from '@/interfaces/AppInterfaces';
+import calculateDistance from '@/utils/calculateDistance';
 import {
   tarifaPorDistancia,
   tarifaPorPeso,
@@ -13,7 +14,7 @@ export default function getDocumentQuote(
     weight
   }: DocumentPriceQuote): number {
   
-  const distancia: number = (originCityId - destinationCityId);
+  const distancia: number = calculateDistance(originCityId, destinationCityId);
 
   const tarifa: number =
     (distancia * tarifaPorDistancia) +

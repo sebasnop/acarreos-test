@@ -40,9 +40,9 @@ const maxObjectWidth: number = 500;
 const tarifaPorDistancia: number = 1;
 const tarifaPorPeso: number = 1;
 const tarifaPorValorDeclarado: number = 1;
+const tarifaPorBisonteSize: number = 1;
 const cargoDimensionMedia: number = 1;
 const cargoDimensionGrande: number = 1;
-
 
 export {
   minDocumentWeight,
@@ -55,6 +55,7 @@ export {
   tarifaPorDistancia,
   tarifaPorPeso,
   tarifaPorValorDeclarado,
+  tarifaPorBisonteSize,
   cargoDimensionMedia,
   cargoDimensionGrande
 }

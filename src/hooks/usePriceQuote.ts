@@ -4,6 +4,9 @@ import {
   MovingPriceQuote,
   ObjectPriceQuote
 } from '@/interfaces/AppInterfaces';
+import getDocumentQuote from '@/utils/getDocumentQuote';
+import getObjectQuote from '@/utils/getObjectQuote';
+import getMovingQuote from '@/utils/getMovingQuote';
 
 type PriceQuoteResult = number | null;
 
@@ -22,21 +25,6 @@ interface PriceQuoteData {
 
 export function usePriceQuote() {
   const [priceQuote, setPriceQuote] = useState<PriceQuoteResult>(null);
-
-  const getQuoteForDocument = async (query: DocumentPriceQuote): Promise<number> => {
-    // Aquí iría la lógica para cotizar un documento
-    return 100; // Placeholder
-  };
-
-  const getQuoteForObject = async (query: ObjectPriceQuote): Promise<number> => {
-    // Aquí iría la lógica para cotizar un objeto
-    return 200; // Placeholder
-  };
-
-  const getQuoteForMoving = async (query: MovingPriceQuote): Promise<number> => {
-    // Aquí iría la lógica para cotizar una mudanza
-    return 300; // Placeholder
-  };
 
   const calculateQuote = async (data: PriceQuoteData) => {
     const {
@@ -63,7 +51,7 @@ export function usePriceQuote() {
         weight: Number(documentWeight),
       };
       
-      result = await getQuoteForDocument(queryDocument);
+      result = getDocumentQuote(queryDocument);
     
     } else if (serviceType === 'objeto' && objectWeight && objectHeight && objectLength && objectWidth) {
       
@@ -77,7 +65,7 @@ export function usePriceQuote() {
         width: Number(objectWidth),
       };
       
-      result = await getQuoteForObject(queryObject);
+      result = getObjectQuote(queryObject);
     
     } else if (serviceType === 'mudanza' && movingSize) {
       
@@ -85,10 +73,10 @@ export function usePriceQuote() {
         originCityId: Number(originLocation.cityId),
         destinationCityId: Number(destinationLocation.cityId),
         declaredValue: Number(declaredValue),
-        size: movingSize,
+        size: Number(movingSize),
       };
       
-      result = await getQuoteForMoving(queryMoving);
+      result = getMovingQuote(queryMoving);
     
     }
 

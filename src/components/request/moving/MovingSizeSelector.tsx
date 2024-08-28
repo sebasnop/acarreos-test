@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { MovingSizeEnum } from "@/interfaces/DatabaseEnums"
+import { movingSizes } from "@/constants/movingSizes";
 
 const labelTitle: string = "Tamaño de la mudanza"
 
@@ -38,9 +38,9 @@ export default function MovingSizeSelector({
           <option value="" disabled>
             Selecciona un tamaño de mudanza
           </option>
-          {Object.values(MovingSizeEnum).map((size) => (
-            <option key={size} value={size}>
-              {size}
+          {movingSizes.map((movingSizes) => (
+            <option key={movingSizes.label} value={movingSizes.value}>
+              {movingSizes.labelEs}
             </option>
           ))}
         </select>

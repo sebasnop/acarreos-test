@@ -1,5 +1,3 @@
-import { MovingSizeEnum } from "@/interfaces/DatabaseEnums";
-
 /**
  * Represents a nav item in the navigation menu.
  */
@@ -38,12 +36,19 @@ interface MovingPriceQuote {
   originCityId: number,
   destinationCityId: number,
   declaredValue: number,
-  size: string
+  size: number
+}
+
+interface MovingSize {
+  label: string,
+  labelEs: string,
+  value: number
 }
 
 export type {
   NavItemInterface,
   DocumentPriceQuote,
   ObjectPriceQuote,
-  MovingPriceQuote
+  MovingPriceQuote,
+  MovingSize
 };

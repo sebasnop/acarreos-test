@@ -25,15 +25,8 @@ enum ShipmentStatusEnum {
   Delivered = "Entregado"
 }
 
-enum MovingSizeEnum {
-  SMALL = "Pequeño",
-  MEDIUM = "Mediano",
-  LARGE = "Grande",
-}
-
 export {
   NationsEnum,
   RegionsEnum,
-  ShipmentStatusEnum,
-  MovingSizeEnum
+  ShipmentStatusEnum
 }
