@@ -7,7 +7,14 @@ import { ShipmentsTable as shipments } from "@/database/ShipmentsTable";
  * Argumentos para el hook `useTrackShipment`.
  */
 interface UseTrackShipmentArgs {
+  /**
+   * El código de guía del envío que se desea rastrear.
+   */
   guideCode: string;
+  
+  /**
+   * Indicador booleano para iniciar la búsqueda del estado.
+   */
   trigger: boolean;
 }
 
@@ -15,17 +22,28 @@ interface UseTrackShipmentArgs {
  * Resultado esperado del hook `useTrackShipment`.
  */
 interface UseTrackShipmentResult {
+  /**
+   * Indica si el estado de carga está en progreso.
+   */
   loading: boolean;
+
+  /**
+   * Mensaje de error si ocurre algún problema durante la búsqueda.
+   */
   error: string | null;
+
+  /**
+   * Estado actual del envío.
+   */
   status: string | null;
 }
 
 /**
  * Hook personalizado para rastrear el estado de un envío basado en un código de guía.
  *
- * @param guideCode - El código de guía del envío que se desea rastrear.
- * @param trigger - Indicador booleano para iniciar la búsqueda del estado.
- * @returns Un objeto que contiene el estado de carga, cualquier error ocurrido y el estado actual del envío.
+ * @param {string} guideCode - El código de guía del envío que se desea rastrear.
+ * @param {boolean} trigger - Indicador booleano para iniciar la búsqueda del estado.
+ * @returns {UseTrackShipmentResult} Un objeto que contiene el estado de carga, cualquier error ocurrido, y el estado actual del envío.
  */
 export function useTrackShipment({
   guideCode,
@@ -35,6 +53,9 @@ export function useTrackShipment({
   const [error, setError] = useState<string | null>(null);
   const [status, setStatus] = useState<string | null>(null);
 
+  /**
+   * Función para simular la búsqueda del estado del envío.
+   */
   const fetchStatus = async () => {
     setLoading(true);
     setError(null);
@@ -67,3 +88,4 @@ export function useTrackShipment({
 
   return { loading, error, status };
 }
+

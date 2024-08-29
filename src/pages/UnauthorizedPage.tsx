@@ -1,13 +1,32 @@
 import { Link } from "react-router-dom";
 
-export default function UnauthorizedPage() {
+/**
+ * Página UnauthorizedPage.
+ *
+ * Esta página se muestra cuando un usuario no está autenticado y trata de acceder a una sección restringida.
+ * Ofrece un mensaje explicando la situación y proporciona un enlace para regresar a la página principal.
+ *
+ * @returns {JSX.Element} La página de no autorizado.
+ */
+export default function UnauthorizedPage(): JSX.Element {
   return (
     <>
       <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
         <div className="text-center">
+          {/* Código de estado HTTP 403 */}
           <p className="text-base font-semibold text-yellow-950">403</p>
-          <h1 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">No estás autenticado</h1>
-          <p className="mt-6 text-base leading-7 text-gray-600">Vuelve a la página inicial para autenticarte de nuevo.</p>
+
+          {/* Título explicativo */}
+          <h1 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+            No estás autenticado
+          </h1>
+
+          {/* Mensaje de sugerencia */}
+          <p className="mt-6 text-base leading-7 text-gray-600">
+            Vuelve a la página inicial para autenticarte de nuevo.
+          </p>
+
+          {/* Enlace para volver a la página de inicio */}
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Link
               to="/"
@@ -19,5 +38,6 @@ export default function UnauthorizedPage() {
         </div>
       </main>
     </>
-  )
+  );
 }
+

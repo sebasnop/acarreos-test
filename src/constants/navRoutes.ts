@@ -1,5 +1,11 @@
-import type { NavItemInterface } from "@/interfaces/AppInterfaces"
+import type { NavItemInterface } from "@/interfaces/AppInterfaces";
 
+/**
+ * Un objeto que define las rutas de navegación principales de la aplicación.
+ * 
+ * Cada entrada en `navRoutes` representa una ruta con un nombre legible por el usuario y una URL asociada.
+ * Las claves del objeto son identificadores únicos para cada ruta, utilizados para acceder a las rutas dentro de la aplicación.
+ */
 const navRoutes: { [id: string]: NavItemInterface } = {
   'home': { name: 'Acarreos Appa', href: '/' },
   'price': { name: 'Cotizar', href: '/price-quote' },
@@ -18,6 +24,6 @@ const navRoutes: { [id: string]: NavItemInterface } = {
   'unauthorized': { name: 'No autorizado', href: '/unauthorized' },
   'editUser': { name: 'Editar Usuario', href: '/edit-user' },
   'deleteUser': { name: 'Eliminar Usuario', href: '/delete-user' },
-}
+};
 
-export { navRoutes }
+export { navRoutes };

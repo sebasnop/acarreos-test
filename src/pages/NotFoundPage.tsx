@@ -1,13 +1,32 @@
 import { Link } from "react-router-dom";
 
-export default function NotFoundPage() {
+/**
+ * Página NotFoundPage.
+ *
+ * Esta página se muestra cuando un usuario intenta acceder a una ruta que no existe.
+ * Incluye un mensaje de error y un enlace para volver a la página principal.
+ *
+ * @returns {JSX.Element} La página de error 404.
+ */
+export default function NotFoundPage(): JSX.Element {
   return (
     <>
       <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
         <div className="text-center">
+          {/* Código de estado HTTP 404 */}
           <p className="text-base font-semibold text-yellow-950">404</p>
-          <h1 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">Página no encontrada</h1>
-          <p className="mt-6 text-base leading-7 text-gray-600">Lo sentimos, no hemos encontrado la página que buscabas.</p>
+
+          {/* Título de la página de error */}
+          <h1 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+            Página no encontrada
+          </h1>
+
+          {/* Descripción adicional */}
+          <p className="mt-6 text-base leading-7 text-gray-600">
+            Lo sentimos, no hemos encontrado la página que buscabas.
+          </p>
+
+          {/* Enlace para volver a la página principal */}
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Link
               to="/"
@@ -19,5 +38,6 @@ export default function NotFoundPage() {
         </div>
       </main>
     </>
-  )
+  );
 }
+
