@@ -16,7 +16,8 @@ const navRoutes: { [id: string]: NavItemInterface } = {
   'mainEnterprise': { name: 'Main Enterprise', href: '/main-enterprise' },
   'requestService': { name: 'Solicitar Servicio', href: '/request-service' },
   'unauthorized': { name: 'No autorizado', href: '/unauthorized' },
-  'editUser': { name: 'Editar Usuario', href: '/edit-user' }
+  'editUser': { name: 'Editar Usuario', href: '/edit-user' },
+  'deleteUser': { name: 'Eliminar Usuario', href: '/delete-user' },
 }
 
 export { navRoutes }

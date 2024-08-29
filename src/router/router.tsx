@@ -12,6 +12,7 @@ import MainCarrier from "@/pages/main/MainCarrier";
 import MainEnterprise from "@/pages/main/MainEnterprise";
 import PriceQuotePage from "@/pages/PriceQuotePage";
 import EditUser from "@/pages/EditUser";
+import DeleteUser from "@/pages/DeleteUser";
 
 import { navRoutes as routes } from "@/constants/navRoutes";
 import RequestServicePage from "@/pages/main/RequestServicePage";
@@ -65,6 +66,14 @@ export const router = createBrowserRouter([
     element: <ProtectedRoute allowedRoles={['client']} />,
     children: [
       { path: '', element: <EditUser /> }
+    ]
+  },
+
+  {
+    path: routes.deleteUser.href,
+    element: <ProtectedRoute allowedRoles={['client']} />,
+    children: [
+      { path: '', element: <DeleteUser /> }
     ]
   },
     
