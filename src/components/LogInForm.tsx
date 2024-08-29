@@ -1,6 +1,21 @@
 import { Link } from 'react-router-dom';
 import { LockClosedIcon } from '@heroicons/react/20/solid';
 
+/**
+ * Componente LogInForm
+ * 
+ * Este componente representa un formulario de inicio de sesión que permite a los usuarios ingresar
+ * su nombre de usuario y contraseña para autenticar su cuenta.
+ * 
+ * @componente
+ * @param {Object} props - Las propiedades que se pasan al componente.
+ * @param {string} props.username - El nombre de usuario ingresado por el usuario.
+ * @param {Function} props.setUsername - Función para actualizar el estado del nombre de usuario.
+ * @param {string} props.password - La contraseña ingresada por el usuario.
+ * @param {Function} props.setPassword - Función para actualizar el estado de la contraseña.
+ * @param {Function} props.handleSubmit - Función que maneja el envío del formulario de inicio de sesión.
+ * @retorna {JSX.Element} El componente LogInForm.
+ */
 export default function LogInForm({ username, setUsername, password, setPassword, handleSubmit }) {
   return (
     <>
@@ -62,6 +77,7 @@ export default function LogInForm({ username, setUsername, password, setPassword
     </>
   );
 }
+
 
 
 

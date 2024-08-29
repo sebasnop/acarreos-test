@@ -2,9 +2,21 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import LandingHeader from "@/components/header/LandingHeader";
 
+/**
+ * Componente TermsAndConditionsPage
+ * 
+ * Este componente representa la página de "Términos y Condiciones" de la aplicación.
+ * Contiene las secciones que describen las reglas y políticas que los usuarios deben aceptar para utilizar el sitio web y sus servicios.
+ * 
+ * @componente
+ * @retorna {JSX.Element} El componente TermsAndConditionsPage.
+ */
 export default function TermsAndConditionsPage() {
   
-   // Desplaza la ventana hacia la parte superior al montar el componente
+  /**
+   * Efecto que desplaza la ventana hacia la parte superior al montar el componente.
+   * Esto asegura que el usuario vea la parte superior de la página cuando se navega a esta.
+   */
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -61,3 +73,4 @@ export default function TermsAndConditionsPage() {
     </>
   );
 }
+

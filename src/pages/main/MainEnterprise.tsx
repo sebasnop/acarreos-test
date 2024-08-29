@@ -2,51 +2,33 @@ import InsideHeader from "@/components/header/InsideHeader";
 import React from "react";
 import { BisonsTable } from "@/database/BisonsTable";
 
+/**
+ * El componente MainEnterprise representa la página principal para los administradores donde pueden ver el inventario de bisontes.
+ *
+ * @component
+ */
 export default function MainEnterprise() {
   return (
     <>
       <InsideHeader role="admin" />
       <div className="flex flex-col px-6 py-8">
+        {/* Título de la página */}
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-bold text-gray-900">Inventario de Bisontes</h1>
         </div>
 
+        {/* Tabla de bisontes para pantallas medianas y grandes */}
         <div className="hidden sm:block overflow-x-auto">
           <div className="inline-block min-w-full align-middle">
             <div className="overflow-hidden shadow-md sm:rounded-lg">
               <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-200">
+                <thead className="bg-yellow-950">
                   <tr>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider"
-                    >
-                      Nombre del bisonte
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider"
-                    >
-                      Descripción
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-center text-xs font-medium text-gray-600 uppercase tracking-wider"
-                    >
-                      Estado
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-center text-xs font-medium text-gray-600 uppercase tracking-wider"
-                    >
-                      Finalización descanso
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-center text-xs font-medium text-gray-600 uppercase tracking-wider"
-                    >
-                      Km recorridos
-                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Nombre del bisonte</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Descripción</th>
+                    <th className="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Estado</th>
+                    <th className="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Finalización descanso</th>
+                    <th className="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Km recorridos</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
@@ -84,10 +66,7 @@ export default function MainEnterprise() {
         {/* Vista tipo tarjeta para dispositivos pequeños */}
         <div className="grid grid-cols-1 gap-6 sm:hidden">
           {BisonsTable.map((bison) => (
-            <div
-              key={bison.idBison}
-              className="bg-white p-4 rounded-lg shadow-md"
-            >
+            <div key={bison.idBison} className="bg-white p-4 rounded-lg shadow-md">
               <div className="flex justify-between items-center">
                 <h2 className="text-lg font-medium text-gray-900">
                   Bisonte: {bison.name}
@@ -115,6 +94,12 @@ export default function MainEnterprise() {
   );
 }
 
+/**
+ * Devuelve el color de fondo y texto para el estado del bisonte.
+ *
+ * @param {string} status - El estado del bisonte.
+ * @returns {string} - Las clases de Tailwind CSS que representan los colores del estado.
+ */
 function getStatusColor(status: string) {
   switch (status) {
     case "Descansando":
@@ -127,3 +112,4 @@ function getStatusColor(status: string) {
       return "bg-gray-300 text-gray-800";
   }
 }
+

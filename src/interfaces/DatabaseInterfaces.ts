@@ -54,7 +54,8 @@ interface UserInterface {
   idUser: number,
   username: string,
   email: string,
-  default_location: string | null,
+  default_location?: string,
+  password: string,
 }
 
 // Interface de transportistas
@@ -77,7 +78,7 @@ interface BisonsInterface {
   name: string,
   description: string,
   status: string,
-  endRestDate: string | null,
+  endRestDate?: string,
   kilometersTraveled: number,
 }
 

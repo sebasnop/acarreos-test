@@ -1,7 +1,16 @@
-import LandingHeader from "@/components/header/LandingHeader"
+import LandingHeader from "@/components/header/LandingHeader";
 
+/**
+ * Componente AboutPage
+
+ * Este componente representa la página "Acerca de Nosotros" de la aplicación. 
+ * Proporciona información sobre la empresa, su misión, historia y el equipo que la conforma.
+ * 
+ *
+ * @component
+ * @returns {JSX.Element} El componente AboutPage
+ */
 export default function AboutPage() {
-
   return (
     <>
       <LandingHeader />
@@ -73,5 +82,5 @@ export default function AboutPage() {
         </div>
       </main>
     </>
-  )
+  );
 }

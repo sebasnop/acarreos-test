@@ -5,29 +5,45 @@ import LandingHeader from "@/components/header/LandingHeader";
 import { Link } from 'react-router-dom';
 import { useAuth } from '@/context/AuthProvider';
 
+/**
+ * Componente LogInPage
+ * 
+ * Este componente representa la página de inicio de sesión para los usuarios estándar.
+ * Permite a los usuarios ingresar sus credenciales para acceder a su cuenta de usuario.
+ * 
+ * @componente
+ * @retorna {JSX.Element} El componente LogInPage.
+ */
 export default function LogInPage() {
   const { login, logout } = useAuth();
-  // Estado para almacenar el usuario y la contraseña ingresados
+  // Estado para almacenar el nombre de usuario y la contraseña ingresados
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  // Redirige después de un inicio de sesión exitoso
+  // Hook para redirigir a otra ruta después de un inicio de sesión exitoso
   const navigate = useNavigate();
 
-  // Datos quemados para validación
+  // Credenciales quemadas para validación
   const hardcodedUsername = 'user';
   const hardcodedPassword = 'password123';
 
+  /**
+   * Maneja el envío del formulario de inicio de sesión.
+   * Valida las credenciales y redirige al usuario a su página principal si son correctas.
+   * 
+   * @param {React.FormEvent<HTMLFormElement>} event - El evento de envío del formulario.
+   */
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // Valida las credenciales
+    // Validación de las credenciales ingresadas
     if (username === hardcodedUsername && password === hardcodedPassword) {
       logout();
       login('client');
-      // Redirige a la página /main-user
+      // Redirige a la página principal del usuario (/main-user)
       navigate('/main-user');
     } else {
+      // Muestra una alerta si las credenciales son incorrectas
       alert('Usuario o contraseña incorrectos');
     }
   };

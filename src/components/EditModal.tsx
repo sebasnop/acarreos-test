@@ -1,8 +1,26 @@
 import React, { useState } from "react";
 
+/**
+ * Componente EditModal
+ * 
+ * Este componente representa un modal que permite editar el estado de un pedido específico.
+ * Se muestra sobre el contenido actual y permite al usuario seleccionar un nuevo estado para el pedido.
+ * 
+ * @componente
+ * @param {Object} props - Las propiedades que se pasan al componente.
+ * @param {Object} props.shipment - El pedido actual cuyos detalles se están editando.
+ * @param {Function} props.onUpdateStatus - Función para actualizar el estado del pedido en la tabla principal.
+ * @param {Function} props.onClose - Función para cerrar el modal sin guardar cambios.
+ * @retorna {JSX.Element} El componente EditModal.
+ */
 export default function EditModal({ shipment, onUpdateStatus, onClose }) {
+  // Estado para manejar el nuevo estado del pedido seleccionado por el usuario
   const [newStatus, setNewStatus] = useState(shipment.status);
 
+  /**
+   * Función que se ejecuta al hacer clic en el botón "Guardar".
+   * Llama a la función onUpdateStatus para actualizar el estado del pedido.
+   */
   const handleSave = () => {
     onUpdateStatus(shipment.guideCode, newStatus);
   };
@@ -18,7 +36,7 @@ export default function EditModal({ shipment, onUpdateStatus, onClose }) {
           <select
             value={newStatus}
             onChange={(e) => setNewStatus(e.target.value)}
-            className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-yellow-950 focus:border-yellow-950 sm:text-sm"
           >
             <option value="Registrado">Registrado</option>
             <option value="Recogido">Recogido</option>
@@ -31,7 +49,7 @@ export default function EditModal({ shipment, onUpdateStatus, onClose }) {
         <div className="flex justify-end">
           <button
             onClick={handleSave}
-            className="bg-indigo-600 text-white px-4 py-2 rounded-md mr-2 hover:bg-indigo-500"
+            className="bg-yellow-950 text-white px-4 py-2 rounded-md mr-2 hover:bg-yellow-700"
           >
             Guardar
           </button>
@@ -46,4 +64,5 @@ export default function EditModal({ shipment, onUpdateStatus, onClose }) {
     </div>
   );
 }
+
 

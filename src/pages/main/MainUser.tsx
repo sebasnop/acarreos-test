@@ -1,61 +1,70 @@
 import InsideHeader from "@/components/header/InsideHeader";
+import React from "react";
 import { ShipmentsTable } from "@/database/ShipmentsTable";
 import { Link } from "react-router-dom";
 import { navRoutes as routes } from "@/constants/navRoutes";
 
+/**
+ * El componente MainUser representa la página principal para los usuarios donde pueden ver sus envíos y solicitar servicios.
+ *
+ * @component
+ */
 export default function MainUser() {
   return (
     <>
       <InsideHeader role="client" />
       <div className="flex flex-col px-6 py-8">
-        {/* Contenedor para el título y el botón */}
+        {/* Título y botón para solicitar servicio */}
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-bold text-gray-900">Tus pedidos</h1>
-          <Link to={routes.requestService.href} className="bg-indigo-600 text-white text-sm font-semibold py-2 px-4 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2">
+          <Link
+            to={routes.requestService.href}
+            className="bg-yellow-950 text-white text-sm font-semibold py-2 px-4 rounded-md hover:bg-yellow-900 focus:outline-none focus:ring-2 focus:ring-yellow-900 focus:ring-offset-2"
+          >
             Solicitar servicio
           </Link>
         </div>
 
-        {/* Vista tipo tabla para pantallas medianas y grandes */}
+        {/* Tabla de pedidos para pantallas medianas y grandes */}
         <div className="hidden sm:block overflow-x-auto">
           <div className="inline-block min-w-full align-middle">
             <div className="overflow-hidden shadow-md sm:rounded-lg">
               <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-200">
+                <thead className="bg-yellow-950">
                   <tr>
                     <th
                       scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider"
+                      className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
                     >
                       Guía pedido
                     </th>
                     <th
                       scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider"
+                      className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
                     >
                       Descripción
                     </th>
                     <th
                       scope="col"
-                      className="px-6 py-3 text-center text-xs font-medium text-gray-600 uppercase tracking-wider"
+                      className="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider"
                     >
                       Estado
                     </th>
                     <th
                       scope="col"
-                      className="px-6 py-3 text-center text-xs font-medium text-gray-600 uppercase tracking-wider"
+                      className="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider"
                     >
                       Fecha de creación
                     </th>
                     <th
                       scope="col"
-                      className="px-6 py-3 text-center text-xs font-medium text-gray-600 uppercase tracking-wider"
+                      className="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider"
                     >
                       Última actualización
                     </th>
                     <th
                       scope="col"
-                      className="px-6 py-3 text-center text-xs font-medium text-gray-600 uppercase tracking-wider"
+                      className="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider"
                     >
                       Costo
                     </th>
@@ -131,6 +140,12 @@ export default function MainUser() {
   );
 }
 
+/**
+ * Devuelve el color de fondo y texto para el estado del pedido.
+ *
+ * @param {string} status - El estado del pedido.
+ * @returns {string} - Las clases de Tailwind CSS que representan los colores del estado.
+ */
 function getStatusColor(status: string) {
   switch (status) {
     case "Registrado":
@@ -149,4 +164,5 @@ function getStatusColor(status: string) {
       return "bg-white-300 text-gray-800";
   }
 }
+
 

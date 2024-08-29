@@ -13,13 +13,32 @@ import {
 import { Link } from 'react-router-dom';
 import { NavItemInterface } from '@/interfaces/AppInterfaces';
 
-interface Props {
-  setMobileMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  routes: Record<string, NavItemInterface>;
-}
+/**
+ * @typedef {Object} NavItemInterface
+ * @property {string} name - Nombre de la ruta.
+ * @property {string} href - URL a la que apunta la ruta.
+ * @property {string} [description] - Descripción de la ruta.
+ */
 
+/**
+ * @typedef {Object} Props
+ * @property {React.Dispatch<React.SetStateAction<boolean>>} setMobileMenuOpen - Función para abrir el menú móvil.
+ * @property {Record<string, NavItemInterface>} routes - Rutas de navegación disponibles.
+ */
+
+/**
+ * Componente de encabezado para la vista de escritorio en la página de inicio.
+ * Presenta opciones de navegación para diferentes secciones del sitio, incluidas las rutas empresariales.
+ *
+ * @param {Props} props - Las propiedades del componente.
+ * @returns {React.ReactElement} El componente del encabezado para la vista de escritorio.
+ */
 export default function DesktopLandingHeader({ setMobileMenuOpen, routes }: Props) {
 
+  /**
+   * Rutas específicas para la sección empresarial.
+   * @type {Array<{name: string, description: string, href: string, icon: React.ComponentType}>}
+   */
   const businessRoutes = [
     {
       name: routes.enterprise.name,
@@ -31,7 +50,7 @@ export default function DesktopLandingHeader({ setMobileMenuOpen, routes }: Prop
       description: 'Actualiza el seguimiento de tus servicios',
       href: routes.carrier.href, icon: CursorArrowRaysIcon
     }
-  ]
+  ];
 
   return (
     <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
@@ -41,7 +60,7 @@ export default function DesktopLandingHeader({ setMobileMenuOpen, routes }: Prop
           <img alt={'Logo de ' + routes.home.name}
             src="src/public/logo_appa.svg"
             className="h-8 w-auto" />
-            <span className="ml-3 text-yellow-950 font-semibold text-lg text">Appa</span>
+            <span className="ml-3 text-yellow-950 font-semibold text-lg">Appa</span>
         </Link>
       </div>
       <div className="flex lg:hidden">
