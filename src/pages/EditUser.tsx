@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { usersTable } from '@/database/UsersTable'; // Asumiendo que tienes esta tabla de usuarios
-import InsideHeaderUser from '@/components/header/InsideHeaderUser';
+import InsideHeader from '@/components/header/InsideHeader';
 
 /**
  * Componente `EditUser` para ver y editar la información del usuario.
@@ -13,6 +14,7 @@ import InsideHeaderUser from '@/components/header/InsideHeaderUser';
  */
 export default function EditUser() {
   const [isEditing, setIsEditing] = useState(false);
+  const navigate = useNavigate();  // Hook para navegar entre rutas
 
   // Datos del usuario (se trae de la tabla de usuarios)
   const user = usersTable[0]; // Se asume que se obtiene el usuario actual de alguna manera
@@ -52,9 +54,16 @@ export default function EditUser() {
     toggleEdit();
   };
 
+  /**
+   * Maneja la eliminación de la cuenta del usuario.
+   */
+  const handleDeleteAccount = () => {
+    navigate('/delete-user');  // Redirige a la página de eliminar usuario
+  };
+
   return (
     <>
-      <InsideHeaderUser />
+      <InsideHeader role="client" />
       <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg text-center">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Editar Información de Usuario</h2>
         <form className="space-y-4">
@@ -103,7 +112,7 @@ export default function EditUser() {
             />
           </div>
 
-          <div className="text-left">
+          <div className="text-left mb-6">
             <label htmlFor="password" className="block text-sm font-medium text-gray-700">Contraseña</label>
             <input
               id="password"
@@ -118,7 +127,14 @@ export default function EditUser() {
             />
           </div>
 
-          <div className="flex justify-end space-x-4">
+          <div className="flex justify-between items-center mt-4">
+            <button
+              type="button"
+              onClick={handleDeleteAccount}
+              className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-600"
+            >
+              Eliminar cuenta
+            </button>
             {isEditing ? (
               <button
                 type="button"
@@ -142,4 +158,6 @@ export default function EditUser() {
     </>
   );
 }
+
+
 
