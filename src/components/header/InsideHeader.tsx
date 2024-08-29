@@ -18,9 +18,13 @@ export default function InsideHeader({ role }: { role: UserRole }) {
     }
   };
 
-  function handleLogout () {
+  function handleLogout() {
     navigate('/');
     logout();
+  }
+
+  function handleEditUser() {
+    navigate('/edit-user');
   }
 
   return (
@@ -34,7 +38,7 @@ export default function InsideHeader({ role }: { role: UserRole }) {
                 src="src/public/logo_appa.svg"
                 className="h-8 w-auto"
               />
-              <span className="ml-3 text-yellow-950 font-semibold text-lg text">Appa</span>
+              <span className="ml-3 text-yellow-950 font-semibold text-lg">Appa</span>
             </div>
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
@@ -64,17 +68,13 @@ export default function InsideHeader({ role }: { role: UserRole }) {
                 transition
                 className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
               >
-                <MenuItem>
-                  {({ active }) => (
-                    <button
-                      onClick={handleLogout}
-                      className={`block px-4 py-2 text-sm text-gray-700 ${
-                        active ? 'bg-gray-100' : ''
-                      }`}
-                    >
-                      Cerrar sesión
-                    </button>
-                  )}
+                {role === 'client' && (
+                  <MenuItem as="button" onClick={handleEditUser} className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100">
+                    Editar usuario
+                  </MenuItem>
+                )}
+                <MenuItem as="button" onClick={handleLogout} className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100">
+                  Cerrar sesión
                 </MenuItem>
               </MenuItems>
             </Menu>
@@ -84,4 +84,6 @@ export default function InsideHeader({ role }: { role: UserRole }) {
     </header>
   );
 }
+
+
 
