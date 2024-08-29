@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { usersTable } from '@/database/UsersTable'; // Asumiendo que tienes esta tabla de usuarios
-import InsideHeaderUser from '@/components/header/InsideHeaderUser';
+import InsideHeaderUser from '@/components/header/InsideHeader';
 
 /**
  * Componente `EditUser` para ver y editar la información del usuario.
@@ -54,7 +54,7 @@ export default function EditUser() {
 
   return (
     <>
-      <InsideHeaderUser />
+      <InsideHeaderUser role='client'/>
       <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg text-center">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Editar Información de Usuario</h2>
         <form className="space-y-4">
