@@ -1,22 +1,35 @@
 interface ServiceTypeSelectorProps {
+  /**
+   * El tipo de servicio actualmente seleccionado.
+   */
   selectedServiceType: string;
+
+  /**
+   * Función callback que se llama cuando el usuario cambia el tipo de servicio.
+   * 
+   * @param serviceType - El tipo de servicio seleccionado por el usuario.
+   */
   onServiceTypeChange: (serviceType: string) => void;
 }
 
 /**
- * Componente ServiceTypeSelector.
+ * Componente `ServiceTypeSelector`.
  * 
- * Permite al usuario seleccionar un tipo de servicio de transporte.
+ * Permite al usuario seleccionar un tipo de servicio de transporte a través de un conjunto
+ * de botones de radio.
  * 
- * @param {string} selectedServiceType - El valor del tipo de servicio seleccionado.
- * @param {Function} onServiceTypeChange - Callback para manejar el cambio de selección.
- * 
+ * @param {ServiceTypeSelectorProps} props - Las propiedades del componente.
  * @returns {JSX.Element} Un conjunto de botones de radio para seleccionar el tipo de servicio.
  */
 export default function ServiceTypeSelector({
   selectedServiceType,
   onServiceTypeChange,
 }: ServiceTypeSelectorProps): JSX.Element {
+  /**
+   * Maneja el cambio de selección del tipo de servicio y llama al callback con el nuevo valor.
+   * 
+   * @param event - El evento de cambio en el botón de radio.
+   */
   const handleServiceTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onServiceTypeChange(event.target.value);
   };
@@ -28,10 +41,11 @@ export default function ServiceTypeSelector({
       </legend>
 
       <p className="mt-1 text-sm leading-6 text-gray-900">
-        Selecciona lo que quieres que transportemos por tí
+        Selecciona lo que quieres que transportemos por ti
       </p>
 
       <div className="mt-6 space-y-6">
+        {/* Opción para 'Documento' */}
         <div className="flex items-center gap-x-3">
           <input
             id="document-service"
@@ -48,6 +62,7 @@ export default function ServiceTypeSelector({
           </label>
         </div>
 
+        {/* Opción para 'Objeto' */}
         <div className="flex items-center gap-x-3">
           <input
             id="object-service"
@@ -63,6 +78,7 @@ export default function ServiceTypeSelector({
           </label>
         </div>
 
+        {/* Opción para 'Mudanza' */}
         <div className="flex items-center gap-x-3">
           <input
             id="moving-service"

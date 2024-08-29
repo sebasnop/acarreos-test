@@ -15,6 +15,14 @@ import MovingSizeSelector from '@/components/request/moving/MovingSizeSelector';
 
 import { usePriceQuote } from '@/hooks/usePriceQuote';
 
+/**
+ * Componente `PriceQuoteForm`.
+ * 
+ * Renderiza un formulario que permite a los usuarios seleccionar el tipo de servicio y otros detalles
+ * para calcular el precio de una cotización. Diferentes campos se muestran en función del tipo de servicio seleccionado.
+ *
+ * @returns El formulario de cotización de precios.
+ */
 export default function PriceQuoteForm() {
   // Estado para almacenar el tipo de servicio seleccionado
   const [selectedServiceType, setSelectedServiceType] = useState<string>('');
@@ -22,17 +30,23 @@ export default function PriceQuoteForm() {
   const [destinationLocation, setDestinationLocation] = useState({ nation: '', region: '', cityId: '' });
   const [declaredValue, setDeclaredValue] = useState<string>('')
 
+  // Estado para los campos adicionales según el tipo de servicio
   const [documentWeight, setDocumentWeight] = useState<string>('');
-
   const [objectWeight, setObjectWeight] = useState<string>('');
   const [objectHeight, setObjectHeight] = useState<string>('');
   const [objectLength, setObjectLength] = useState<string>('');
   const [objectWidth, setObjectWidth] = useState<string>('');
-
   const [movingSize, setMovingSize] = useState<string>('');
 
+  // Hook para manejar la lógica de cálculo de la cotización
   const { priceQuote, calculateQuote } = usePriceQuote();
 
+  /**
+   * Maneja el envío del formulario, llamando al hook `usePriceQuote` para calcular la cotización
+   * en función de los datos proporcionados por el usuario.
+   *
+   * @param event - El evento de envío del formulario.
+   */
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -134,6 +148,7 @@ export default function PriceQuoteForm() {
             <label htmlFor="submit" className="sr-only">
               Cotizar
             </label>
+            {/* Botón para enviar el formulario */}
             <button
               type="submit"
               className="rounded-md bg-yellow-950 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-yellow-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-900"
@@ -144,9 +159,9 @@ export default function PriceQuoteForm() {
 
         </div>
 
-
       </form>
 
+      {/* Mostrar el resultado de la cotización si está disponible */}
       {priceQuote !== null && (
         <div className="mt-6">
           <h2 className="text-xl font-semibold leading-7 text-gray-900">

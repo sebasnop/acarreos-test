@@ -27,8 +27,7 @@ interface LocationSelectorProps {
  * Este componente permite al usuario seleccionar una nación, región y ciudad de origen o destino.
  * Está diseñado para ser reutilizable y adaptable a diferentes contextos en un formulario.
  * 
- * @param {string} label - La etiqueta que describe el propósito del selector.
- * @param {Function} onLocationChange - Callback para manejar los cambios en la selección de la ubicación.
+ * @param {LocationSelectorProps} props - Las propiedades del componente.
  * 
  * @example
  * <LocationSelector

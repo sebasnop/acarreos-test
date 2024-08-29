@@ -4,15 +4,25 @@ import LandingHeader from "@/components/header/LandingHeader";
 import { LockClosedIcon, MapPinIcon } from '@heroicons/react/20/solid';
 
 /**
+ * Tipo para los datos del formulario de registro.
+ */
+interface FormData {
+  username: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  location: string;
+}
+
+/**
  * Formulario de registro de usuario que permite a los nuevos usuarios crear una cuenta.
  * Los datos del formulario se guardan temporalmente en `localStorage` y se eliminan al completar el registro.
  * Al hacer clic en "Crea tu cuenta", se redirige a la página principal del usuario (`/main-user`).
  *
- * @component
- * @returns {React.ReactElement} El componente de formulario de registro.
+ * @returns El componente de formulario de registro.
  */
-export default function SignUpForm() {
-  const [formData, setFormData] = useState({
+export default function SignUpForm(): React.ReactElement {
+  const [formData, setFormData] = useState<FormData>({
     username: '',
     email: '',
     password: '',
@@ -20,12 +30,10 @@ export default function SignUpForm() {
     location: ''
   });
 
-  // Redirige después de un registro exitoso
   const navigate = useNavigate();
 
   /**
    * Desplaza la ventana hacia la parte superior y carga los datos guardados en `localStorage` al montar el componente.
-   * @useEffect
    */
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -80,7 +88,7 @@ export default function SignUpForm() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" onSubmit={handleSubmit}>
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">Nombre de usuario</label>
               <div className="mt-2">
@@ -195,16 +203,3 @@ export default function SignUpForm() {
     </>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

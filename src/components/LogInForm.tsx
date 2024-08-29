@@ -1,22 +1,49 @@
 import { Link } from 'react-router-dom';
 import { LockClosedIcon } from '@heroicons/react/20/solid';
 
+interface LogInFormProps {
+  /**
+   * El nombre de usuario ingresado por el usuario.
+   */
+  username: string;
+  
+  /**
+   * Función para actualizar el estado del nombre de usuario.
+   * 
+   * @param username - El nuevo nombre de usuario.
+   */
+  setUsername: (username: string) => void;
+  
+  /**
+   * La contraseña ingresada por el usuario.
+   */
+  password: string;
+  
+  /**
+   * Función para actualizar el estado de la contraseña.
+   * 
+   * @param password - La nueva contraseña.
+   */
+  setPassword: (password: string) => void;
+  
+  /**
+   * Función que maneja el envío del formulario de inicio de sesión.
+   * 
+   * @param event - El evento de envío del formulario.
+   */
+  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+}
+
 /**
- * Componente LogInForm
+ * Componente `LogInForm`.
  * 
  * Este componente representa un formulario de inicio de sesión que permite a los usuarios ingresar
  * su nombre de usuario y contraseña para autenticar su cuenta.
  * 
- * @componente
- * @param {Object} props - Las propiedades que se pasan al componente.
- * @param {string} props.username - El nombre de usuario ingresado por el usuario.
- * @param {Function} props.setUsername - Función para actualizar el estado del nombre de usuario.
- * @param {string} props.password - La contraseña ingresada por el usuario.
- * @param {Function} props.setPassword - Función para actualizar el estado de la contraseña.
- * @param {Function} props.handleSubmit - Función que maneja el envío del formulario de inicio de sesión.
- * @retorna {JSX.Element} El componente LogInForm.
+ * @param props - Las propiedades que se pasan al componente.
+ * @returns El componente `LogInForm`.
  */
-export default function LogInForm({ username, setUsername, password, setPassword, handleSubmit }) {
+export default function LogInForm({ username, setUsername, password, setPassword, handleSubmit }: LogInFormProps): JSX.Element {
   return (
     <>
       <div className="flex min-h-full flex-col justify-center px-6 py-0 lg:px-8">
@@ -77,11 +104,3 @@ export default function LogInForm({ username, setUsername, password, setPassword
     </>
   );
 }
-
-
-
-
-
-
-
-

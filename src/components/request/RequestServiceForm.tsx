@@ -15,6 +15,15 @@ import ObjectWidthInput from '@/components/request/object/ObjectWidthInput';
 
 import MovingSizeSelector from '@/components/request/moving/MovingSizeSelector';
 
+/**
+ * Componente `RequestServiceForm`.
+ *
+ * Renderiza un formulario para que los usuarios puedan solicitar un servicio de transporte,
+ * incluyendo la selección de tipo de servicio, ubicación, dirección, y detalles específicos
+ * como el peso del documento, dimensiones del objeto, o el tamaño de la mudanza.
+ *
+ * @returns El formulario para solicitar un servicio de transporte.
+ */
 export default function RequestServiceForm() {
   // Estado para almacenar el tipo de servicio seleccionado
   const [selectedServiceType, setSelectedServiceType] = useState<string>('');
@@ -25,15 +34,19 @@ export default function RequestServiceForm() {
   const [declaredValue, setDeclaredValue] = useState<string>('');
   const [serviceDate, setServiceDate] = useState<string>('');
 
+  // Estado para los campos adicionales según el tipo de servicio
   const [documentWeight, setDocumentWeight] = useState<string>('');
-
   const [objectWeight, setObjectWeight] = useState<string>('');
   const [objectHeight, setObjectHeight] = useState<string>('');
   const [objectLength, setObjectLength] = useState<string>('');
   const [objectWidth, setObjectWidth] = useState<string>('');
-
   const [movingSize, setMovingSize] = useState<string>('');
 
+  /**
+   * Maneja el envío del formulario, recopilando todos los datos ingresados y mostrándolos en la consola.
+   *
+   * @param event - El evento de envío del formulario.
+   */
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
