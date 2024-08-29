@@ -1,14 +1,35 @@
-import { Dialog, DialogPanel, Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
+import {
+  Dialog,
+  DialogPanel,
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel
+} from '@headlessui/react';
 import { ChevronDownIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
 import type { NavItemInterface } from 'src/interfaces/AppInterfaces';
 
-interface Props {
-  setMobileMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  mobileMenuOpen: boolean;
-  routes: Record<string, NavItemInterface>;
-}
+/**
+ * @typedef {Object} NavItemInterface
+ * @property {string} name - Nombre de la ruta.
+ * @property {string} href - URL a la que apunta la ruta.
+ * @property {string} [description] - Descripción de la ruta.
+ */
 
+/**
+ * @typedef {Object} Props
+ * @property {React.Dispatch<React.SetStateAction<boolean>>} setMobileMenuOpen - Función para abrir/cerrar el menú móvil.
+ * @property {boolean} mobileMenuOpen - Estado que indica si el menú móvil está abierto.
+ * @property {Record<string, NavItemInterface>} routes - Rutas de navegación disponibles.
+ */
+
+/**
+ * Componente de encabezado para la vista móvil en la página de inicio.
+ * Presenta un menú desplegable que contiene enlaces de navegación para diferentes secciones del sitio, incluidas las rutas empresariales.
+ *
+ * @param {Props} props - Las propiedades del componente.
+ * @returns {React.ReactElement} El componente del encabezado para la vista móvil.
+ */
 export default function MobileLandingHeader({ setMobileMenuOpen, mobileMenuOpen, routes }: Props) {
   return (
     <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
@@ -20,7 +41,7 @@ export default function MobileLandingHeader({ setMobileMenuOpen, mobileMenuOpen,
             <img alt={'Logo de ' + routes.home.name}
               src="src/public/logo_appa.svg"
               className="h-8 w-auto" />
-            <span className="ml-3 text-yellow-950 font-semibold text-lg text">Appa</span>
+            <span className="ml-3 text-yellow-950 font-semibold text-lg">Appa</span>
           </Link>
           <button
             type="button"

@@ -3,26 +3,42 @@ import { useNavigate } from 'react-router-dom';
 import LogInForm from "@/components/LogInForm";
 import LandingHeader from "@/components/header/LandingHeader";
 
+/**
+ * Componente LogInCarrier
+ * 
+ * Este componente representa la página de inicio de sesión para los transportistas.
+ * Permite a los transportistas ingresar sus credenciales para acceder a su cuenta en la aplicación.
+ * 
+ * @componente
+ * @retorna {JSX.Element} El componente LogInCarrier.
+ */
 export default function LogInCarrier() {
   // Estado para almacenar el usuario y la contraseña ingresados
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  // Redirige después de un inicio de sesión exitoso
+  // Hook para redirigir a otra ruta después de un inicio de sesión exitoso
   const navigate = useNavigate();
 
-  // Datos quemados para validación
+  // Credenciales quemadas para validación
   const hardcodedUsername = 'carrier';
   const hardcodedPassword = 'password123';
 
+  /**
+   * Maneja el envío del formulario de inicio de sesión.
+   * Valida las credenciales y redirige al transportista a su página principal si son correctas.
+   * 
+   * @param {React.FormEvent<HTMLFormElement>} event - El evento de envío del formulario.
+   */
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // Valida las credenciales
+    // Validación de las credenciales ingresadas
     if (username === hardcodedUsername && password === hardcodedPassword) {
-      // Redirige a la página /main-carrier
+      // Redirige a la página principal del transportista (/main-carrier)
       navigate('/main-carrier');
     } else {
+      // Muestra una alerta si las credenciales son incorrectas
       alert('Usuario o contraseña incorrectos');
     }
   };

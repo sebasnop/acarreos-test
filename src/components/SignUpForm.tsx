@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import LandingHeader from "@/components/header/LandingHeader";
 import { LockClosedIcon, MapPinIcon } from '@heroicons/react/20/solid';
 
+/**
+ * Formulario de registro de usuario que permite a los nuevos usuarios crear una cuenta.
+ * Los datos del formulario se guardan temporalmente en `localStorage` y se eliminan al completar el registro.
+ * Al hacer clic en "Crea tu cuenta", se redirige a la página principal del usuario (`/main-user`).
+ *
+ * @component
+ * @returns {React.ReactElement} El componente de formulario de registro.
+ */
 export default function SignUpForm() {
   const [formData, setFormData] = useState({
     username: '',
@@ -12,7 +20,13 @@ export default function SignUpForm() {
     location: ''
   });
 
-    // Desplaza la ventana hacia la parte superior al montar el componente
+  // Redirige después de un registro exitoso
+  const navigate = useNavigate();
+
+  /**
+   * Desplaza la ventana hacia la parte superior y carga los datos guardados en `localStorage` al montar el componente.
+   * @useEffect
+   */
   useEffect(() => {
     window.scrollTo(0, 0);
     
@@ -23,7 +37,10 @@ export default function SignUpForm() {
     }
   }, []);
 
-    // Guarda en localStorage los datos del formulario
+  /**
+   * Maneja los cambios en los campos del formulario y guarda los datos en `localStorage`.
+   * @param {React.ChangeEvent<HTMLInputElement | HTMLSelectElement>} e - El evento de cambio.
+   */
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => {
@@ -33,6 +50,10 @@ export default function SignUpForm() {
     });
   };
 
+  /**
+   * Maneja el envío del formulario. Limpia los datos del formulario y de `localStorage`, y redirige a la página principal del usuario.
+   * @param {React.FormEvent<HTMLFormElement>} e - El evento de envío del formulario.
+   */
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -45,6 +66,9 @@ export default function SignUpForm() {
       location: ''
     });
     localStorage.removeItem('signUpFormData');
+
+    // Redirige a la página main-user
+    navigate('/main-user');
   };
 
   return (
@@ -171,6 +195,9 @@ export default function SignUpForm() {
     </>
   );
 }
+
+
+
 
 
 

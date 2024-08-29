@@ -1,8 +1,22 @@
 import { Link } from 'react-router-dom';
 import LandingHeader from "@/components/header/LandingHeader";
 
+/**
+ * Componente ForgotPasswordPage
+ * 
+ * Este componente representa la página de "Olvidé mi contraseña", donde los usuarios pueden solicitar 
+ * un enlace para restablecer su contraseña ingresando su correo electrónico o nombre de usuario.
+ * 
+ * @componente
+ * @retorna {JSX.Element} El componente ForgotPasswordPage.
+ */
 export default function ForgotPasswordPage() {
-  // Función para manejar el envío del formulario
+
+  /**
+   * Maneja el envío del formulario de restablecimiento de contraseña.
+   * 
+   * @param {React.FormEvent<HTMLFormElement>} event - El evento de envío del formulario.
+   */
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // Evita el envío real del formulario
     // Mostrar el mensaje de éxito
@@ -61,6 +75,7 @@ export default function ForgotPasswordPage() {
     </>
   );
 }
+
 
 
 

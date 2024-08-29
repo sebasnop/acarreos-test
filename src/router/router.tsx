@@ -11,6 +11,7 @@ import MainUser from "@/pages/main/MainUser";
 import MainCarrier from "@/pages/main/MainCarrier";
 import MainEnterprise from "@/pages/main/MainEnterprise";
 import PriceQuotePage from "@/pages/PriceQuotePage";
+import EditUser from "@/pages/EditUser";
 
 import { navRoutes as routes } from "@/constants/navRoutes";
 import RequestServicePage from "@/pages/main/RequestServicePage";
@@ -29,4 +30,5 @@ export const router = createBrowserRouter([
   { path: routes.mainCarrier.href, element: <MainCarrier /> },
   { path: routes.mainEnterprise.href, element: <MainEnterprise /> },
   { path: routes.requestService.href, element: <RequestServicePage /> },
+  { path: routes.editUser.href, element: <EditUser />}
 ]);

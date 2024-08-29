@@ -3,29 +3,46 @@ import { useNavigate } from 'react-router-dom';
 import LogInForm from "@/components/LogInForm";
 import LandingHeader from "@/components/header/LandingHeader";
 
+/**
+ * Componente LogInEnterprise
+ * 
+ * Este componente representa la página de inicio de sesión para los administradores de la empresa.
+ * Permite a los usuarios con rol de administrador ingresar sus credenciales para acceder a la cuenta empresarial.
+ * 
+ * @componente
+ * @retorna {JSX.Element} El componente LogInEnterprise.
+ */
 export default function LogInEnterprise() {
   // Estado para almacenar el usuario y la contraseña ingresados
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  // Redirige después de un inicio de sesión exitoso
+  // Hook para redirigir a otra ruta después de un inicio de sesión exitoso
   const navigate = useNavigate();
 
-  // Datos quemados para validación
+  // Credenciales quemadas para validación
   const hardcodedUsername = 'admin';
   const hardcodedPassword = 'password123';
 
+  /**
+   * Maneja el envío del formulario de inicio de sesión.
+   * Valida las credenciales y redirige al administrador a su página principal si son correctas.
+   * 
+   * @param {React.FormEvent<HTMLFormElement>} event - El evento de envío del formulario.
+   */
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // Valida las credenciales
+    // Validación de las credenciales ingresadas
     if (username === hardcodedUsername && password === hardcodedPassword) {
-      // Redirige a la página /main-enterprise
+      // Redirige a la página principal del administrador (/main-enterprise)
       navigate('/main-enterprise');
     } else {
+      // Muestra una alerta si las credenciales son incorrectas
       alert('Usuario o contraseña incorrectos');
     }
   };
+
   return (
     <>
       <LandingHeader />
