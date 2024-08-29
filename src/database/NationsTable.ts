@@ -1,6 +1,12 @@
 import { NationInterface } from "@/interfaces/DatabaseInterfaces"
 import { NationsEnum as Nations } from "@/interfaces/DatabaseEnums"
 
+/**
+ * `NationsTable` es un array que contiene los datos de las naciones en el sistema.
+ * Cada objeto en el array representa una nación con un nombre, nombre en español y una imagen representativa.
+ * 
+ * @type {NationInterface[]}
+ */
 export const NationsTable: NationInterface[] = [
   { name: Nations.Water, nameSpanish: 'Tribus Agua', img: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/e8ddc4da-23dd-4502-b65b-378c9cfe5efa/dh5z1sy-c559bf43-d2f3-44d9-8e77-f56cd74c4e99.png/v1/fit/w_828,h_828/water_tribe_emblem_by_jormxdos_dh5z1sy-414w-2x.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI4MCIsInBhdGgiOiJcL2ZcL2U4ZGRjNGRhLTIzZGQtNDUwMi1iNjViLTM3OGM5Y2ZlNWVmYVwvZGg1ejFzeS1jNTU5YmY0My1kMmYzLTQ0ZDktOGU3Ny1mNTZjZDc0YzRlOTkucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.uMMQnAjwQDbVVIfZxY3OJPaB90UXBDY_YrihEE5UDJo' },
   { name: Nations.Earth, nameSpanish: 'Reino Tierra', img: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/e8ddc4da-23dd-4502-b65b-378c9cfe5efa/dh5z1tp-4aa92e35-366a-4dd3-8213-f871497fc3d6.png/v1/fit/w_828,h_828/earth_kingdom_emblem_by_jormxdos_dh5z1tp-414w-2x.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI4MCIsInBhdGgiOiJcL2ZcL2U4ZGRjNGRhLTIzZGQtNDUwMi1iNjViLTM3OGM5Y2ZlNWVmYVwvZGg1ejF0cC00YWE5MmUzNS0zNjZhLTRkZDMtODIxMy1mODcxNDk3ZmMzZDYucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.UnWUmejjSCPYUOnqmh_dRif892ybgy0nCrxaNYbT3DI' },

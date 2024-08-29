@@ -1,6 +1,12 @@
 import { RegionsEnum as Regions } from "@/interfaces/DatabaseEnums"
 import type { CityInterface } from "@/interfaces/DatabaseInterfaces"
 
+/**
+ * `CitiesTable` es un array que contiene los datos de las ciudades registradas en el sistema.
+ * Cada objeto en el array representa una ciudad con un ID, región a la que pertenece, y su nombre.
+ * 
+ * @type {CityInterface[]}
+ */
 export const CitiesTable: CityInterface[] = [
   { id: 1, region: Regions.WaterNorth, name: "Agna Quel'a" },
   { id: 2, region: Regions.WaterSouth, name: "Wolf Cove" },
@@ -16,4 +22,4 @@ export const CitiesTable: CityInterface[] = [
   { id: 12, region: Regions.Earth, name: "Gaolin" },
   { id: 13, region: Regions.Earth, name: "Sandlocke City" },
   { id: 14, region: Regions.Earth, name: "Kyoshi Island" },
-]
+];

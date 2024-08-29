@@ -1,6 +1,12 @@
 import { NationsEnum as Nations, RegionsEnum as Regions } from "@/interfaces/DatabaseEnums"
 import type { RegionInterface } from "@/interfaces/DatabaseInterfaces"
 
+/**
+ * `RegionsTable` es un array que contiene las diferentes regiones asociadas a cada nación en el sistema.
+ * Cada objeto en el array representa una región con su nombre, nombre en español y la nación a la que pertenece.
+ * 
+ * @type {RegionInterface[]}
+ */
 export const RegionsTable: RegionInterface[] = [
   { nation: Nations.Air, name: Regions.AirNorth, nameSpanish: "Templo Aire del Norte" },
   { nation: Nations.Air, name: Regions.AirSouth, nameSpanish: "Templo Aire del Sur" },

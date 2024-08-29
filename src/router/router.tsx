@@ -19,7 +19,14 @@ import RequestServicePage from "@/pages/main/RequestServicePage";
 import UnauthorizedPage from "@/pages/UnauthorizedPage";
 import { ProtectedRoute } from "@/router/ProtectedRoute";
 
+/**
+ * Configuración del enrutador principal de la aplicación utilizando React Router.
+ * 
+ * Este enrutador define todas las rutas disponibles en la aplicación, incluyendo rutas públicas,
+ * y rutas protegidas que requieren autenticación y autorización según el rol del usuario.
+ */
 export const router = createBrowserRouter([
+  // Rutas públicas
   { path: routes.home.href, element: <HomePage /> },
   { path: routes.about.href, element: <AboutPage /> },
   { path: routes.price.href, element: <PriceQuotePage /> },
