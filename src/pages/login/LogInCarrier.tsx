@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LogInForm from "@/components/LogInForm";
 import LandingHeader from "@/components/header/LandingHeader";
+import { useAuth } from '@/context/AuthProvider';
 
 export default function LogInCarrier() {
+  const { login, logout } = useAuth();
   // Estado para almacenar el usuario y la contraseña ingresados
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -20,6 +22,8 @@ export default function LogInCarrier() {
 
     // Valida las credenciales
     if (username === hardcodedUsername && password === hardcodedPassword) {
+      logout();
+      login('carrier');
       // Redirige a la página /main-carrier
       navigate('/main-carrier');
     } else {

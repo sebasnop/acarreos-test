@@ -81,6 +81,7 @@ interface BisonsInterface {
   kilometersTraveled: number,
 }
 
+export type UserRole = 'client' | 'carrier' | 'admin';
 
 export type { 
   ShipmentInterface,

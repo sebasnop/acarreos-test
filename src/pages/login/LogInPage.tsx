@@ -3,8 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import LogInForm from "@/components/LogInForm";
 import LandingHeader from "@/components/header/LandingHeader";
 import { Link } from 'react-router-dom';
+import { useAuth } from '@/context/AuthProvider';
 
 export default function LogInPage() {
+  const { login, logout } = useAuth();
   // Estado para almacenar el usuario y la contraseña ingresados
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -21,6 +23,8 @@ export default function LogInPage() {
 
     // Valida las credenciales
     if (username === hardcodedUsername && password === hardcodedPassword) {
+      logout();
+      login('client');
       // Redirige a la página /main-user
       navigate('/main-user');
     } else {

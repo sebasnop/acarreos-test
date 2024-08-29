@@ -1,8 +1,13 @@
+import { UserRole } from '@/interfaces/DatabaseInterfaces';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@/context/AuthProvider';
 
-export default function InsideHeader({ role }: { role: string }) {
-  const getRoleLabel = (role: string) => {
+export default function InsideHeader({ role }: { role: UserRole }) {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const getRoleLabel = (role: UserRole) => {
     switch (role) {
       case 'admin':
         return 'Administrador';
@@ -12,6 +17,11 @@ export default function InsideHeader({ role }: { role: string }) {
         return 'Rol';
     }
   };
+
+  function handleLogout () {
+    navigate('/');
+    logout();
+  }
 
   return (
     <header className="bg-gray-100 shadow-sm">
@@ -33,7 +43,7 @@ export default function InsideHeader({ role }: { role: string }) {
               <div className="flex flex-row gap-4 items-center">
                 <div className="hidden sm:flex flex-col items-end">
                   <span className="text-gray-700 font-medium text-sm">Daniel Chanci</span>
-                  {role !== 'user' && (
+                  {role !== 'client' && (
                     <span className="text-gray-600 text-xs">
                       {getRoleLabel(role)}
                     </span>
@@ -56,14 +66,14 @@ export default function InsideHeader({ role }: { role: string }) {
               >
                 <MenuItem>
                   {({ active }) => (
-                    <Link
-                      to="/"
+                    <button
+                      onClick={handleLogout}
                       className={`block px-4 py-2 text-sm text-gray-700 ${
                         active ? 'bg-gray-100' : ''
                       }`}
                     >
                       Cerrar sesión
-                    </Link>
+                    </button>
                   )}
                 </MenuItem>
               </MenuItems>

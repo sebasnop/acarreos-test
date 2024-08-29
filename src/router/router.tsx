@@ -14,6 +14,8 @@ import PriceQuotePage from "@/pages/PriceQuotePage";
 
 import { navRoutes as routes } from "@/constants/navRoutes";
 import RequestServicePage from "@/pages/main/RequestServicePage";
+import UnauthorizedPage from "@/pages/UnauthorizedPage";
+import { ProtectedRoute } from "@/router/ProtectedRoute";
 
 export const router = createBrowserRouter([
   { path: routes.home.href, element: <HomePage /> },
@@ -25,8 +27,36 @@ export const router = createBrowserRouter([
   { path: routes.forgotPassword.href, element: <ForgotPasswordPage /> },
   { path: routes.carrier.href, element: <LogInCarrier /> },
   { path: routes.enterprise.href, element: <LogInEnterprise /> },
-  { path: routes.mainUser.href, element: <MainUser /> },
-  { path: routes.mainCarrier.href, element: <MainCarrier /> },
-  { path: routes.mainEnterprise.href, element: <MainEnterprise /> },
-  { path: routes.requestService.href, element: <RequestServicePage /> },
+  { path: routes.unauthorized.href, element: <UnauthorizedPage /> },
+
+  // Rutas protegidas por roles
+  {
+    path: routes.mainUser.href,
+    element: <ProtectedRoute allowedRoles={['client']} />,
+    children: [
+      { path: '', element: <MainUser /> }
+    ]
+  },
+  {
+    path: routes.mainCarrier.href,
+    element: <ProtectedRoute allowedRoles={['carrier']} />,
+    children: [
+      { path: '', element: <MainCarrier /> }
+    ]
+  },
+  {
+    path: routes.mainEnterprise.href,
+    element: <ProtectedRoute allowedRoles={['admin']} />,
+    children: [
+      { path: '', element: <MainEnterprise /> }
+    ]
+  },
+  {
+    path: routes.requestService.href,
+    element: <ProtectedRoute allowedRoles={['client']} />,
+    children: [
+      { path: '', element: <RequestServicePage /> }
+    ]
+  },
+
 ]);

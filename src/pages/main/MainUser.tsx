@@ -1,5 +1,4 @@
 import InsideHeader from "@/components/header/InsideHeader";
-import React from "react";
 import { ShipmentsTable } from "@/database/ShipmentsTable";
 import { Link } from "react-router-dom";
 import { navRoutes as routes } from "@/constants/navRoutes";
@@ -7,7 +6,7 @@ import { navRoutes as routes } from "@/constants/navRoutes";
 export default function MainUser() {
   return (
     <>
-      <InsideHeader role="user" />
+      <InsideHeader role="client" />
       <div className="flex flex-col px-6 py-8">
         {/* Contenedor para el título y el botón */}
         <div className="flex justify-between items-center mb-6">
