@@ -3,11 +3,33 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthProvider';
 
-export default function InsideHeader({ role }: { role: UserRole }) {
+interface InsideHeaderProps {
+  /**
+   * Rol del usuario actual, que determina el contenido del menú.
+   */
+  role: UserRole;
+}
+
+/**
+ * Componente `InsideHeader`.
+ * 
+ * Renderiza el encabezado dentro de la aplicación una vez que el usuario ha iniciado sesión. 
+ * Muestra el nombre del usuario, su rol (si no es un cliente) y un menú desplegable con opciones como editar usuario o cerrar sesión.
+ *
+ * @param props - Las propiedades del componente, incluyendo el rol del usuario.
+ * @returns El componente de encabezado.
+ */
+export default function InsideHeader({ role }: InsideHeaderProps) {
   const { logout } = useAuth();
   const navigate = useNavigate();
 
-  const getRoleLabel = (role: UserRole) => {
+  /**
+   * Obtiene la etiqueta para mostrar el rol del usuario en la interfaz.
+   * 
+   * @param {UserRole} role - El rol del usuario.
+   * @returns {string} La etiqueta correspondiente al rol del usuario.
+   */
+  const getRoleLabel = (role: UserRole): string => {
     switch (role) {
       case 'admin':
         return 'Administrador';
@@ -18,11 +40,19 @@ export default function InsideHeader({ role }: { role: UserRole }) {
     }
   };
 
+  /**
+   * Maneja la acción de cerrar sesión.
+   * Navega a la página principal y cierra la sesión del usuario.
+   */
   function handleLogout() {
     navigate('/');
     logout();
   }
 
+  /**
+   * Maneja la acción de editar usuario.
+   * Navega a la página de edición de usuario.
+   */
   function handleEditUser() {
     navigate('/edit-user');
   }
@@ -84,6 +114,3 @@ export default function InsideHeader({ role }: { role: UserRole }) {
     </header>
   );
 }
-
-
-

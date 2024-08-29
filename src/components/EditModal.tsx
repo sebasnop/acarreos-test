@@ -1,25 +1,44 @@
-import React, { useState } from "react";
+import { useState } from "react";
+
+interface EditModalProps {
+  /**
+   * El pedido actual cuyos detalles se están editando.
+   */
+  shipment: {
+    guideCode: string;
+    status: string;
+  };
+
+  /**
+   * Función para actualizar el estado del pedido en la tabla principal.
+   * 
+   * @param guideCode - El código de guía del pedido.
+   * @param newStatus - El nuevo estado seleccionado para el pedido.
+   */
+  onUpdateStatus: (guideCode: string, newStatus: string) => void;
+
+  /**
+   * Función para cerrar el modal sin guardar cambios.
+   */
+  onClose: () => void;
+}
 
 /**
- * Componente EditModal
+ * Componente `EditModal`.
  * 
  * Este componente representa un modal que permite editar el estado de un pedido específico.
  * Se muestra sobre el contenido actual y permite al usuario seleccionar un nuevo estado para el pedido.
  * 
- * @componente
- * @param {Object} props - Las propiedades que se pasan al componente.
- * @param {Object} props.shipment - El pedido actual cuyos detalles se están editando.
- * @param {Function} props.onUpdateStatus - Función para actualizar el estado del pedido en la tabla principal.
- * @param {Function} props.onClose - Función para cerrar el modal sin guardar cambios.
- * @retorna {JSX.Element} El componente EditModal.
+ * @param {EditModalProps} props - Las propiedades que se pasan al componente.
+ * @returns {JSX.Element} El componente `EditModal`.
  */
-export default function EditModal({ shipment, onUpdateStatus, onClose }) {
+export default function EditModal({ shipment, onUpdateStatus, onClose }: EditModalProps): JSX.Element {
   // Estado para manejar el nuevo estado del pedido seleccionado por el usuario
-  const [newStatus, setNewStatus] = useState(shipment.status);
+  const [newStatus, setNewStatus] = useState<string>(shipment.status);
 
   /**
    * Función que se ejecuta al hacer clic en el botón "Guardar".
-   * Llama a la función onUpdateStatus para actualizar el estado del pedido.
+   * Llama a la función `onUpdateStatus` para actualizar el estado del pedido.
    */
   const handleSave = () => {
     onUpdateStatus(shipment.guideCode, newStatus);
@@ -64,5 +83,3 @@ export default function EditModal({ shipment, onUpdateStatus, onClose }) {
     </div>
   );
 }
-
-

@@ -11,7 +11,7 @@ import { navRoutes } from '@/constants/navRoutes'
  * Este componente renderiza los encabezados adecuados dependiendo del tamaño de la pantalla.
  * Utiliza el estado `mobileMenuOpen` para controlar la apertura del menú móvil.
  * 
- * @returns {React.ReactElement} El componente de encabezado principal.
+ * @returnsEl componente de encabezado principal.
  */
 export default function LandingHeader() {
   // Estado que controla la apertura del menú móvil
