@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import InsideHeader from '@/components/header/InsideHeader';
 import { useAuth } from '@/context/AuthProvider';
@@ -13,7 +13,7 @@ import { useAuth } from '@/context/AuthProvider';
  * 4. El usuario puede confirmar la eliminación o regresar a la pantalla anterior.
  * 
  * @component
- * @returns {React.ReactElement} El componente de eliminación de cuenta.
+ * @returns El componente de eliminación de cuenta.
  */
 export default function DeleteUser() {
   const {logout} = useAuth();

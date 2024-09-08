@@ -8,8 +8,8 @@ import LandingHeader from "@/components/header/LandingHeader";
  * Este componente representa la página de "Términos y Condiciones" de la aplicación.
  * Contiene las secciones que describen las reglas y políticas que los usuarios deben aceptar para utilizar el sitio web y sus servicios.
  * 
- * @componente
- * @retorna {JSX.Element} El componente TermsAndConditionsPage.
+ * @component
+ * @returns El componente TermsAndConditionsPage.
  */
 export default function TermsAndConditionsPage() {
   

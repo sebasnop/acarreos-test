@@ -1,5 +1,5 @@
 import InsideHeader from "@/components/header/InsideHeader";
-import React, { useState } from "react";
+import { useState } from "react";
 import { ShipmentsTable } from "@/database/ShipmentsTable";
 import EditModal from "@/components/EditModal";
 

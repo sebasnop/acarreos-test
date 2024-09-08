@@ -7,8 +7,8 @@ import LandingHeader from "@/components/header/LandingHeader";
  * Este componente representa la página de "Olvidé mi contraseña", donde los usuarios pueden solicitar 
  * un enlace para restablecer su contraseña ingresando su correo electrónico o nombre de usuario.
  * 
- * @componente
- * @retorna {JSX.Element} El componente ForgotPasswordPage.
+ * @component
+ * @returns El componente ForgotPasswordPage.
  */
 export default function ForgotPasswordPage() {
 

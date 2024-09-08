@@ -4,6 +4,15 @@ import LandingHeader from '@/components/header/LandingHeader'
 import TrackShipmentForm from '@/components/track/TrackShipmentForm';
 import { NationsTable as Nations } from '@/database/NationsTable';
 
+
+/**
+ * Componente HomePage
+ * 
+ * Página de inicio o Landing Page para los usuarios de la aplicación.
+ * 
+ * @component
+ * @returns El componente HomePage.
+ */
 export default function HomePage() {
 
   const location = useLocation();

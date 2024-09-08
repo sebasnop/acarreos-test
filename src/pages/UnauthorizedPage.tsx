@@ -6,9 +6,10 @@ import { Link } from "react-router-dom";
  * Esta página se muestra cuando un usuario no está autenticado y trata de acceder a una sección restringida.
  * Ofrece un mensaje explicando la situación y proporciona un enlace para regresar a la página principal.
  *
- * @returns {JSX.Element} La página de no autorizado.
+ * @component
+ * @returns La página de no autorizado.
  */
-export default function UnauthorizedPage(): JSX.Element {
+export default function UnauthorizedPage() {
   return (
     <>
       <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">

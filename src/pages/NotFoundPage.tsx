@@ -6,9 +6,10 @@ import { Link } from "react-router-dom";
  * Esta página se muestra cuando un usuario intenta acceder a una ruta que no existe.
  * Incluye un mensaje de error y un enlace para volver a la página principal.
  *
- * @returns {JSX.Element} La página de error 404.
+ * @component
+ * @returns La página de error 404.
  */
-export default function NotFoundPage(): JSX.Element {
+export default function NotFoundPage() {
   return (
     <>
       <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">

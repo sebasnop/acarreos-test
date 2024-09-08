@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { usersTable } from '@/database/UsersTable'; // Asumiendo que tienes esta tabla de usuarios
 import InsideHeader from '@/components/header/InsideHeader';
@@ -10,7 +10,8 @@ import InsideHeader from '@/components/header/InsideHeader';
  * Inicialmente, los campos están bloqueados y se pueden desbloquear para su edición al hacer clic en el botón "Editar".
  * Después de realizar los cambios, el usuario puede guardarlos, lo que bloqueará nuevamente los campos.
  * 
- * @returns {React.ReactElement} El formulario de edición de usuario.
+ * @component
+ * @returns El formulario de edición de usuario.
  */
 export default function EditUser() {
   const [isEditing, setIsEditing] = useState(false);

@@ -8,7 +8,7 @@ import LandingHeader from "@/components/header/LandingHeader";
  * 
  *
  * @component
- * @returns {JSX.Element} El componente AboutPage
+ * @returns El componente AboutPage
  */
 export default function AboutPage() {
   return (

@@ -9,7 +9,7 @@ const routerProps: RouterProviderProps['router'] = router;
  * Este componente es responsable de configurar y proporcionar el enrutador a la aplicación,
  * permitiendo la navegación entre diferentes rutas.
  * 
- * @returns {JSX.Element} El componente `App` con el proveedor de enrutador.
+ * @returns El componente `App` con el proveedor de enrutador.
  */
 export default function App() {
   return (

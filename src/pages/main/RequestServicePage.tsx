@@ -7,9 +7,9 @@ import RequestServiceForm from "@/components/request/RequestServiceForm";
  * Esta página presenta un encabezado adaptado para un usuario de rol "client" 
  * y un formulario para solicitar un servicio de transporte.
  *
- * @returns {JSX.Element} La página completa para solicitar un servicio.
+ * @returns La página completa para solicitar un servicio.
  */
-export default function RequestServicePage(): JSX.Element {
+export default function RequestServicePage() {
   return (
     <>
       {/* Encabezado específico para usuarios de tipo "client" */}

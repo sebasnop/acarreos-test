@@ -7,9 +7,10 @@ import PriceQuoteForm from "@/components/request/PriceQuoteForm";
  * Esta página permite a los usuarios cotizar un servicio de transporte. Incluye un encabezado
  * y un formulario para ingresar los detalles necesarios para calcular la cotización.
  *
- * @returns {JSX.Element} La página de cotización de servicios.
+ * @component
+ * @returns La página de cotización de servicios.
  */
-export default function PriceQuotePage(): JSX.Element {
+export default function PriceQuotePage() {
   return (
     <>
       <LandingHeader />
