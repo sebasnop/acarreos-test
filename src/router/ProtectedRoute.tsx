@@ -17,9 +17,9 @@ interface ProtectedRouteProps {
  * es redirigido a la página de "No autorizado".
  *
  * @param {ProtectedRouteProps} props - Las propiedades que incluyen los roles permitidos.
- * @returns {JSX.Element} - El Outlet si el usuario tiene acceso, de lo contrario redirige a "No autorizado".
+ * @returns - El Outlet si el usuario tiene acceso, de lo contrario redirige a "No autorizado".
  */
-export function ProtectedRoute({ allowedRoles }: ProtectedRouteProps): JSX.Element {
+export default function ProtectedRoute({ allowedRoles }: ProtectedRouteProps) {
   const { userRole } = useAuth();
 
   // Si no hay un rol de usuario, redirige a "No autorizado"

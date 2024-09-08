@@ -72,11 +72,9 @@ export default function LogInForm({ username, setUsername, password, setPassword
                 <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
                   Contraseña
                 </label>
-                <div className="text-sm">
-                  <Link to="/forgot-password" className="font-semibold text-yellow-950 hover:text-yellow-900">
+                  <Link to="/forgot-password" className="text-sm font-semibold text-yellow-950 hover:text-yellow-900 text-right">
                     ¿Olvidaste tu contraseña?
                   </Link>
-                </div>
               </div>
               <div className="mt-2 relative">
                 <LockClosedIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />

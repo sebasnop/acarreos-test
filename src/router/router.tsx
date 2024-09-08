@@ -1,23 +1,24 @@
 import { createBrowserRouter } from "react-router-dom";
 import HomePage from "@/pages/HomePage";
 import AboutPage from "@/pages/AboutPage";
-import LogInPage from "@/pages/login/LogInPage";
-import SignUpPage from "@/pages/SignUpPage";
-import TermsAndConditionsPage from "@/pages/TermsAndConditionsPage";
-import ForgotPasswordPage from "@/pages/ForgotPasswordPage";
-import LogInCarrier from "@/pages/login/LogInCarrier";
-import LogInEnterprise from "@/pages/login/LogInEnterprise";
-import MainUser from "@/pages/main/MainUser";
-import MainCarrier from "@/pages/main/MainCarrier";
-import MainEnterprise from "@/pages/main/MainEnterprise";
+import LogInPage from "@/pages/client/auth/LogInPage";
+import SignUpPage from "@/pages/client/auth/SignUpPage";
+import TermsAndConditionsPage from "@/pages/client/auth/TermsAndConditionsPage";
+import ForgotPasswordPage from "@/pages/client/auth/ForgotPasswordPage";
+import LogInCarrier from "@/pages/carrier/LogInCarrier";
+import LogInEnterprise from "@/pages/enterprise/LogInEnterprise";
+import MainClient from "@/pages/client/MainClient";
+import MainCarrier from "@/pages/carrier/MainCarrier";
+import MainEnterprise from "@/pages/enterprise/MainEnterprise";
 import PriceQuotePage from "@/pages/PriceQuotePage";
-import EditUser from "@/pages/EditUser";
-import DeleteUser from "@/pages/DeleteUser";
+import EditUser from "@/pages/client/EditUser";
+import DeleteUser from "@/pages/client/DeleteUser";
+import NotFoundPage from "@/pages/NotFoundPage";
 
 import { navRoutes as routes } from "@/constants/navRoutes";
-import RequestServicePage from "@/pages/main/RequestServicePage";
+import RequestServicePage from "@/pages/client/RequestServicePage";
 import UnauthorizedPage from "@/pages/UnauthorizedPage";
-import { ProtectedRoute } from "@/router/ProtectedRoute";
+import ProtectedRoute from "@/router/ProtectedRoute";
 
 /**
  * Configuración del enrutador principal de la aplicación utilizando React Router.
@@ -27,7 +28,7 @@ import { ProtectedRoute } from "@/router/ProtectedRoute";
  */
 export const router = createBrowserRouter([
   // Rutas públicas
-  { path: routes.home.href, element: <HomePage /> },
+  { path: routes.home.href, element: <HomePage />, errorElement: <NotFoundPage /> },
   { path: routes.about.href, element: <AboutPage /> },
   { path: routes.price.href, element: <PriceQuotePage /> },
   { path: routes.login.href, element: <LogInPage /> },
@@ -43,7 +44,7 @@ export const router = createBrowserRouter([
     path: routes.mainUser.href,
     element: <ProtectedRoute allowedRoles={['client']} />,
     children: [
-      { path: '', element: <MainUser /> }
+      { path: '', element: <MainClient /> }
     ]
   },
   {
@@ -83,5 +84,7 @@ export const router = createBrowserRouter([
       { path: '', element: <DeleteUser /> }
     ]
   },
+
+
     
 ]);

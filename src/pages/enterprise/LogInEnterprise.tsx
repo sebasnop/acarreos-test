@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import LogInForm from "@/components/LogInForm";
+import LogInForm from "@/components/auth/LogInForm";
 import LandingHeader from "@/components/header/LandingHeader";
 import { useAuth } from '@/context/AuthProvider';
 
 /**
- * Componente LogInCarrier
+ * Componente LogInEnterprise
  * 
- * Este componente representa la página de inicio de sesión para los transportistas.
- * Permite a los transportistas ingresar sus credenciales para acceder a su cuenta en la aplicación.
+ * Este componente representa la página de inicio de sesión para los administradores de la empresa.
+ * Permite a los usuarios con rol de administrador ingresar sus credenciales para acceder a la cuenta empresarial.
  * 
  * @componente
- * @retorna {JSX.Element} El componente LogInCarrier.
+ * @retorna {JSX.Element} El componente LogInEnterprise.
  */
-export default function LogInCarrier() {
+export default function LogInEnterprise() {
   const { login, logout } = useAuth();
   // Estado para almacenar el usuario y la contraseña ingresados
   const [username, setUsername] = useState('');
@@ -23,12 +23,12 @@ export default function LogInCarrier() {
   const navigate = useNavigate();
 
   // Credenciales quemadas para validación
-  const hardcodedUsername = 'carrier';
+  const hardcodedUsername = 'admin';
   const hardcodedPassword = 'password123';
 
   /**
    * Maneja el envío del formulario de inicio de sesión.
-   * Valida las credenciales y redirige al transportista a su página principal si son correctas.
+   * Valida las credenciales y redirige al administrador a su página principal si son correctas.
    * 
    * @param {React.FormEvent<HTMLFormElement>} event - El evento de envío del formulario.
    */
@@ -38,9 +38,10 @@ export default function LogInCarrier() {
     // Validación de las credenciales ingresadas
     if (username === hardcodedUsername && password === hardcodedPassword) {
       logout();
-      login('carrier');
-      // Redirige a la página principal del transportista (/main-carrier)
-      navigate('/main-carrier');
+      login('admin');
+      // Redirige a la página /main-enterprise
+      // Redirige a la página principal del administrador (/main-enterprise)
+      navigate('/main-enterprise');
     } else {
       // Muestra una alerta si las credenciales son incorrectas
       alert('Usuario o contraseña incorrectos');
@@ -53,7 +54,7 @@ export default function LogInCarrier() {
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         <div className="mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
           <h2 className="text-center text-2xl font-bold leading-tight tracking-tight text-gray-900 mt-10">
-            Inicia sesión en tu cuenta de transportista
+            Inicia sesión en tu cuenta empresarial
           </h2>
         </div>
         <LogInForm 

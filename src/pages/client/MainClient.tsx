@@ -1,15 +1,14 @@
 import InsideHeader from "@/components/header/InsideHeader";
-import React from "react";
 import { ShipmentsTable } from "@/database/ShipmentsTable";
 import { Link } from "react-router-dom";
 import { navRoutes as routes } from "@/constants/navRoutes";
 
 /**
- * El componente MainUser representa la página principal para los usuarios donde pueden ver sus envíos y solicitar servicios.
+ * El componente MainClient representa la página principal para los clientes, donde pueden ver sus envíos y solicitar servicios.
  *
  * @component
  */
-export default function MainUser() {
+export default function MainClient() {
   return (
     <>
       <InsideHeader role="client" />
