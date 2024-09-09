@@ -1,13 +1,18 @@
 import { Textarea } from "@headlessui/react";
-import { useEffect, useState } from "react";
 
 interface AddressInputProps {
+
+  /**
+   * Valor actual del input de dirección.
+   */
+  value: string;
+
   /**
    * Función callback que se llama cuando cambia la dirección.
    * 
    * @param address - La dirección ingresada.
    */
-  onAddressChange: (address: string) => void;
+  onChange: (address: string) => void;
 
   /**
    * Título que se muestra como etiqueta para el campo de dirección.
@@ -20,8 +25,6 @@ interface AddressInputProps {
   id: string;
 }
 
-const labelDescription: string = `Máximo 300 caracteres.`;
-
 /**
  * Componente `AddressInput`.
  * 
@@ -32,11 +35,13 @@ const labelDescription: string = `Máximo 300 caracteres.`;
  * @returns Un campo de entrada de texto para capturar direcciones.
  */
 export default function AddressInput({
-  onAddressChange,
+  value,
+  onChange,
   labelTitle,
   id
 }: AddressInputProps) {
-  const [address, setAddress] = useState<string>('');
+  
+  const labelDescription: string = `Máximo 300 caracteres.`;
 
   /**
    * Maneja los cambios en el campo de texto y actualiza el estado local.
@@ -44,16 +49,8 @@ export default function AddressInput({
    * @param event - El evento de cambio en el área de texto.
    */
   const handleAddressChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setAddress(event.target.value);
+    onChange(event.target.value);
   };
-
-  /**
-   * Efecto que se ejecuta cuando cambia la dirección.
-   * Notifica al componente padre del nuevo valor de la dirección.
-   */
-  useEffect(() => {
-    onAddressChange(address);
-  }, [address]);
 
   return (
     <>
@@ -68,7 +65,7 @@ export default function AddressInput({
         id={id}
         autoComplete="shipping address-level1"
         maxLength={300}
-        value={address}
+        value={value}
         placeholder="Calle 123 # 456 - Casa 78"
         onChange={handleAddressChange}
         required

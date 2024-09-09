@@ -126,11 +126,11 @@ interface CityInterface {
 /**
  * Representa un usuario en el sistema.
  */
-interface UserInterface {
+export interface ClientInterface {
   /**
    * ID único del usuario.
    */
-  idUser: number,
+  idClient: number,
 
   /**
    * Nombre de usuario.
@@ -251,7 +251,6 @@ export type {
   NationInterface,
   RegionInterface,
   CityInterface,
-  UserInterface,
   CarrierInterface,
   AdminInterface,
   BisonsInterface

@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { usersTable } from '@/database/UsersTable'; // Asumiendo que tienes esta tabla de usuarios
+import { clientsTable } from '@/database/ClientsTable'; // Asumiendo que tienes esta tabla de usuarios
 import InsideHeader from '@/components/header/InsideHeader';
 
 /**
- * Componente `EditUser` para ver y editar la información del usuario.
+ * Componente `EditClientData` para ver y editar la información del usuario.
  * 
  * Este componente permite a los usuarios ver su información personal y actualizarla si es necesario.
  * Inicialmente, los campos están bloqueados y se pueden desbloquear para su edición al hacer clic en el botón "Editar".
@@ -13,12 +13,12 @@ import InsideHeader from '@/components/header/InsideHeader';
  * @component
  * @returns El formulario de edición de usuario.
  */
-export default function EditUser() {
+export default function EditClientData() {
   const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();  // Hook para navegar entre rutas
 
   // Datos del usuario (se trae de la tabla de usuarios)
-  const user = usersTable[0]; // Se asume que se obtiene el usuario actual de alguna manera
+  const user = clientsTable[0]; // Se asume que se obtiene el usuario actual de alguna manera
   const [formData, setFormData] = useState({
     username: user.username,
     email: user.email,
@@ -59,7 +59,7 @@ export default function EditUser() {
    * Maneja la eliminación de la cuenta del usuario.
    */
   const handleDeleteAccount = () => {
-    navigate('/delete-user');  // Redirige a la página de eliminar usuario
+    navigate('/delete-client');  // Redirige a la página de eliminar usuario
   };
 
   return (

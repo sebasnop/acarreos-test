@@ -2,14 +2,14 @@ interface ServiceTypeSelectorProps {
   /**
    * El tipo de servicio actualmente seleccionado.
    */
-  selectedServiceType: string;
+  value: string;
 
   /**
    * Función callback que se llama cuando el usuario cambia el tipo de servicio.
    * 
    * @param serviceType - El tipo de servicio seleccionado por el usuario.
    */
-  onServiceTypeChange: (serviceType: string) => void;
+  onChange: (serviceType: string) => void;
 }
 
 /**
@@ -19,19 +19,19 @@ interface ServiceTypeSelectorProps {
  * de botones de radio.
  * 
  * @param {ServiceTypeSelectorProps} props - Las propiedades del componente.
- * @returns {JSX.Element} Un conjunto de botones de radio para seleccionar el tipo de servicio.
+ * @returns Un conjunto de botones de radio para seleccionar el tipo de servicio.
  */
 export default function ServiceTypeSelector({
-  selectedServiceType,
-  onServiceTypeChange,
-}: ServiceTypeSelectorProps): JSX.Element {
+  value,
+  onChange,
+}: ServiceTypeSelectorProps) {
   /**
    * Maneja el cambio de selección del tipo de servicio y llama al callback con el nuevo valor.
    * 
    * @param event - El evento de cambio en el botón de radio.
    */
   const handleServiceTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onServiceTypeChange(event.target.value);
+    onChange(event.target.value);
   };
 
   return (
@@ -53,7 +53,7 @@ export default function ServiceTypeSelector({
             type="radio"
             value="documento"
             required
-            checked={selectedServiceType === 'documento'}
+            checked={value === 'documento'}
             onChange={handleServiceTypeChange}
             className="h-4 w-4 border-gray-300 text-yellow-900 focus:ring-yellow-900"
           />
@@ -69,7 +69,7 @@ export default function ServiceTypeSelector({
             name="service-type"
             type="radio"
             value="objeto"
-            checked={selectedServiceType === 'objeto'}
+            checked={value === 'objeto'}
             onChange={handleServiceTypeChange}
             className="h-4 w-4 border-gray-300 text-yellow-900 focus:ring-yellow-900"
           />
@@ -85,7 +85,7 @@ export default function ServiceTypeSelector({
             name="service-type"
             type="radio"
             value="mudanza"
-            checked={selectedServiceType === 'mudanza'}
+            checked={value === 'mudanza'}
             onChange={handleServiceTypeChange}
             className="h-4 w-4 border-gray-300 text-yellow-900 focus:ring-yellow-900"
           />

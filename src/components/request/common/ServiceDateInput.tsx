@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
-
 interface ServiceDateInputProps {
+
+  /**
+   * Valor actual de la fecha.
+   */
+  value: string;
   /**
    * Función callback que se llama cuando la fecha seleccionada cambia.
    * 
    * @param date - La fecha seleccionada por el usuario.
    */
-  onDateChange: (date: string) => void;
+  onChange: (date: string) => void;
 }
 
 const labelTitle: string = `Fecha del servicio`;
@@ -19,12 +22,12 @@ const labelDescription: string = `Puede variar según disponibilidad.`;
  * La fecha mínima permitida es el día siguiente al día actual.
  * 
  * @param {ServiceDateInputProps} props - Las propiedades del componente.
- * @returns {JSX.Element} Un campo de entrada de fecha.
+ * @returns Un campo de entrada de fecha.
  */
 export default function ServiceDateInput({
-  onDateChange
-}: ServiceDateInputProps): JSX.Element {
-  const [date, setDate] = useState<string>('');
+  value,
+  onChange
+}: ServiceDateInputProps) {
 
   // Calcula la fecha mínima permitida (2 días después de la fecha actual)
   const tomorrow = new Date();
@@ -37,16 +40,8 @@ export default function ServiceDateInput({
    * @param event - El evento de cambio en el campo de entrada de fecha.
    */
   const handleAddressChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDate(event.target.value);
+    onChange(event.target.value);
   };
-
-  /**
-   * Efecto que se ejecuta cuando cambia la fecha seleccionada.
-   * Notifica al componente padre del nuevo valor de la fecha.
-   */
-  useEffect(() => {
-    onDateChange(date);
-  }, [date]);
 
   return (
     <>
@@ -61,7 +56,7 @@ export default function ServiceDateInput({
         id="service-date"
         type="date"
         min={minDate}
-        value={date}
+        value={value}
         onChange={handleAddressChange}
         required
         className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-yellow-900 sm:max-w-xs sm:text-sm sm:leading-6"

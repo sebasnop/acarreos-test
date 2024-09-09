@@ -54,7 +54,7 @@ export default function InsideHeader({ role }: InsideHeaderProps) {
    * Navega a la página de edición de usuario.
    */
   function handleEditUser() {
-    navigate('/edit-user');
+    navigate('/edit-client');
   }
 
   return (

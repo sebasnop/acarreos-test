@@ -1,19 +1,19 @@
-import { useEffect, useState } from "react";
 import { maxObjectLength } from "@/constants/bussinessConsts";
 
 interface ObjectLengthInputProps {
+
+  /**
+   * Largo de objeto ingresado actualmente.
+   */
+  value: string;
+
   /**
    * Función callback que se llama cuando cambia el largo del objeto.
    * 
    * @param objectLength - El largo del objeto en centímetros (cm).
    */
-  onObjectLengthChange: (objectLength: string) => void;
+  onChange: (objectLength: string) => void;
 }
-
-const minObjectLength: string = "1";
-
-const labelTitle: string = "Largo";
-const labelDescription: string = `Entre ${minObjectLength} y ${maxObjectLength} centímetros (cm)`;
 
 /**
  * Componente `ObjectLengthInput`.
@@ -22,12 +22,17 @@ const labelDescription: string = `Entre ${minObjectLength} y ${maxObjectLength} 
  * El largo debe estar entre los valores mínimos y máximos definidos en las constantes del negocio.
  * 
  * @param {ObjectLengthInputProps} props - Las propiedades del componente.
- * @returns {JSX.Element} Un campo de entrada para capturar el largo del objeto.
+ * @returns Un campo de entrada para capturar el largo del objeto.
  */
 export default function ObjectLengthInput({
-  onObjectLengthChange
-}: ObjectLengthInputProps): JSX.Element {
-  const [objectLength, setObjectLength] = useState<string>('');
+  value,
+  onChange
+}: ObjectLengthInputProps) {
+
+  const minObjectLength: string = "1";
+
+  const labelTitle: string = "Largo";
+  const labelDescription: string = `Entre ${minObjectLength} y ${maxObjectLength} centímetros (cm)`;
 
   /**
    * Maneja los cambios en el campo de entrada del largo del objeto y actualiza el estado local.
@@ -35,16 +40,8 @@ export default function ObjectLengthInput({
    * @param event - El evento de cambio en el campo de entrada.
    */
   const handleObjectLengthChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setObjectLength(event.target.value);
+    onChange(event.target.value);
   };
-
-  /**
-   * Efecto que se ejecuta cuando cambia el largo del objeto.
-   * Notifica al componente padre del nuevo valor del largo.
-   */
-  useEffect(() => {
-    onObjectLengthChange(objectLength);
-  }, [objectLength]);
 
   return (
     <>
@@ -60,7 +57,7 @@ export default function ObjectLengthInput({
         min={minObjectLength}
         id="object-length"
         name="object-length"
-        value={objectLength}
+        value={value}
         placeholder="Ejemplo: 100"
         onChange={handleObjectLengthChange}
         required

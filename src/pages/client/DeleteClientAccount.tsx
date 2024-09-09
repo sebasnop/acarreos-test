@@ -4,18 +4,18 @@ import InsideHeader from '@/components/header/InsideHeader';
 import { useAuth } from '@/context/AuthProvider';
 
 /**
- * Componente `DeleteUser` que maneja el proceso de eliminación de la cuenta de usuario.
+ * Componente `DeleteClientAccount` que maneja el proceso de eliminación de la cuenta de cliente.
  * 
- * Este componente guía al usuario a través de una serie de pasos:
+ * Este componente guía al cliente a través de una serie de pasos:
  * 1. Confirmación inicial para eliminar la cuenta.
- * 2. Si el usuario confirma, se le presenta un formulario donde puede seleccionar la razón de su decisión.
- * 3. Si el usuario selecciona "Otro", puede ingresar una razón personalizada.
- * 4. El usuario puede confirmar la eliminación o regresar a la pantalla anterior.
+ * 2. Si el cliente confirma, se le presenta un formulario donde puede seleccionar la razón de su decisión.
+ * 3. Si el cliente selecciona "Otro", puede ingresar una razón personalizada.
+ * 4. El cliente puede confirmar la eliminación o regresar a la pantalla anterior.
  * 
  * @component
  * @returns El componente de eliminación de cuenta.
  */
-export default function DeleteUser() {
+export default function DeleteClientAccount() {
   const {logout} = useAuth();
   const [showForm, setShowForm] = useState(false);
   const [selectedReason, setSelectedReason] = useState<string | null>(null);
@@ -23,10 +23,10 @@ export default function DeleteUser() {
   const navigate = useNavigate();
 
   /**
-   * Maneja el clic en el botón "No", navegando de vuelta a la página de edición de usuario.
+   * Maneja el clic en el botón "No", navegando de vuelta a la página de edición de cliente.
    */
   const handleNoClick = () => {
-    navigate('/edit-user');
+    navigate('/edit-client');
   };
 
   /**

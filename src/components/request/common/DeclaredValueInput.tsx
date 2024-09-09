@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
-
 interface DeclaredValueInputProps {
+  
   /**
-   * Función callback que se llama cuando cambia el valor declarado.
-   * 
-   * @param declaredValue - El valor declarado ingresado.
+   * Valor actual del input de valor declarado.
    */
-  onDeclaredValueChange: (declaredValue: string) => void;
-}
+  value: string,
 
-const minDeclaredValue: string = "0";
+  /**
+   * Función callback que se llama cuando cambia el valor.
+   * 
+   * @param value - El valor ingresado.
+   */
+  onChange: (value: string) => void;
+}
 
 /**
  * Componente `DeclaredValueInput`.
@@ -17,30 +19,24 @@ const minDeclaredValue: string = "0";
  * Renderiza un campo de entrada para que el usuario ingrese el valor declarado del envío. 
  * Este valor representa la cantidad en piezas de oro y se limita a valores numéricos.
  * 
- * @param props - Las propiedades del componente, incluyendo la función de cambio de valor declarado.
- * @returns Un campo de entrada para capturar el valor declarado.
+ * @param props - El valor del input y su función de cambio.
+ * @returns Un campo de entrada para que el usuario ingrese el valor declarado.
  */
 export default function DeclaredValueInput({
-  onDeclaredValueChange
+  value,
+  onChange
 }: DeclaredValueInputProps) {
-  const [declaredValue, setDeclaredValue] = useState<string>('');
+  
+  const minDeclaredValue: string = "0";
 
   /**
    * Maneja los cambios en el campo de entrada y actualiza el estado local.
    * 
    * @param event - El evento de cambio en el campo de entrada.
    */
-  const handleDeclaredValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDeclaredValue(event.target.value);
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(event.target.value);
   };
-
-  /**
-   * Efecto que se ejecuta cuando cambia el valor declarado.
-   * Notifica al componente padre del nuevo valor declarado.
-   */
-  useEffect(() => {
-    onDeclaredValueChange(declaredValue);
-  }, [declaredValue]);
 
   return (
     <>
@@ -57,8 +53,8 @@ export default function DeclaredValueInput({
           name="declared-value"
           type="number"
           min={minDeclaredValue}
-          value={declaredValue}
-          onChange={handleDeclaredValueChange}
+          value={value}
+          onChange={handleInputChange}
           placeholder="Ejemplo: 150"
           required
           className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"

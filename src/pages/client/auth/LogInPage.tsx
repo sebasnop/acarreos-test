@@ -11,8 +11,8 @@ import { useAuth } from '@/context/AuthProvider';
  * Este componente representa la página de inicio de sesión para los usuarios estándar.
  * Permite a los usuarios ingresar sus credenciales para acceder a su cuenta de usuario.
  * 
- * @componente
- * @retorna {JSX.Element} El componente LogInPage.
+ * @component
+ * @returns El componente LogInPage.
  */
 export default function LogInPage() {
   const { login, logout } = useAuth();
@@ -24,7 +24,7 @@ export default function LogInPage() {
   const navigate = useNavigate();
 
   // Credenciales quemadas para validación
-  const hardcodedUsername = 'user';
+  const hardcodedUsername = 'client';
   const hardcodedPassword = 'password123';
 
   /**
@@ -40,8 +40,8 @@ export default function LogInPage() {
     if (username === hardcodedUsername && password === hardcodedPassword) {
       logout();
       login('client');
-      // Redirige a la página principal del usuario (/main-user)
-      navigate('/main-user');
+      // Redirige a la página principal del usuario (/main-client)
+      navigate('/main-client');
     } else {
       // Muestra una alerta si las credenciales son incorrectas
       alert('Usuario o contraseña incorrectos');
@@ -54,7 +54,7 @@ export default function LogInPage() {
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         <div className="mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
           <h2 className="text-center text-2xl font-bold leading-tight tracking-tight text-gray-900 mt-10">
-            Inicia sesión en tu cuenta de usuario
+            Inicia sesión
           </h2>
         </div>
         <LogInForm 

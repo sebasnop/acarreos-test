@@ -1,19 +1,21 @@
-import { useEffect, useState } from "react";
 import { maxObjectWidth } from "@/constants/bussinessConsts";
 
 interface ObjectWidthInputProps {
+
+  /**
+   * Ancho del objeto ingresdo actualmente.
+   */
+  value: string;
+
   /**
    * Función callback que se llama cuando cambia el ancho del objeto.
    * 
    * @param objectWidth - El ancho del objeto en centímetros (cm).
    */
-  onObjectWidthChange: (objectWidth: string) => void;
+  onChange: (objectWidth: string) => void;
 }
 
-const minObjectWidth: string = "1";
 
-const labelTitle: string = "Ancho";
-const labelDescription: string = `Entre ${minObjectWidth} y ${maxObjectWidth} centímetros (cm)`;
 
 /**
  * Componente `ObjectWidthInput`.
@@ -22,12 +24,20 @@ const labelDescription: string = `Entre ${minObjectWidth} y ${maxObjectWidth} ce
  * El ancho debe estar entre los valores mínimos y máximos definidos en las constantes del negocio.
  * 
  * @param {ObjectWidthInputProps} props - Las propiedades del componente.
- * @returns {JSX.Element} Un campo de entrada para capturar el ancho del objeto.
+ * @returns Un campo de entrada para capturar el ancho del objeto.
  */
 export default function ObjectWidthInput({
-  onObjectWidthChange
-}: ObjectWidthInputProps): JSX.Element {
-  const [objectWidth, setObjectWidth] = useState<string>("");
+  value,
+  onChange
+}: ObjectWidthInputProps) {
+
+  /**
+   * Min object width in centimeters (cm).
+   */
+  const minObjectWidth: string = "1";
+
+  const labelTitle: string = "Ancho";
+  const labelDescription: string = `Entre ${minObjectWidth} y ${maxObjectWidth} centímetros (cm)`;
 
   /**
    * Maneja los cambios en el campo de entrada del ancho del objeto y actualiza el estado local.
@@ -35,16 +45,8 @@ export default function ObjectWidthInput({
    * @param event - El evento de cambio en el campo de entrada.
    */
   const handleObjectWidthChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setObjectWidth(event.target.value);
+    onChange(event.target.value);
   };
-
-  /**
-   * Efecto que se ejecuta cuando cambia el ancho del objeto.
-   * Notifica al componente padre del nuevo valor del ancho.
-   */
-  useEffect(() => {
-    onObjectWidthChange(objectWidth);
-  }, [objectWidth]);
 
   return (
     <>
@@ -60,7 +62,7 @@ export default function ObjectWidthInput({
         min={minObjectWidth}
         id="object-width"
         name="object-width"
-        value={objectWidth}
+        value={value}
         placeholder="Ejemplo: 100"
         onChange={handleObjectWidthChange}
         required

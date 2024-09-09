@@ -1,19 +1,19 @@
-import { useEffect, useState } from "react";
 import { maxObjectHeight } from "@/constants/bussinessConsts";
 
 interface ObjectHeightInputProps {
+
+  /**
+   * Altura de objeto ingresada actualmente.
+   */
+  value: string;
+
   /**
    * Función callback que se llama cuando cambia la altura del objeto.
    * 
    * @param objectHeight - La altura del objeto en centímetros (cm).
    */
-  onObjectHeightChange: (objectHeight: string) => void;
+  onChange: (objectHeight: string) => void;
 }
-
-const minObjectHeight: string = "1";
-
-const labelTitle: string = "Altura";
-const labelDescription: string = `Entre ${minObjectHeight} y ${maxObjectHeight} centímetros (cm)`;
 
 /**
  * Componente `ObjectHeightInput`.
@@ -22,12 +22,17 @@ const labelDescription: string = `Entre ${minObjectHeight} y ${maxObjectHeight} 
  * La altura debe estar entre los valores mínimos y máximos definidos en las constantes del negocio.
  * 
  * @param {ObjectHeightInputProps} props - Las propiedades del componente.
- * @returns {JSX.Element} Un campo de entrada para capturar la altura del objeto.
+ * @returns Un campo de entrada para capturar la altura del objeto.
  */
 export default function ObjectHeightInput({
-  onObjectHeightChange
-}: ObjectHeightInputProps): JSX.Element {
-  const [objectHeight, setObjectHeight] = useState<string>('');
+  value,
+  onChange
+}: ObjectHeightInputProps) {
+  
+  const minObjectHeight: string = "1";
+
+  const labelTitle: string = "Altura";
+  const labelDescription: string = `Entre ${minObjectHeight} y ${maxObjectHeight} centímetros (cm)`;
 
   /**
    * Maneja los cambios en el campo de entrada de la altura del objeto y actualiza el estado local.
@@ -35,16 +40,8 @@ export default function ObjectHeightInput({
    * @param event - El evento de cambio en el campo de entrada.
    */
   const handleObjectHeightChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setObjectHeight(event.target.value);
+    onChange(event.target.value);
   };
-
-  /**
-   * Efecto que se ejecuta cuando cambia la altura del objeto.
-   * Notifica al componente padre del nuevo valor de la altura.
-   */
-  useEffect(() => {
-    onObjectHeightChange(objectHeight);
-  }, [objectHeight]);
 
   return (
     <>
@@ -60,7 +57,7 @@ export default function ObjectHeightInput({
         min={minObjectHeight}
         id="object-height"
         name="object-height"
-        value={objectHeight}
+        value={value}
         placeholder="Ejemplo: 100"
         onChange={handleObjectHeightChange}
         required

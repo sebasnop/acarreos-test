@@ -75,8 +75,8 @@ export default function RequestServiceForm() {
 
           {/* Tipo de servicio - Radio button selection */}
           <ServiceTypeSelector
-            selectedServiceType={selectedServiceType}
-            onServiceTypeChange={setSelectedServiceType}
+            value={selectedServiceType}
+            onChange={setSelectedServiceType}
           />
 
           {/* Sección de ubicaciones */}
@@ -86,12 +86,13 @@ export default function RequestServiceForm() {
               <h2 className="text-lg font-semibold leading-7 text-gray-900">Ubicación de origen</h2>
               <LocationSelector
                 label="Ciudad de origen"
-                onLocationChange={setOriginLocation}
+                value={originLocation}
+                onChange={setOriginLocation}
               />
 
               {originLocation.cityId &&
                 <div className='mt-8'>
-                  <AddressInput labelTitle='Dirección de origen' onAddressChange={setOriginAddress} id='origin-addres' />
+                  <AddressInput value={originAddress} labelTitle='Dirección de origen' onChange={setOriginAddress} id='origin-address' />
                 </div>
               }
 
@@ -102,12 +103,13 @@ export default function RequestServiceForm() {
               <h2 className="text-lg font-semibold leading-7 text-gray-900">Ubicación de destino</h2>
               <LocationSelector
                 label="Ciudad de destino"
-                onLocationChange={setDestinationLocation}
+                value={destinationLocation}
+                onChange={setDestinationLocation}
               />
 
               {destinationLocation.cityId &&
                 <div className='mt-8'>
-                  <AddressInput labelTitle='Dirección de destino' onAddressChange={setDestinationAddress} id='destination-addres' />
+                  <AddressInput value={destinationAddress} labelTitle='Dirección de destino' onChange={setDestinationAddress} id='destination-addres' />
                 </div>
               }
 
@@ -116,20 +118,20 @@ export default function RequestServiceForm() {
 
           <div className="mt-12 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <section className="sm:col-span-3">
-              <DeclaredValueInput onDeclaredValueChange={setDeclaredValue} />
+              <DeclaredValueInput value={declaredValue} onChange={setDeclaredValue} />
             </section>
 
             {/* Campo adicional para servicio tipo "documento" */}
             {selectedServiceType === 'documento' && (
               <section className="sm:col-span-3">
-                <DocumentWeightInput onDocumentWeightChange={setDocumentWeight} />
+                <DocumentWeightInput value={documentWeight} onChange={setDocumentWeight} />
               </section>
             )}
 
             {/* Campo adicional para servicio tipo "objeto" */}
             {selectedServiceType === 'objeto' && (
               <section className="sm:col-span-3">
-                <ObjectWeightInput onObjectWeightChange={setObjectWeight} />
+                <ObjectWeightInput value={objectWeight} onChange={setObjectWeight} />
               </section>
             )}
 
@@ -140,15 +142,15 @@ export default function RequestServiceForm() {
             <section className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
               <div className="sm:col-span-2">
-                <ObjectHeightInput onObjectHeightChange={setObjectHeight} />
+                <ObjectHeightInput value={objectHeight} onChange={setObjectHeight} />
               </div>
 
               <div className="sm:col-span-2">
-                <ObjectLengthInput onObjectLengthChange={setObjectLength} />
+                <ObjectLengthInput value={objectLength} onChange={setObjectLength} />
               </div>
 
               <div className="sm:col-span-2">
-                <ObjectWidthInput onObjectWidthChange={setObjectWidth} />
+                <ObjectWidthInput value={objectWidth} onChange={setObjectWidth} />
               </div>
             </section>
           )}
@@ -156,12 +158,12 @@ export default function RequestServiceForm() {
           {/* Campo adicional para servicio tipo "mudanza" */}
           {selectedServiceType === 'mudanza' && (
             <section>
-              <MovingSizeSelector onMovingSizeChange={setMovingSize} />
+              <MovingSizeSelector value={movingSize} onChange={setMovingSize} />
             </section>
           )}
 
           <section>
-            <ServiceDateInput onDateChange={setServiceDate} />
+            <ServiceDateInput value={serviceDate} onChange={setServiceDate} />
           </section>
 
           <div className="mt-6 flex items-center justify-end gap-x-6">

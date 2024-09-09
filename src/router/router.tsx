@@ -11,8 +11,8 @@ import MainClient from "@/pages/client/MainClient";
 import MainCarrier from "@/pages/carrier/MainCarrier";
 import MainEnterprise from "@/pages/enterprise/MainEnterprise";
 import PriceQuotePage from "@/pages/PriceQuotePage";
-import EditUser from "@/pages/client/EditUser";
-import DeleteUser from "@/pages/client/DeleteUser";
+import EditClientData from "@/pages/client/EditClientData";
+import DeleteClientAccount from "@/pages/client/DeleteClientAccount";
 import NotFoundPage from "@/pages/NotFoundPage";
 
 import { navRoutes as routes } from "@/constants/navRoutes";
@@ -41,7 +41,7 @@ export const router = createBrowserRouter([
 
   // Rutas protegidas por roles
   {
-    path: routes.mainUser.href,
+    path: routes.mainClient.href,
     element: <ProtectedRoute allowedRoles={['client']} />,
     children: [
       { path: '', element: <MainClient /> }
@@ -70,18 +70,18 @@ export const router = createBrowserRouter([
   },
 
   {
-    path: routes.editUser.href,
+    path: routes.editClient.href,
     element: <ProtectedRoute allowedRoles={['client']} />,
     children: [
-      { path: '', element: <EditUser /> }
+      { path: '', element: <EditClientData /> }
     ]
   },
 
   {
-    path: routes.deleteUser.href,
+    path: routes.deleteClient.href,
     element: <ProtectedRoute allowedRoles={['client']} />,
     children: [
-      { path: '', element: <DeleteUser /> }
+      { path: '', element: <DeleteClientAccount /> }
     ]
   },
 

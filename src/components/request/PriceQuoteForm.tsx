@@ -73,8 +73,8 @@ export default function PriceQuoteForm() {
 
           {/* Tipo de servicio - Radio button selction*/}
           <ServiceTypeSelector
-            selectedServiceType={selectedServiceType}
-            onServiceTypeChange={setSelectedServiceType}
+            value={selectedServiceType}
+            onChange={setSelectedServiceType}
           />
 
           {/* Sección de ubicaciones */}
@@ -83,8 +83,9 @@ export default function PriceQuoteForm() {
             <div className="flex-1">
               <h2 className="text-lg font-semibold leading-7 text-gray-900">Ubicación de origen</h2>
               <LocationSelector
+                value={originLocation}
                 label="Ciudad de origen"
-                onLocationChange={setOriginLocation}
+                onChange={setOriginLocation}
               />
             </div>
 
@@ -92,28 +93,29 @@ export default function PriceQuoteForm() {
             <div className="flex-1">
               <h2 className="text-lg font-semibold leading-7 text-gray-900">Ubicación de destino</h2>
               <LocationSelector
+                value={destinationLocation}
                 label="Ciudad de destino"
-                onLocationChange={setDestinationLocation}
+                onChange={setDestinationLocation}
               />
             </div>
           </section>
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <section className="sm:col-span-3">
-              <DeclaredValueInput onDeclaredValueChange={setDeclaredValue} />
+              <DeclaredValueInput value={declaredValue} onChange={setDeclaredValue} />
             </section>
 
             {/* Campo adicional para servicio tipo "documento" */}
             {selectedServiceType === 'documento' && (
               <section className="sm:col-span-3">
-                <DocumentWeightInput onDocumentWeightChange={setDocumentWeight} />
+                <DocumentWeightInput value={documentWeight} onChange={setDocumentWeight} />
               </section>
             )}
 
             {/* Campo adicional para servicio tipo "objeto" */}
             {selectedServiceType === 'objeto' && (
               <section className="sm:col-span-3">
-                <ObjectWeightInput onObjectWeightChange={setObjectWeight} />
+                <ObjectWeightInput value={objectWeight} onChange={setObjectWeight} />
               </section>
             )}
 
@@ -124,15 +126,15 @@ export default function PriceQuoteForm() {
             <section className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
               <div className="sm:col-span-2">
-                <ObjectHeightInput onObjectHeightChange={setObjectHeight} />
+                <ObjectHeightInput value={objectHeight} onChange={setObjectHeight} />
               </div>
 
               <div className="sm:col-span-2">
-                <ObjectLengthInput onObjectLengthChange={setObjectLength} />
+                <ObjectLengthInput value={objectLength} onChange={setObjectLength} />
               </div>
 
               <div className="sm:col-span-2">
-                <ObjectWidthInput onObjectWidthChange={setObjectWidth} />
+                <ObjectWidthInput value={objectWidth} onChange={setObjectWidth} />
               </div>
             </section>
           )}
@@ -140,7 +142,7 @@ export default function PriceQuoteForm() {
           {/* Campo adicional para servicio tipo "mudanza" */}
           {selectedServiceType === 'mudanza' && (
             <section>
-              <MovingSizeSelector onMovingSizeChange={setMovingSize} />
+              <MovingSizeSelector value={movingSize} onChange={setMovingSize} />
             </section>
           )}
 

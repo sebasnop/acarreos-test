@@ -1,15 +1,18 @@
-import { useEffect, useState } from "react";
 import { movingSizes } from "@/constants/movingSizes";
 
-const labelTitle: string = "Tamaño de la mudanza";
-
 interface MovingSizeSelectorProps {
+
+  /**
+   * Tamaño de mudanza seleccionado.
+   */
+  value: string; 
+
   /**
    * Función callback que se llama cuando el tamaño de la mudanza cambia.
    * 
    * @param movingSize - El tamaño de la mudanza seleccionado.
    */
-  onMovingSizeChange: (movingSize: string) => void;
+  onChange: (movingSize: string) => void;
 }
 
 /**
@@ -19,12 +22,14 @@ interface MovingSizeSelectorProps {
  * Los tamaños disponibles se basan en las opciones definidas en las constantes del negocio.
  * 
  * @param {MovingSizeSelectorProps} props - Las propiedades del componente.
- * @returns {JSX.Element} Un selector desplegable para elegir el tamaño de la mudanza.
+ * @returns Un selector desplegable para elegir el tamaño de la mudanza.
  */
 export default function MovingSizeSelector({
-  onMovingSizeChange
-}: MovingSizeSelectorProps): JSX.Element {
-  const [selectedSize, setSelectedSize] = useState<string>('');
+  value,
+  onChange
+}: MovingSizeSelectorProps) {
+
+  const labelTitle: string = "Tamaño de la mudanza";
 
   /**
    * Maneja los cambios en el selector de tamaño de la mudanza y actualiza el estado local.
@@ -32,16 +37,8 @@ export default function MovingSizeSelector({
    * @param event - El evento de cambio en el campo select.
    */
   const handleSizeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedSize(event.target.value);
+    onChange(event.target.value);
   };
-
-  /**
-   * Efecto que se ejecuta cuando cambia el tamaño de la mudanza seleccionado.
-   * Notifica al componente padre del nuevo valor del tamaño de la mudanza.
-   */
-  useEffect(() => {
-    onMovingSizeChange(selectedSize);
-  }, [selectedSize]);
 
   return (
     <>
@@ -51,7 +48,7 @@ export default function MovingSizeSelector({
 
       <div className="mt-2">
         <select
-          value={selectedSize}
+          value={value}
           id="moving-size"
           name="moving-size"
           onChange={handleSizeChange}

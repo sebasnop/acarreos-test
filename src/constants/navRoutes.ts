@@ -17,13 +17,13 @@ const navRoutes: { [id: string]: NavItemInterface } = {
   'signup': { name: 'Registrarse', href: '/signup' },
   'terms': { name: 'Términos y Condiciones', href: '/terms' },
   'forgotPassword': { name: '¿Olvidaste tu contraseña?', href: '/forgot-password' },
-  'mainUser': { name: 'Main User', href: '/main-user' },
+  'mainClient': { name: 'Main Client', href: '/main-client' },
   'mainCarrier': { name: 'Main Carrier', href: '/main-carrier' },
   'mainEnterprise': { name: 'Main Enterprise', href: '/main-enterprise' },
   'requestService': { name: 'Solicitar Servicio', href: '/request-service' },
   'unauthorized': { name: 'No autorizado', href: '/unauthorized' },
-  'editUser': { name: 'Editar Usuario', href: '/edit-user' },
-  'deleteUser': { name: 'Eliminar Usuario', href: '/delete-user' },
+  'editClient': { name: 'Editar Usuario', href: '/edit-client' },
+  'deleteClient': { name: 'Eliminar Usuario', href: '/delete-client' },
 };
 
 export { navRoutes };

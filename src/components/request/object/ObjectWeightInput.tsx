@@ -1,17 +1,19 @@
-import { useEffect, useState } from "react";
 import { minObjectWeight, maxObjectWeight } from "@/constants/bussinessConsts";
 
 interface ObjectWeightInputProps {
+
+   /**
+   * Peso de objeto ingresado actualmente.
+   */
+   value: string;
+
   /**
    * Función callback que se llama cuando cambia el peso del objeto.
    * 
    * @param objectWeight - El peso del objeto en kilogramos (kg).
    */
-  onObjectWeightChange: (objectWeight: string) => void;
+  onChange: (objectWeight: string) => void;
 }
-
-const labelTitle: string = "Peso";
-const labelDescription: string = `Peso en kilogramos (kg) del objeto, entre ${minObjectWeight} y ${maxObjectWeight}`;
 
 /**
  * Componente `ObjectWeightInput`.
@@ -20,12 +22,16 @@ const labelDescription: string = `Peso en kilogramos (kg) del objeto, entre ${mi
  * El peso debe estar entre los valores mínimos y máximos definidos en las constantes del negocio.
  * 
  * @param {ObjectWeightInputProps} props - Las propiedades del componente.
- * @returns {JSX.Element} Un campo de entrada para capturar el peso del objeto.
+ * @returns Un campo de entrada para capturar el peso del objeto.
  */
 export default function ObjectWeightInput({
-  onObjectWeightChange
-}: ObjectWeightInputProps): JSX.Element {
-  const [objectWeight, setObjectWeight] = useState<string>("");
+  value,
+  onChange
+}: ObjectWeightInputProps) {
+  
+  const labelTitle: string = "Peso";
+  const labelDescription: string = `Peso en kilogramos (kg) del objeto, entre ${minObjectWeight} y ${maxObjectWeight}`;
+
 
   /**
    * Maneja los cambios en el campo de entrada del peso del objeto y actualiza el estado local.
@@ -33,16 +39,8 @@ export default function ObjectWeightInput({
    * @param event - El evento de cambio en el campo de entrada.
    */
   const handleObjectWeightChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setObjectWeight(event.target.value);
+    onChange(event.target.value);
   };
-
-  /**
-   * Efecto que se ejecuta cuando cambia el peso del objeto.
-   * Notifica al componente padre del nuevo valor del peso.
-   */
-  useEffect(() => {
-    onObjectWeightChange(objectWeight);
-  }, [objectWeight]);
 
   return (
     <>
@@ -58,7 +56,7 @@ export default function ObjectWeightInput({
         min={String(minObjectWeight)}
         id="object-weight"
         name="object-weight"
-        value={objectWeight}
+        value={value}
         placeholder="Ejemplo: 1000"
         onChange={handleObjectWeightChange}
         required
