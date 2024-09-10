@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useReducer } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import LocationSelector from '@/components/request/common/LocationSelector';
@@ -13,6 +13,12 @@ import ObjectLengthInput from '@/components/request/object/ObjectLengthInput';
 import ObjectWidthInput from '@/components/request/object/ObjectWidthInput';
 import MovingSizeSelector from '@/components/request/moving/MovingSizeSelector';
 
+import {
+  FormActionKind,
+  initialState as initialFormState,
+  requestServiceReducer
+} from '@/utils/reducers/requestServiceReducer'
+
 /**
  * Componente `RequestServiceForm`.
  *
@@ -23,21 +29,7 @@ import MovingSizeSelector from '@/components/request/moving/MovingSizeSelector';
  * @returns El formulario para solicitar un servicio de transporte.
  */
 export default function RequestServiceForm() {
-  const [selectedServiceType, setSelectedServiceType] = useState<string>('');
-  const [originLocation, setOriginLocation] = useState({ nation: '', region: '', cityId: '' });
-  const [destinationLocation, setDestinationLocation] = useState({ nation: '', region: '', cityId: '' });
-  const [originAddress, setOriginAddress] = useState<string>('');
-  const [destinationAddress, setDestinationAddress] = useState<string>('');
-  const [declaredValue, setDeclaredValue] = useState<string>('');
-  const [serviceDate, setServiceDate] = useState<string>('');
-
-  // Estado para los campos adicionales según el tipo de servicio
-  const [documentWeight, setDocumentWeight] = useState<string>('');
-  const [objectWeight, setObjectWeight] = useState<string>('');
-  const [objectHeight, setObjectHeight] = useState<string>('');
-  const [objectLength, setObjectLength] = useState<string>('');
-  const [objectWidth, setObjectWidth] = useState<string>('');
-  const [movingSize, setMovingSize] = useState<string>('');
+  const [state, dispatch] = useReducer(requestServiceReducer, initialFormState);
 
   /**
    * Maneja el envío del formulario, recopilando todos los datos ingresados y mostrándolos en la consola.
@@ -75,8 +67,11 @@ export default function RequestServiceForm() {
 
           {/* Tipo de servicio - Radio button selection */}
           <ServiceTypeSelector
-            value={selectedServiceType}
-            onChange={setSelectedServiceType}
+            value={state.selectedServiceType}
+            onChange={
+              (serviceType) =>
+                dispatch({ type: FormActionKind.SET_SERVICE_TYPE, payload: serviceType })
+            }
           />
 
           {/* Sección de ubicaciones */}
@@ -86,13 +81,23 @@ export default function RequestServiceForm() {
               <h2 className="text-lg font-semibold leading-7 text-gray-900">Ubicación de origen</h2>
               <LocationSelector
                 label="Ciudad de origen"
-                value={originLocation}
-                onChange={setOriginLocation}
+                value={state.originLocation}
+                onChange={
+                  (originLocation) =>
+                    dispatch({ type: FormActionKind.SET_ORIGIN_LOCATION, payload: originLocation })
+                }
               />
 
-              {originLocation.cityId &&
+              {state.originLocation.cityId &&
                 <div className='mt-8'>
-                  <AddressInput value={originAddress} labelTitle='Dirección de origen' onChange={setOriginAddress} id='origin-address' />
+                  <AddressInput
+                    labelTitle='Dirección de origen'
+                    id='origin-address'
+                    value={state.originAddress}
+                    onChange={
+                      (originAddress) =>
+                        dispatch({ type: FormActionKind.SET_ORIGIN_ADDRESS, payload: originAddress })
+                    } />
                 </div>
               }
 
@@ -103,13 +108,24 @@ export default function RequestServiceForm() {
               <h2 className="text-lg font-semibold leading-7 text-gray-900">Ubicación de destino</h2>
               <LocationSelector
                 label="Ciudad de destino"
-                value={destinationLocation}
-                onChange={setDestinationLocation}
+                value={state.destinationLocation}
+                onChange={
+                  (destinationLocation) =>
+                    dispatch({ type: FormActionKind.SET_DESTINATION_LOCATION, payload: destinationLocation })
+                }
               />
 
-              {destinationLocation.cityId &&
+              {state.destinationLocation.cityId &&
                 <div className='mt-8'>
-                  <AddressInput value={destinationAddress} labelTitle='Dirección de destino' onChange={setDestinationAddress} id='destination-addres' />
+                  <AddressInput
+                    labelTitle='Dirección de destino'
+                    id='destination-address'
+                    value={state.destinationAddress}
+                    onChange={
+                      (destinationAddress) =>
+                        dispatch({ type: FormActionKind.SET_ORIGIN_ADDRESS, payload: destinationAddress })
+                    }
+                  />
                 </div>
               }
 
@@ -118,52 +134,82 @@ export default function RequestServiceForm() {
 
           <div className="mt-12 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <section className="sm:col-span-3">
-              <DeclaredValueInput value={declaredValue} onChange={setDeclaredValue} />
+              <DeclaredValueInput
+                value={state.declaredValue}
+                onChange={
+                  (declaredValue) => dispatch({ type: FormActionKind.SET_DECLARED_VALUE, payload: declaredValue })
+                }
+              />
             </section>
 
             {/* Campo adicional para servicio tipo "documento" */}
-            {selectedServiceType === 'documento' && (
+            {state.selectedServiceType === 'documento' && (
               <section className="sm:col-span-3">
-                <DocumentWeightInput value={documentWeight} onChange={setDocumentWeight} />
+                <DocumentWeightInput
+                  value={state.documentWeight}
+                  onChange={
+                    (documentWeight) =>
+                      dispatch({ type: FormActionKind.SET_DOCUMENT_WEIGHT, payload: documentWeight })
+                  }
+                />
               </section>
             )}
 
             {/* Campo adicional para servicio tipo "objeto" */}
-            {selectedServiceType === 'objeto' && (
+            {state.selectedServiceType === 'objeto' && (
               <section className="sm:col-span-3">
-                <ObjectWeightInput value={objectWeight} onChange={setObjectWeight} />
+                <ObjectWeightInput value={state.objectWeight}
+                  onChange={
+                    (objectWeight) =>
+                      dispatch({ type: FormActionKind.SET_OBJECT_WEIGHT, payload: objectWeight })
+                  }
+                />
               </section>
             )}
 
           </div>
 
           {/* Sección adicional para servicio tipo "objeto" */}
-          {selectedServiceType === 'objeto' && (
+          {state.selectedServiceType === 'objeto' && (
             <section className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
               <div className="sm:col-span-2">
-                <ObjectHeightInput value={objectHeight} onChange={setObjectHeight} />
+                <ObjectHeightInput value={state.objectHeight} onChange={
+                  (objectHeight) =>
+                    dispatch({ type: FormActionKind.SET_OBJECT_HEIGHT, payload: objectHeight })
+                } />
               </div>
 
               <div className="sm:col-span-2">
-                <ObjectLengthInput value={objectLength} onChange={setObjectLength} />
+                <ObjectLengthInput value={state.objectLength} onChange={
+                  (objectLength) =>
+                    dispatch({ type: FormActionKind.SET_OBJECT_LENGTH, payload: objectLength })
+                } />
               </div>
 
               <div className="sm:col-span-2">
-                <ObjectWidthInput value={objectWidth} onChange={setObjectWidth} />
+                <ObjectWidthInput value={state.objectWidth} onChange={
+                  (objectWidth) =>
+                    dispatch({ type: FormActionKind.SET_OBJECT_WIDTH, payload: objectWidth })
+                } />
               </div>
             </section>
           )}
 
           {/* Campo adicional para servicio tipo "mudanza" */}
-          {selectedServiceType === 'mudanza' && (
+          {state.selectedServiceType === 'mudanza' && (
             <section>
-              <MovingSizeSelector value={movingSize} onChange={setMovingSize} />
+              <MovingSizeSelector value={state.movingSize} onChange={
+                (movingSize) =>
+                  dispatch({ type: FormActionKind.SET_MOVING_SIZE, payload: movingSize })
+              } />
             </section>
           )}
 
           <section>
-            <ServiceDateInput value={serviceDate} onChange={setServiceDate} />
+            <ServiceDateInput
+              value={state.serviceDate}
+              onChange={ (serviceDate) => dispatch({ type: FormActionKind.SET_SERVICE_DATE, payload: serviceDate })} />
           </section>
 
           <div className="mt-6 flex items-center justify-end gap-x-6">

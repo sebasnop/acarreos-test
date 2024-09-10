@@ -1,7 +1,7 @@
 /**
  * Represents a navigation item in the navigation menu.
  */
-interface NavItemInterface {
+export interface NavItemInterface {
   /**
    * The name of the navigation item to be displayed.
    * @example "Home"
@@ -18,7 +18,7 @@ interface NavItemInterface {
 /**
  * Represents the data required for a price quote for document shipments.
  */
-interface DocumentPriceQuote {
+export interface DocumentPriceQuote {
   /**
    * The ID of the origin city.
    */
@@ -43,7 +43,7 @@ interface DocumentPriceQuote {
 /**
  * Represents the data required for a price quote for object shipments.
  */
-interface ObjectPriceQuote {
+export interface ObjectPriceQuote {
   /**
    * The ID of the origin city.
    */
@@ -83,7 +83,7 @@ interface ObjectPriceQuote {
 /**
  * Represents the data required for a price quote for moving services.
  */
-interface MovingPriceQuote {
+export interface MovingPriceQuote {
   /**
    * The ID of the origin city.
    */
@@ -108,7 +108,7 @@ interface MovingPriceQuote {
 /**
  * Represents a size option for moving services.
  */
-interface MovingSize {
+export interface MovingSize {
   /**
    * The label of the size in English.
    * @example "small"
@@ -128,10 +128,11 @@ interface MovingSize {
   value: number;
 }
 
-export type {
-  NavItemInterface,
-  DocumentPriceQuote,
-  ObjectPriceQuote,
-  MovingPriceQuote,
-  MovingSize
-};
+/**
+ * Represents a location input composed by nation, region and cityId for current forms.
+ */
+export interface locationInputInterface {
+  nation: string;
+  region: string;
+  cityId: string
+}

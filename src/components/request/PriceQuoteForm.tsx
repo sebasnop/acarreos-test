@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useReducer } from 'react'
 
 import LocationSelector from '@/components/request/common/LocationSelector';
 import ServiceTypeSelector from '@/components/request/common/ServiceTypeSelector';
@@ -15,6 +15,12 @@ import MovingSizeSelector from '@/components/request/moving/MovingSizeSelector';
 
 import { usePriceQuote } from '@/hooks/usePriceQuote';
 
+import {
+  FormActionKind,
+  initialState as initialFormState,
+  priceQuoteReducer
+} from '@/utils/reducers/priceQuoteReducer'
+
 /**
  * Componente `PriceQuoteForm`.
  * 
@@ -24,19 +30,7 @@ import { usePriceQuote } from '@/hooks/usePriceQuote';
  * @returns El formulario de cotización de precios.
  */
 export default function PriceQuoteForm() {
-  // Estado para almacenar el tipo de servicio seleccionado
-  const [selectedServiceType, setSelectedServiceType] = useState<string>('');
-  const [originLocation, setOriginLocation] = useState({ nation: '', region: '', cityId: '' });
-  const [destinationLocation, setDestinationLocation] = useState({ nation: '', region: '', cityId: '' });
-  const [declaredValue, setDeclaredValue] = useState<string>('')
-
-  // Estado para los campos adicionales según el tipo de servicio
-  const [documentWeight, setDocumentWeight] = useState<string>('');
-  const [objectWeight, setObjectWeight] = useState<string>('');
-  const [objectHeight, setObjectHeight] = useState<string>('');
-  const [objectLength, setObjectLength] = useState<string>('');
-  const [objectWidth, setObjectWidth] = useState<string>('');
-  const [movingSize, setMovingSize] = useState<string>('');
+  const [state, dispatch] = useReducer(priceQuoteReducer, initialFormState);
 
   // Hook para manejar la lógica de cálculo de la cotización
   const { priceQuote, calculateQuote } = usePriceQuote();
@@ -51,16 +45,16 @@ export default function PriceQuoteForm() {
     event.preventDefault();
 
     calculateQuote({
-      serviceType: selectedServiceType,
-      originLocation,
-      destinationLocation,
-      declaredValue,
-      documentWeight,
-      objectWeight,
-      objectHeight,
-      objectLength,
-      objectWidth,
-      movingSize,
+      serviceType: state.selectedServiceType,
+      originLocation: state.originLocation,
+      destinationLocation: state.destinationLocation,
+      declaredValue: state.declaredValue,
+      documentWeight: state.documentWeight,
+      objectWeight: state.objectWeight,
+      objectHeight: state.objectHeight,
+      objectLength: state.objectLength,
+      objectWidth: state.objectWidth,
+      movingSize: state.movingSize,
     });
   };
 
@@ -73,8 +67,11 @@ export default function PriceQuoteForm() {
 
           {/* Tipo de servicio - Radio button selction*/}
           <ServiceTypeSelector
-            value={selectedServiceType}
-            onChange={setSelectedServiceType}
+            value={state.selectedServiceType}
+            onChange={
+              (serviceType) =>
+                dispatch({ type: FormActionKind.SET_SERVICE_TYPE, payload: serviceType })
+            }
           />
 
           {/* Sección de ubicaciones */}
@@ -83,9 +80,12 @@ export default function PriceQuoteForm() {
             <div className="flex-1">
               <h2 className="text-lg font-semibold leading-7 text-gray-900">Ubicación de origen</h2>
               <LocationSelector
-                value={originLocation}
+                value={state.originLocation}
                 label="Ciudad de origen"
-                onChange={setOriginLocation}
+                onChange={
+                  (originLocation) =>
+                    dispatch({ type: FormActionKind.SET_ORIGIN_LOCATION, payload: originLocation })
+                }
               />
             </div>
 
@@ -93,56 +93,86 @@ export default function PriceQuoteForm() {
             <div className="flex-1">
               <h2 className="text-lg font-semibold leading-7 text-gray-900">Ubicación de destino</h2>
               <LocationSelector
-                value={destinationLocation}
+                value={state.destinationLocation}
                 label="Ciudad de destino"
-                onChange={setDestinationLocation}
+                onChange={
+                  (destinationLocation) =>
+                    dispatch({ type: FormActionKind.SET_DESTINATION_LOCATION, payload: destinationLocation })
+                }
               />
             </div>
           </section>
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <section className="sm:col-span-3">
-              <DeclaredValueInput value={declaredValue} onChange={setDeclaredValue} />
+              <DeclaredValueInput value={state.declaredValue}
+                onChange={
+                  (declaredValue) =>
+                    dispatch({ type: FormActionKind.SET_DECLARED_VALUE, payload: declaredValue })
+                } />
             </section>
 
             {/* Campo adicional para servicio tipo "documento" */}
-            {selectedServiceType === 'documento' && (
+            {state.selectedServiceType === 'documento' && (
               <section className="sm:col-span-3">
-                <DocumentWeightInput value={documentWeight} onChange={setDocumentWeight} />
+                <DocumentWeightInput
+                  value={state.documentWeight}
+                  onChange={
+                    (documentWeight) =>
+                      dispatch({ type: FormActionKind.SET_DOCUMENT_WEIGHT, payload: documentWeight })
+                  }
+                />
               </section>
             )}
 
             {/* Campo adicional para servicio tipo "objeto" */}
-            {selectedServiceType === 'objeto' && (
+            {state.selectedServiceType === 'objeto' && (
               <section className="sm:col-span-3">
-                <ObjectWeightInput value={objectWeight} onChange={setObjectWeight} />
+                <ObjectWeightInput value={state.objectWeight}
+                  onChange={
+                    (objectWeight) =>
+                      dispatch({ type: FormActionKind.SET_OBJECT_WEIGHT, payload: objectWeight })
+                  }
+                />
               </section>
             )}
 
           </div>
 
           {/* Sección adicional para servicio tipo "objeto" */}
-          {selectedServiceType === 'objeto' && (
+          {state.selectedServiceType === 'objeto' && (
             <section className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
               <div className="sm:col-span-2">
-                <ObjectHeightInput value={objectHeight} onChange={setObjectHeight} />
+                <ObjectHeightInput value={state.objectHeight} onChange={
+                  (objectHeight) =>
+                    dispatch({ type: FormActionKind.SET_OBJECT_HEIGHT, payload: objectHeight })
+                } />
               </div>
 
               <div className="sm:col-span-2">
-                <ObjectLengthInput value={objectLength} onChange={setObjectLength} />
+                <ObjectLengthInput value={state.objectLength} onChange={
+                  (objectLength) =>
+                    dispatch({ type: FormActionKind.SET_OBJECT_LENGTH, payload: objectLength })
+                } />
               </div>
 
               <div className="sm:col-span-2">
-                <ObjectWidthInput value={objectWidth} onChange={setObjectWidth} />
+                <ObjectWidthInput value={state.objectWidth} onChange={
+                  (objectWidth) =>
+                    dispatch({ type: FormActionKind.SET_OBJECT_WIDTH, payload: objectWidth })
+                } />
               </div>
             </section>
           )}
 
           {/* Campo adicional para servicio tipo "mudanza" */}
-          {selectedServiceType === 'mudanza' && (
+          {state.selectedServiceType === 'mudanza' && (
             <section>
-              <MovingSizeSelector value={movingSize} onChange={setMovingSize} />
+              <MovingSizeSelector value={state.movingSize} onChange={
+                (movingSize) =>
+                  dispatch({ type: FormActionKind.SET_MOVING_SIZE, payload: movingSize })
+              } />
             </section>
           )}
 

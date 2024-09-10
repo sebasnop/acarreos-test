@@ -2,6 +2,7 @@ import { NationsTable } from '@/database/NationsTable';
 import { RegionsTable } from '@/database/RegionsTable';
 import { CitiesTable } from '@/database/CitiesTable';
 import type { NationInterface, RegionInterface, CityInterface } from '@/interfaces/DatabaseInterfaces';
+import type { locationInputInterface } from '@/interfaces/AppInterfaces';
 
 /**
  * Props para el componente LocationSelector.
@@ -15,14 +16,14 @@ interface LocationSelectorProps {
   /**
    * Ubicación seleccionada actualmente.
    */
-  value: { nation: string; region: string; cityId: string };
+  value: locationInputInterface;
 
   /**
    * Función callback que se llama cuando la selección de ubicación cambia.
    * 
    * @param location - Un objeto que contiene las selecciones de nación, región y ciudad.
    */
-  onChange: (location: { nation: string; region: string; cityId: string }) => void;
+  onChange: (location: locationInputInterface) => void;
 }
 
 /**
