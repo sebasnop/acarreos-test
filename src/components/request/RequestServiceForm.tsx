@@ -123,7 +123,7 @@ export default function RequestServiceForm() {
                     value={state.destinationAddress}
                     onChange={
                       (destinationAddress) =>
-                        dispatch({ type: FormActionKind.SET_ORIGIN_ADDRESS, payload: destinationAddress })
+                        dispatch({ type: FormActionKind.SET_DESTINATION_ADDRESS, payload: destinationAddress })
                     }
                   />
                 </div>

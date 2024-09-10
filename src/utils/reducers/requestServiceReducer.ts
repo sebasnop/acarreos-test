@@ -74,7 +74,7 @@ interface FormAction {
  */
 export function requestServiceReducer(
   state: formResponseInterface,
-  {type, payload}: FormAction
+  { type, payload }: FormAction
 ) {
   switch (type) {
     case 'SET_SERVICE_TYPE':
@@ -83,6 +83,10 @@ export function requestServiceReducer(
       return { ...state, originLocation: payload as locationInputInterface };
     case 'SET_DESTINATION_LOCATION':
       return { ...state, destinationLocation: payload as locationInputInterface };
+    case 'SET_ORIGIN_ADDRESS':
+      return { ...state, originAddress: payload as string };
+    case 'SET_DESTINATION_ADDRESS':
+      return { ...state, destinationAddress: payload as string };
     case 'SET_DECLARED_VALUE':
       return { ...state, declaredValue: payload as string };
     case 'SET_DOCUMENT_WEIGHT':
