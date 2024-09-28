@@ -20,7 +20,7 @@ const AuthContext = createContext<AuthContextInterface | undefined>(undefined);
  * Hook personalizado `useAuth` para acceder al contexto de autenticación.
  * 
  * @throws {Error} Si se usa fuera de un `AuthProvider`.
- * @returns {AuthContextInterface} El contexto de autenticación, que incluye el rol del usuario y las funciones de inicio y cierre de sesión.
+ * @returns El contexto de autenticación, que incluye el rol del usuario y las funciones de inicio y cierre de sesión.
  */
 export function useAuth() {
   const context = useContext(AuthContext);
@@ -36,7 +36,7 @@ export function useAuth() {
  * 
  * @param {Object} props - Las propiedades que se pasan al componente.
  * @param {ReactNode} props.children - Los componentes hijos que estarán envueltos por el `AuthProvider`.
- * @returns {JSX.Element} Un proveedor de contexto de autenticación.
+ * @returns Un proveedor de contexto de autenticación.
  */
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [userRole, setUserRole] = useState<UserRole | null>(null);

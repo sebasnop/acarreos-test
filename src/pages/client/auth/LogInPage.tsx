@@ -75,14 +75,3 @@ export default function LogInPage() {
     </>
   );
 }
-
-
-
-
-
-
-
-
-
-
-

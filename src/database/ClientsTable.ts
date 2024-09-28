@@ -7,7 +7,7 @@ import type { ClientInterface } from "@/interfaces/DatabaseInterfaces"
  * 
  * @type {ClientInterface[]}
  */
-export const clientsTable: ClientInterface[] = [
+export const ClientsTable: ClientInterface[] = [
     { idClient: 1, username: "danielChanci", email: "daniel.chanci@example.com", default_location: "Reino Tierra", password: "password123" },
     { idClient: 2, username: "alejandraUribe", email: "alejandra.uribe@example.com", default_location: "Ciudad República", password: "password123" },
     { idClient: 3, username: "sebastianValencia", email: "sebastian.valencia@example.com", default_location: "Templos Aire", password: "password123" },

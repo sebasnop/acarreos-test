@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { clientsTable } from '@/database/ClientsTable'; // Asumiendo que tienes esta tabla de usuarios
+import { ClientsTable } from '@/database/ClientsTable'; // Asumiendo que tienes esta tabla de usuarios
 import InsideHeader from '@/components/header/InsideHeader';
 
 /**
@@ -18,7 +18,7 @@ export default function EditClientData() {
   const navigate = useNavigate();  // Hook para navegar entre rutas
 
   // Datos del usuario (se trae de la tabla de usuarios)
-  const user = clientsTable[0]; // Se asume que se obtiene el usuario actual de alguna manera
+  const user = ClientsTable[0]; // Se asume que se obtiene el usuario actual de alguna manera
   const [formData, setFormData] = useState({
     username: user.username,
     email: user.email,

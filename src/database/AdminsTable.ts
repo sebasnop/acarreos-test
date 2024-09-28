@@ -7,9 +7,9 @@ import type { AdminInterface } from "@/interfaces/DatabaseInterfaces"
  * @type {AdminInterface[]}
  */
 export const AdminsTable: AdminInterface[] = [
-  { idAdmin: 1, username: "adminOne", rol: "Administrador general" },
-  { idAdmin: 2, username: "adminTwo", rol: "Administrador general" },
-  { idAdmin: 3, username: "adminThree", rol: "Administrador de envíos" },
-  { idAdmin: 4, username: "admin", rol: "CEO" }
+  { idAdmin: 1, username: "adminOne", password: "password123"},
+  { idAdmin: 2, username: "adminTwo", password: "password123"},
+  { idAdmin: 3, username: "adminThree", password: "password123"},
+  { idAdmin: 4, username: "admin", password: "password123"}
 ];
 

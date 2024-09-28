@@ -7,8 +7,8 @@ import type { CarrierInterface } from "@/interfaces/DatabaseInterfaces"
  * @type {CarrierInterface[]}
  */
 export const CarriersTable: CarrierInterface[] = [
-  { idCarrier: 1, username: "carrierOne", rol: "Transportista Junior" },
-  { idCarrier: 2, username: "carrierTwo", rol: "Transportista Junior" },
-  { idCarrier: 3, username: "carrierThree", rol: "Transportista Senior" },
-  { idCarrier: 4, username: "carrier", rol: "Transportista Senior" }
+  { idCarrier: 1, username: "carrierOne", password: "password123", rol: "Transportista Junior" },
+  { idCarrier: 2, username: "carrierTwo", password: "password123", rol: "Transportista Junior" },
+  { idCarrier: 3, username: "carrierThree", password: "password123", rol: "Transportista Senior" },
+  { idCarrier: 4, username: "carrier", password: "password123", rol: "Transportista Senior" }
 ];

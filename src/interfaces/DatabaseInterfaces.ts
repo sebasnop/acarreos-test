@@ -3,7 +3,7 @@ import { NationsEnum, RegionsEnum } from "@/interfaces/DatabaseEnums"
 /**
  * Representa un envío dentro del sistema.
  */
-interface ShipmentInterface {
+export interface ShipmentInterface {
   /**
    * Código de guía único para el envío.
    */
@@ -58,7 +58,7 @@ interface ShipmentInterface {
 /**
  * Representa una nación en el mundo de Avatar.
  */
-interface NationInterface {
+export interface NationInterface {
   /**
    * Nombre de la nación, basado en el enumerado `NationsEnum`.
    * @example "NationsEnum.Water"
@@ -81,7 +81,7 @@ interface NationInterface {
 /**
  * Representa una región dentro de una nación en el mundo de Avatar.
  */
-interface RegionInterface {
+export interface RegionInterface {
   /**
    * Nombre de la región, basado en el enumerado `RegionsEnum`.
    * @example "RegionsEnum.AirNorth"
@@ -104,7 +104,7 @@ interface RegionInterface {
 /**
    * Representa una ciudad dentro de una región en el mundo de Avatar.
    */
-interface CityInterface {
+export interface CityInterface {
   /**
    * ID único de la ciudad.
    */
@@ -160,7 +160,7 @@ export interface ClientInterface {
 /**
  * Representa un transportista en el sistema.
  */
-interface CarrierInterface {
+export interface CarrierInterface {
   /**
    * ID único del transportista.
    */
@@ -171,6 +171,12 @@ interface CarrierInterface {
    * @example "carrierOne"
    */
   username: string,
+  
+  /**
+  * Contraseña del usuario (hash o en texto plano dependiendo de la implementación).
+  * @example "password123"
+  */
+  password: string,
 
   /**
    * Rol del transportista.
@@ -182,7 +188,7 @@ interface CarrierInterface {
 /**
  * Representa un administrador en el sistema.
  */
-interface AdminInterface {
+export interface AdminInterface {
   /**
    * ID único del administrador.
    */
@@ -193,18 +199,19 @@ interface AdminInterface {
    * @example "adminOne"
    */
   username: string,
-
+  
   /**
-   * Rol del administrador.
-   * @example "Administrador general"
-   */
-  rol: string,
+  * Contraseña del usuario (hash o en texto plano dependiendo de la implementación).
+  * @example "password123"
+  */
+  password: string,
+  
 }
 
 /**
  * Representa un bisonte en el sistema.
  */
-interface BisonsInterface {
+export interface BisonsInterface {
   /**
    * ID único del bisonte.
    */
@@ -245,13 +252,3 @@ interface BisonsInterface {
  * Tipo que define los roles posibles de un usuario en el sistema.
  */
 export type UserRole = 'client' | 'carrier' | 'admin';
-
-export type { 
-  ShipmentInterface,
-  NationInterface,
-  RegionInterface,
-  CityInterface,
-  CarrierInterface,
-  AdminInterface,
-  BisonsInterface
-}
