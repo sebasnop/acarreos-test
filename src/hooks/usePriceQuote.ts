@@ -34,7 +34,7 @@ interface PriceQuoteData {
  * Hook personalizado que proporciona la funcionalidad para calcular la cotización de precios
  * para diferentes tipos de servicios (documento, objeto, mudanza).
  * 
- * @returns {Object} Un objeto que contiene la cotización del precio (`priceQuote`) y una función
+ * @returns Un objeto que contiene la cotización del precio (`priceQuote`) y una función
  * para calcular la cotización (`calculateQuote`).
  */
 export function usePriceQuote() {

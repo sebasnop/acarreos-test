@@ -18,6 +18,7 @@ import {
   initialState as initialFormState,
   requestServiceReducer
 } from '@/utils/reducers/requestServiceReducer'
+import generateOrderCode from '@/utils/generateOrderCode';
 
 /**
  * Componente `RequestServiceForm`.
@@ -40,18 +41,7 @@ export default function RequestServiceForm() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // Generar la fecha actual en formato YYYYMMDD
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0');
-    const day = String(today.getDate()).padStart(2, '0');
-    const dateStr = `${year}${month}${day}`;
-
-    // Generar un número aleatorio de 3 dígitos
-    const randomNumber = Math.floor(Math.random() * 900) + 100;
-
-    // Generar el código de pedido concatenando la fecha y el número aleatorio
-    const orderCode = `${dateStr}${randomNumber}`;
+    const orderCode: string = generateOrderCode();
 
     // Mostrar el alert con el código de pedido
     alert(`Su pedido ha sido creado con el código ${orderCode}`);
