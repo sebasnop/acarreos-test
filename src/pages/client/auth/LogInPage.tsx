@@ -15,17 +15,13 @@ import { useAuth } from '@/context/AuthProvider';
  * @returns El componente LogInPage.
  */
 export default function LogInPage() {
-  const { login, logout } = useAuth();
+  const { login } = useAuth();
   // Estado para almacenar el nombre de usuario y la contraseña ingresados
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   // Hook para redirigir a otra ruta después de un inicio de sesión exitoso
   const navigate = useNavigate();
-
-  // Credenciales quemadas para validación
-  const hardcodedUsername = 'client';
-  const hardcodedPassword = 'password123';
 
   /**
    * Maneja el envío del formulario de inicio de sesión.
@@ -36,16 +32,16 @@ export default function LogInPage() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // Validación de las credenciales ingresadas
-    if (username === hardcodedUsername && password === hardcodedPassword) {
-      logout();
-      login('client');
-      // Redirige a la página principal del usuario (/main-client)
+    const { successfulLogin, errorMessage } = login(username, password, 'client');
+
+     // Verificar si el login fue exitoso
+     if (successfulLogin) {
       navigate('/main-client');
     } else {
-      // Muestra una alerta si las credenciales son incorrectas
-      alert('Usuario o contraseña incorrectos');
+      // Mostrar un mensaje de error si el inicio de sesión falla
+      alert(errorMessage);
     }
+
   };
 
   return (

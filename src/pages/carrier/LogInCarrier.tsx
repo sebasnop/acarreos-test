@@ -14,17 +14,13 @@ import { useAuth } from '@/context/AuthProvider';
  * @retorna {JSX.Element} El componente LogInCarrier.
  */
 export default function LogInCarrier() {
-  const { login, logout } = useAuth();
+  const { login } = useAuth();
   // Estado para almacenar el usuario y la contraseña ingresados
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   // Hook para redirigir a otra ruta después de un inicio de sesión exitoso
   const navigate = useNavigate();
-
-  // Credenciales quemadas para validación
-  const hardcodedUsername = 'carrier';
-  const hardcodedPassword = 'password123';
 
   /**
    * Maneja el envío del formulario de inicio de sesión.
@@ -35,16 +31,16 @@ export default function LogInCarrier() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // Validación de las credenciales ingresadas
-    if (username === hardcodedUsername && password === hardcodedPassword) {
-      logout();
-      login('carrier');
-      // Redirige a la página principal del transportista (/main-carrier)
+    const { successfulLogin, errorMessage } = login(username, password, 'carrier');
+
+     // Verificar si el login fue exitoso
+     if (successfulLogin) {
       navigate('/main-carrier');
     } else {
-      // Muestra una alerta si las credenciales son incorrectas
-      alert('Usuario o contraseña incorrectos');
+      // Mostrar un mensaje de error si el inicio de sesión falla
+      alert(errorMessage);
     }
+
   };
 
   return (

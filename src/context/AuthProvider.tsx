@@ -1,10 +1,16 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
 import { UserRole } from '@/interfaces/DatabaseInterfaces';
+import validateClientCredentials from '@/utils/auth/validateClientCredentials';
+import validateCarrierCredentials from '@/utils/auth/validateCarrierCredentials';
+import validateEnterpriseCredentials from '@/utils/auth/validateEntrepriseCredentials';
 
 // Tipo de datos que almacenará el contexto
 interface AuthContextInterface {
   userRole: UserRole | null;
-  login: (role: UserRole) => void;
+  login: (username: string, password: string, userType: UserRole) => {
+    successfulLogin: boolean;
+    errorMessage: string;
+  };
   logout: () => void;
 }
 
@@ -42,12 +48,45 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [userRole, setUserRole] = useState<UserRole | null>(null);
 
   /**
-   * Función para iniciar sesión, establece el rol del usuario.
+   * Función para iniciar sesión.
    * 
-   * @param {UserRole} role - El rol del usuario que ha iniciado sesión.
+   * @param username - El nombre de usuario ingresado.
+   * @param password - La contraseña ingresada.
+   * @param userType - El tipo de usuario que está intentando ingresar.
+   * @returns Confirmación del éxito del inicio de sesión y mensaje de error.
    */
-  const login = (role: UserRole) => {
-    setUserRole(role);
+  const login = (username: string, password: string, userType: UserRole): {
+    successfulLogin: boolean;
+    errorMessage: string;
+  } => {
+    logout();
+    let user = null;
+    let errorMessage: string = "";
+
+    // Validar según el tipo de usuario
+    switch (userType) {
+      case 'client':
+        user = validateClientCredentials(username, password);
+        break;
+      case 'carrier':
+        user = validateCarrierCredentials(username, password);
+        break;
+      case 'admin':
+        user = validateEnterpriseCredentials(username, password);
+        break;
+      default:
+        errorMessage = "Tipo de usuario no válido";
+        return { successfulLogin: false, errorMessage };
+    }
+
+    if (user) {
+      setUserRole(userType);
+      return { successfulLogin: true, errorMessage: '' };
+    } else {
+      errorMessage = "Usuario o contraseña incorrectos";
+      return { successfulLogin: false, errorMessage };
+    }
+
   };
 
   /**

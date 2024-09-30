@@ -14,17 +14,13 @@ import { useAuth } from '@/context/AuthProvider';
  * @retorna {JSX.Element} El componente LogInEnterprise.
  */
 export default function LogInEnterprise() {
-  const { login, logout } = useAuth();
+  const { login } = useAuth();
   // Estado para almacenar el usuario y la contraseña ingresados
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   // Hook para redirigir a otra ruta después de un inicio de sesión exitoso
   const navigate = useNavigate();
-
-  // Credenciales quemadas para validación
-  const hardcodedUsername = 'admin';
-  const hardcodedPassword = 'password123';
 
   /**
    * Maneja el envío del formulario de inicio de sesión.
@@ -35,17 +31,16 @@ export default function LogInEnterprise() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // Validación de las credenciales ingresadas
-    if (username === hardcodedUsername && password === hardcodedPassword) {
-      logout();
-      login('admin');
-      // Redirige a la página /main-enterprise
-      // Redirige a la página principal del administrador (/main-enterprise)
+    const { successfulLogin, errorMessage } = login(username, password, 'admin');
+
+     // Verificar si el login fue exitoso
+     if (successfulLogin) {
       navigate('/main-enterprise');
     } else {
-      // Muestra una alerta si las credenciales son incorrectas
-      alert('Usuario o contraseña incorrectos');
+      // Mostrar un mensaje de error si el inicio de sesión falla
+      alert(errorMessage);
     }
+
   };
 
   return (
