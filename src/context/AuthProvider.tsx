@@ -2,7 +2,7 @@ import { createContext, useContext, useState, ReactNode } from 'react';
 import { UserRole } from '@/interfaces/DatabaseInterfaces';
 import validateClientCredentials from '@/utils/auth/validateClientCredentials';
 import validateCarrierCredentials from '@/utils/auth/validateCarrierCredentials';
-import validateEnterpriseCredentials from '@/utils/auth/validateEntrepriseCredentials';
+import validateAdminCredentials from '@/utils/auth/validateAdminCredentials';
 
 // Tipo de datos que almacenará el contexto
 interface AuthContextInterface {
@@ -72,7 +72,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         user = validateCarrierCredentials(username, password);
         break;
       case 'admin':
-        user = validateEnterpriseCredentials(username, password);
+        user = validateAdminCredentials(username, password);
         break;
       default:
         errorMessage = "Tipo de usuario no válido";
