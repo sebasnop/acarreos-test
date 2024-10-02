@@ -1,5 +1,5 @@
 export default async function signupClientRequest(username: string, email: string, password: string) {
-  const url = 'https://api.example.com/register'; // Cambia esto por tu endpoint real
+  const url = 'http://localhost:3000/clients'; // Cambia esto por tu endpoint real
 
   const usernameTrim: string = username.trim();
   const usernamePlus: string = usernameTrim.replace(" ", "+");
@@ -25,7 +25,7 @@ export default async function signupClientRequest(username: string, email: strin
     const responseData = await response.json(); // Si la respuesta es un JSON
 
     // Verifica si la respuesta fue exitosa
-    if (statusCode === 200) {
+    if (statusCode === 201) {
       console.log('Registro exitoso:', responseData);
       return { success: true, data: responseData };
     } else {

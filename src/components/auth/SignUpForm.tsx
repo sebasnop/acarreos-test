@@ -76,8 +76,8 @@ export default function SignUpForm(): React.ReactElement {
           confirmPassword: ''
         });
 
-        // Redirige a la página main-user
-        navigate('/main-user');
+        // Redirige a la página login
+        navigate('/login');
       } else {
         // Si ocurrió un error, muestra el mensaje de error
         setErrorMessage(`Error: ${result.error}`);
@@ -94,7 +94,9 @@ export default function SignUpForm(): React.ReactElement {
 
   useEffect(
     () => {
-      alert(errorMessage);
+      if (errorMessage){
+        alert(errorMessage);
+      }
     },
     [errorMessage]
   );
