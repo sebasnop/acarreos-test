@@ -8,6 +8,6 @@ import { AdminInterface } from "@/interfaces/DatabaseInterfaces";
  * @param password - La contraseña de la empresa.
  * @returns La empresa si las credenciales son correctas, o null si no lo son.
  */
-export default function validateAdminCredentials(username: string, password: string): AdminInterface | null {
+export default function loginAdminRequest(username: string, password: string): AdminInterface | null {
   return AdminsTable.find(admin => admin.username === username && admin.password === password) || null;
 }

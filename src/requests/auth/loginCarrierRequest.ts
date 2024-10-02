@@ -8,6 +8,6 @@ import { CarrierInterface } from "@/interfaces/DatabaseInterfaces";
  * @param password - La contraseña del transportista.
  * @returns El transportista si las credenciales son correctas, o null si no lo son.
  */
-export default function validateCarrierCredentials(username: string, password: string): CarrierInterface | null {
+export default function loginCarrierRequest(username: string, password: string): CarrierInterface | null {
   return CarriersTable.find(carrier => carrier.username === username && carrier.password === password) || null;
 }

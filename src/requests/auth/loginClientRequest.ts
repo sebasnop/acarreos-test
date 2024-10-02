@@ -8,6 +8,6 @@ import { ClientInterface } from "@/interfaces/DatabaseInterfaces";
  * @param password - La contraseña del cliente.
  * @returns El usuario si las credenciales son correctas, o null si no lo son.
  */
-export default function validateClientCredentials(username: string, password: string): ClientInterface | null {
+export default function loginClientRequest(username: string, password: string): ClientInterface | null {
   return ClientsTable.find(client => client.username === username && client.password === password) || null;
 }

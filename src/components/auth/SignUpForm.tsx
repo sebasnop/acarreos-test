@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import LandingHeader from "@/components/header/LandingHeader";
 import { LockClosedIcon } from '@heroicons/react/20/solid';
 import validateSignUpPasswords from '@/utils/auth/validateSignUpPasswords';
+import signupClientRequest from '@/requests/auth/signupClientRequest';
 
 /**
  * Tipo para los datos del formulario de registro.
@@ -50,7 +51,7 @@ export default function SignUpForm(): React.ReactElement {
    * Maneja el envío del formulario. Limpia los datos del formulario y de `localStorage`, y redirige a la página principal del usuario.
    * @param {React.FormEvent<HTMLFormElement>} e - El evento de envío del formulario.
    */
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const passwordError = validateSignUpPasswords(formData.password, formData.confirmPassword);
@@ -59,17 +60,44 @@ export default function SignUpForm(): React.ReactElement {
       return;
     }
 
-    // Limpia los datos del formulario y localStorage
-    setFormData({
-      username: '',
-      email: '',
-      password: '',
-      confirmPassword: ''
-    });
+    try {
+      // Espera la respuesta de la solicitud de registro
+      const result = await signupClientRequest(formData.username, formData.email, formData.password);
+
+      // Si el registro fue exitoso
+      if (result.success) {
+        alert('Cuenta creada exitosamente');
+
+        // Limpia los datos del formulario
+        setFormData({
+          username: '',
+          email: '',
+          password: '',
+          confirmPassword: ''
+        });
+
+        // Redirige a la página main-user
+        navigate('/main-user');
+      } else {
+        // Si ocurrió un error, muestra el mensaje de error
+        setErrorMessage(`Error: ${result.error}`);
+      }
+    } catch (error) {
+      // Maneja cualquier error inesperado (problemas de red, etc.)
+      setErrorMessage('Hubo un problema al registrar la cuenta. Por favor, inténtalo de nuevo más tarde.');
+    }
 
     // Redirige a la página main-user
-    navigate('/main-user');
+    // navigate('/main-user');
+
   };
+
+  useEffect(
+    () => {
+      alert(errorMessage);
+    },
+    [errorMessage]
+  );
 
   return (
     <>
@@ -166,7 +194,7 @@ export default function SignUpForm(): React.ReactElement {
           </form>
 
           <p className="mt-10 text-center text-sm text-gray-500">
-            ¿Ya tienes una cuenta? 
+            ¿Ya tienes una cuenta?
             <Link to="/login" className="font-semibold leading-6 text-yellow-950 hover:text-yellow-900"> Inicia sesión aquí</Link>
           </p>
         </div>

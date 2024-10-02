@@ -1,10 +1,14 @@
-export default async function createClientRequest(username: string, email: string, password: string) {
+export default async function signupClientRequest(username: string, email: string, password: string) {
   const url = 'https://api.example.com/register'; // Cambia esto por tu endpoint real
 
+  const usernameTrim: string = username.trim();
+  const usernamePlus: string = usernameTrim.replace(" ", "+");
+
   const body = {
-    username,
-    email,
-    password
+    "username": username,
+    "email": email,
+    "password": password,
+    "photo": `https://avatar.iran.liara.run/username?username=${usernamePlus}`
   };
 
   try {
