@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import LandingHeader from "@/components/header/LandingHeader";
-import { LockClosedIcon, MapPinIcon } from '@heroicons/react/20/solid';
+import { LockClosedIcon } from '@heroicons/react/20/solid';
+import validateSignUpPasswords from '@/utils/auth/validateSignUpPasswords';
 
 /**
  * Tipo para los datos del formulario de registro.
@@ -11,7 +12,6 @@ interface FormData {
   email: string;
   password: string;
   confirmPassword: string;
-  location: string;
 }
 
 /**
@@ -26,24 +26,11 @@ export default function SignUpForm(): React.ReactElement {
     username: '',
     email: '',
     password: '',
-    confirmPassword: '',
-    location: ''
+    confirmPassword: ''
   });
 
   const navigate = useNavigate();
 
-  /**
-   * Desplaza la ventana hacia la parte superior y carga los datos guardados en `localStorage` al montar el componente.
-   */
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    
-    // Carga los datos guardados en localStorage
-    const savedData = localStorage.getItem('signUpFormData');
-    if (savedData) {
-      setFormData(JSON.parse(savedData));
-    }
-  }, []);
 
   /**
    * Maneja los cambios en los campos del formulario y guarda los datos en `localStorage`.
@@ -53,10 +40,11 @@ export default function SignUpForm(): React.ReactElement {
     const { name, value } = e.target;
     setFormData((prevData) => {
       const updatedData = { ...prevData, [name]: value };
-      localStorage.setItem('signUpFormData', JSON.stringify(updatedData));
       return updatedData;
     });
   };
+
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   /**
    * Maneja el envío del formulario. Limpia los datos del formulario y de `localStorage`, y redirige a la página principal del usuario.
@@ -65,15 +53,19 @@ export default function SignUpForm(): React.ReactElement {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const passwordError = validateSignUpPasswords(formData.password, formData.confirmPassword);
+    if (passwordError) {
+      setErrorMessage(passwordError);
+      return;
+    }
+
     // Limpia los datos del formulario y localStorage
     setFormData({
       username: '',
       email: '',
       password: '',
-      confirmPassword: '',
-      location: ''
+      confirmPassword: ''
     });
-    localStorage.removeItem('signUpFormData');
 
     // Redirige a la página main-user
     navigate('/main-user');
@@ -152,27 +144,6 @@ export default function SignUpForm(): React.ReactElement {
                   required
                   className="pl-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-yellow-900 sm:text-sm sm:leading-6"
                 />
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="location" className="block text-sm font-medium leading-6 text-gray-900">Ubicación predeterminada (opcional)</label>
-              <div className="mt-2 relative">
-                <MapPinIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                <select
-                  id="location"
-                  name="location"
-                  value={formData.location}
-                  onChange={handleChange}
-                  className="pl-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-yellow-900 sm:text-sm sm:leading-6"
-                >
-                  <option value="" disabled>Selecciona una ubicación</option>
-                  <option value="Tribus Agua">Tribus Agua</option>
-                  <option value="Reino Tierra">Reino Tierra</option>
-                  <option value="Nación del Fuego">Nación del Fuego</option>
-                  <option value="Templos Aire">Templos Aire</option>
-                  <option value="Ciudad República">Ciudad República</option>
-                </select>
               </div>
             </div>
 

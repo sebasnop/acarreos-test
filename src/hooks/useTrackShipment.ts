@@ -1,7 +1,5 @@
+import trackShipment from "@/requests/trackShipment";
 import { useState, useEffect } from "react";
-
-// Base de datos simulada
-import { ShipmentsTable as shipments } from "@/database/ShipmentsTable";
 
 /**
  * Argumentos para el hook `useTrackShipment`.
@@ -62,9 +60,7 @@ export function useTrackShipment({
 
     try {
       // Simulación de un fetch de datos
-      const shipment = shipments.find(
-        (shipment) => shipment.guideCode === Number(guideCode)
-      );
+      const shipment = trackShipment(guideCode);
 
       if (shipment) {
         setStatus(shipment.status);

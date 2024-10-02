@@ -1,8 +1,8 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
 import { UserRole } from '@/interfaces/DatabaseInterfaces';
-import validateClientCredentials from '@/utils/auth/validateClientCredentials';
-import validateCarrierCredentials from '@/utils/auth/validateCarrierCredentials';
-import validateAdminCredentials from '@/utils/auth/validateAdminCredentials';
+import validateClientCredentials from '@/requests/auth/validateClientCredentials';
+import validateCarrierCredentials from '@/requests/auth/validateCarrierCredentials';
+import validateAdminCredentials from '@/requests/auth/validateAdminCredentials';
 
 // Tipo de datos que almacenará el contexto
 interface AuthContextInterface {
