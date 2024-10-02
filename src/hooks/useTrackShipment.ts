@@ -1,4 +1,4 @@
-import trackShipment from "@/requests/trackShipment";
+import getShipmentStatusRequest from "@/requests/getShipmentStatusRequest";
 import { useState, useEffect } from "react";
 
 /**
@@ -59,14 +59,18 @@ export function useTrackShipment({
     setError(null);
 
     try {
-      // Simulación de un fetch de datos
-      const shipment = trackShipment(guideCode);
+      // Fetch de datos
+      const result = await getShipmentStatusRequest(guideCode);
 
-      if (shipment) {
-        setStatus(shipment.status);
+      if (result.statusCode === 200) {
+        setStatus(String(result.data));
+      } else if (result.statusCode === 404) {
+        setError("Número de guía no encontrado (Error 404)");
       } else {
-        setError("No se encontró el código de guía");
+        console.error('Error:', result.error);
+        setError(String(result.error));
       }
+
     } catch (e) {
       setError("Hubo un problema al buscar el estado del producto");
     } finally {
