@@ -136,3 +136,12 @@ export interface locationInputInterface {
   region: string;
   cityId: string
 }
+
+
+export interface ClientDataInterface {
+  id: string;
+  username: string;
+  email: string;
+  photo: string;
+  shipments?: [];
+}

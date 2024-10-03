@@ -2,6 +2,7 @@ import InsideHeader from "@/components/header/InsideHeader";
 import { ShipmentsTable } from "@/database/ShipmentsTable";
 import { Link } from "react-router-dom";
 import { navRoutes as routes } from "@/constants/navRoutes";
+import { useAuth } from "@/context/AuthProvider";
 
 /**
  * El componente MainClient representa la página principal para los clientes, donde pueden ver sus envíos y solicitar servicios.
@@ -9,9 +10,12 @@ import { navRoutes as routes } from "@/constants/navRoutes";
  * @component
  */
 export default function MainClient() {
+
+  const { clientDataState } = useAuth();
+
   return (
     <>
-      <InsideHeader role="client" />
+      <InsideHeader role="client" photo={clientDataState?.photo} />
       <div className="flex flex-col px-6 py-8">
         {/* Título y botón para solicitar servicio */}
         <div className="flex justify-between items-center mb-6">

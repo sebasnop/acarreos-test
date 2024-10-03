@@ -4,7 +4,7 @@ interface LoginResponse {
   error?: string;
 }
 
-export default async function loginClientRequest(username: string, password: string): Promise<LoginResponse> {
+export default async function tryLoginClient(username: string, password: string): Promise<LoginResponse> {
   const endpoint = `http://localhost:3000/auth-module/login`;
 
   try {

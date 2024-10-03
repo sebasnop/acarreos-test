@@ -80,7 +80,9 @@ export default function SignUpForm(): React.ReactElement {
         navigate('/login');
       } else {
         // Si ocurrió un error, muestra el mensaje de error
-        setErrorMessage(`Error: ${result.error}`);
+        if (result.error.message){
+          setErrorMessage(`Error: ${result.error.message}`);
+        }
       }
     } catch (error) {
       // Maneja cualquier error inesperado (problemas de red, etc.)

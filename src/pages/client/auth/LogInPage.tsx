@@ -4,6 +4,7 @@ import LogInForm from "@/components/auth/LogInForm";
 import LandingHeader from "@/components/header/LandingHeader";
 import { Link } from 'react-router-dom';
 import { useAuth } from '@/context/AuthProvider';
+import tryLoginClient from '@/requests/auth/tryLoginClient';
 
 /**
  * Componente LogInPage
@@ -15,7 +16,7 @@ import { useAuth } from '@/context/AuthProvider';
  * @returns El componente LogInPage.
  */
 export default function LogInPage() {
-  const { login } = useAuth();
+  const { successfulClientLogin } = useAuth();
   // Estado para almacenar el nombre de usuario y la contraseña ingresados
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -29,9 +30,23 @@ export default function LogInPage() {
    * 
    * @param {React.FormEvent<HTMLFormElement>} event - El evento de envío del formulario.
    */
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    const result = await tryLoginClient(username, password);
+
+    if (result.statusCode === 201) {
+      // Redirigir al usuario o guardar información de sesión
+      navigate('/main-client');
+      successfulClientLogin(result.data);
+      console.log(result.data);
+    } else {
+      // Mostrar mensaje de error si no se autenticó correctamente
+      console.log(result.statusCode)
+      alert(result.error);
+    }
+
+    /*
     const { successfulLogin, errorMessage } = login(username, password, 'client');
 
      // Verificar si el login fue exitoso
@@ -41,7 +56,8 @@ export default function LogInPage() {
       // Mostrar un mensaje de error si el inicio de sesión falla
       alert(errorMessage);
     }
-
+    */
+    
   };
 
   return (

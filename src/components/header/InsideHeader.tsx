@@ -8,6 +8,7 @@ interface InsideHeaderProps {
    * Rol del usuario actual, que determina el contenido del menú.
    */
   role: UserRole;
+  photo?: string
 }
 
 /**
@@ -19,7 +20,7 @@ interface InsideHeaderProps {
  * @param props - Las propiedades del componente, incluyendo el rol del usuario.
  * @returns El componente de encabezado.
  */
-export default function InsideHeader({ role }: InsideHeaderProps) {
+export default function InsideHeader({ role, photo }: InsideHeaderProps) {
   const { logout } = useAuth();
   const navigate = useNavigate();
 
@@ -86,11 +87,22 @@ export default function InsideHeader({ role }: InsideHeaderProps) {
                 <MenuButton className="relative flex rounded-full bg-yellow-950 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">Open user menu</span>
+                  {
+                    photo && 
+                    <img
+                    alt=""
+                    src={photo}
+                    className="h-8 w-8 rounded-full"
+                  />
+                  }
+                  {
+                    !(photo) && 
                   <img
                     alt=""
                     src="https://media.licdn.com/dms/image/v2/C4E03AQFfPyhBiZ58Vw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1607983102997?e=1730332800&v=beta&t=CKAiZcdc28aBrpVsxGxNjZZDDKyr_KjAZiG1-FmnGOY"
                     className="h-8 w-8 rounded-full"
                   />
+                  }
                 </MenuButton>
               </div>
 

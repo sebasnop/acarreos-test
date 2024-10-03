@@ -26,10 +26,10 @@ export default async function signupClientRequest(username: string, email: strin
 
     // Verifica si la respuesta fue exitosa
     if (statusCode === 201) {
-      console.log('Registro exitoso:', responseData);
+      // console.log('Registro exitoso:', responseData);
       return { success: true, data: responseData };
     } else {
-      console.error('Error en la solicitud:', responseData);
+      // console.error('Error en la solicitud:', responseData);
       return { success: false, statusCode, error: responseData };
     }
   } catch (error) {

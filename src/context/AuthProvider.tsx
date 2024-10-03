@@ -3,6 +3,7 @@ import { UserRole } from '@/interfaces/DatabaseInterfaces';
 import loginClientRequest from '@/requests/auth/loginClientRequest';
 import loginCarrierRequest from '@/requests/auth/loginCarrierRequest';
 import loginAdminRequest from '@/requests/auth/loginAdminRequest';
+import { ClientDataInterface } from '@/interfaces/AppInterfaces';
 
 // Tipo de datos que almacenará el contexto
 interface AuthContextInterface {
@@ -11,7 +12,9 @@ interface AuthContextInterface {
     successfulLogin: boolean;
     errorMessage: string;
   };
+  successfulClientLogin: (clientData: any) => void;
   logout: () => void;
+  clientDataState: ClientDataInterface | null;
 }
 
 // Crear el contexto de autenticación
@@ -47,6 +50,14 @@ export function useAuth() {
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [userRole, setUserRole] = useState<UserRole | null>(null);
 
+  const [clientDataState, setClientDataState] = useState<ClientDataInterface | null>(null);
+
+  const successfulClientLogin = (clientData: ClientDataInterface) => {
+    logout();
+    setUserRole('client');
+    setClientDataState(clientData);
+  }
+
   /**
    * Función para iniciar sesión.
    * 
@@ -55,6 +66,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
    * @param userType - El tipo de usuario que está intentando ingresar.
    * @returns Confirmación del éxito del inicio de sesión y mensaje de error.
    */
+
   const login = (username: string, password: string, userType: UserRole): {
     successfulLogin: boolean;
     errorMessage: string;
@@ -97,7 +109,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ userRole, login, logout }}>
+    <AuthContext.Provider value={{ userRole, login, logout, successfulClientLogin, clientDataState }}>
       {children}
     </AuthContext.Provider>
   );
