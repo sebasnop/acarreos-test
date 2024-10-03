@@ -15,7 +15,7 @@ export default function MainClient() {
 
   return (
     <>
-      <InsideHeader role="client" photo={clientDataState?.photo} />
+      <InsideHeader role="client" photo={clientDataState?.photo} name={clientDataState?.username} />
       <div className="flex flex-col px-6 py-8">
         {/* Título y botón para solicitar servicio */}
         <div className="flex justify-between items-center mb-6">

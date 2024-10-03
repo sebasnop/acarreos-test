@@ -8,6 +8,7 @@ interface InsideHeaderProps {
    * Rol del usuario actual, que determina el contenido del menú.
    */
   role: UserRole;
+  name?: string;
   photo?: string
 }
 
@@ -20,7 +21,7 @@ interface InsideHeaderProps {
  * @param props - Las propiedades del componente, incluyendo el rol del usuario.
  * @returns El componente de encabezado.
  */
-export default function InsideHeader({ role, photo }: InsideHeaderProps) {
+export default function InsideHeader({ role, photo, name }: InsideHeaderProps) {
   const { logout } = useAuth();
   const navigate = useNavigate();
 
@@ -77,7 +78,17 @@ export default function InsideHeader({ role, photo }: InsideHeaderProps) {
             <Menu as="div" className="relative ml-3">
               <div className="flex flex-row gap-4 items-center">
                 <div className="hidden sm:flex flex-col items-end">
-                  <span className="text-gray-700 font-medium text-sm">Daniel Chanci</span>
+
+                  {
+                    name &&
+                    <span className="text-gray-700 font-medium text-sm">{name}</span>
+                  }
+
+                  {
+                    !(name) &&
+                    <span className="text-gray-700 font-medium text-sm">Daniel Chanci</span>
+                  }
+
                   {role !== 'client' && (
                     <span className="text-gray-600 text-xs">
                       {getRoleLabel(role)}
@@ -88,20 +99,20 @@ export default function InsideHeader({ role, photo }: InsideHeaderProps) {
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">Open user menu</span>
                   {
-                    photo && 
+                    photo &&
                     <img
-                    alt=""
-                    src={photo}
-                    className="h-8 w-8 rounded-full"
-                  />
+                      alt=""
+                      src={photo}
+                      className="h-8 w-8 rounded-full"
+                    />
                   }
                   {
-                    !(photo) && 
-                  <img
-                    alt=""
-                    src="https://media.licdn.com/dms/image/v2/C4E03AQFfPyhBiZ58Vw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1607983102997?e=1730332800&v=beta&t=CKAiZcdc28aBrpVsxGxNjZZDDKyr_KjAZiG1-FmnGOY"
-                    className="h-8 w-8 rounded-full"
-                  />
+                    !(photo) &&
+                    <img
+                      alt=""
+                      src="https://media.licdn.com/dms/image/v2/C4E03AQFfPyhBiZ58Vw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1607983102997?e=1730332800&v=beta&t=CKAiZcdc28aBrpVsxGxNjZZDDKyr_KjAZiG1-FmnGOY"
+                      className="h-8 w-8 rounded-full"
+                    />
                   }
                 </MenuButton>
               </div>
